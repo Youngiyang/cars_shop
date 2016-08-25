@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Car</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= render "layouts/head" %>
 </head>
 <body>
+  <div class="orion-bootstrap-admin">
+    <%= render "layouts/sidebar" %>
 
-<%= yield %>
-
+    <%= render "layouts/content" %>
+  </div>
 </body>
 </html>

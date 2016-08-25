@@ -1,6 +1,10 @@
 source 'https://ruby.taobao.org'
-
+gem 'jquery-validation-rails'
+gem 'jquery-ui-rails'
 gem 'font-awesome-sass',  '~> 4.3'
+gem 'simditor'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'
 # Use sqlite3 as the database for Active Record
