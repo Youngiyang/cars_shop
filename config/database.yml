@@ -10,14 +10,12 @@ default: &default
 
 development:
   <<: *default
-  host: localhost
   database: car_development
   username: postgres
   password: postgres1234
 
 test:
   <<: *default
-  host: localhost
   database: car_test
   username: postgres
   password: postgres1234
@@ -27,6 +25,6 @@ production:
   host: <%= ENV['PLAYMALL_DATABASE_HOST'] %>
   su_username: postgres
   su_password: <%= ENV['SU_DATABASE_PASSWORD'] %>
-  database: quick_production
+  database: car_production
   username: playmall
   password: <%= ENV['PLAYMALL_DATABASE_PASSWORD'] %>
