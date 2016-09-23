@@ -8,7 +8,6 @@ class CreateGoods < ActiveRecord::Migration
       t.string :source_from, null:false
       t.decimal :current_price, precision: 11, scale: 2
       t.decimal :market_price, precision: 11, scale: 2
-      t.integer :category_id, null: false
       t.boolean :is_hot, null: false, default: false
       t.boolean :in_stock, null: false, default: false
       t.boolean :is_recommended, null: false, default: false

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -85,7 +84,6 @@ ActiveRecord::Schema.define(version: 20160830075442) do
     t.string   "source_from",                                                null: false
     t.decimal  "current_price",     precision: 11, scale: 2
     t.decimal  "market_price",      precision: 11, scale: 2
-    t.integer  "category_id",                                                null: false
     t.boolean  "is_hot",                                     default: false, null: false
     t.boolean  "in_stock",                                   default: false, null: false
     t.boolean  "is_recommended",                             default: false, null: false
@@ -132,11 +130,12 @@ ActiveRecord::Schema.define(version: 20160830075442) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.integer  "brand_id",                            null: false
-    t.decimal  "min_price",  precision: 11, scale: 2
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "name",                                 null: false
+    t.integer  "brand_id",                             null: false
+    t.integer  "category_id",                          null: false
+    t.decimal  "min_price",   precision: 11, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "spec_options", force: :cascade do |t|
