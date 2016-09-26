@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830075442) do
+ActiveRecord::Schema.define(version: 20160923072627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160830075442) do
     t.string   "source_from",                                                null: false
     t.decimal  "current_price",     precision: 11, scale: 2
     t.decimal  "market_price",      precision: 11, scale: 2
+    t.string   "registered_info",                                            null: false
     t.boolean  "is_hot",                                     default: false, null: false
     t.boolean  "in_stock",                                   default: false, null: false
     t.boolean  "is_recommended",                             default: false, null: false
@@ -122,11 +123,11 @@ ActiveRecord::Schema.define(version: 20160830075442) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_specs", force: :cascade do |t|
-    t.integer  "product_id", null: false
-    t.integer  "sepc_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "product_spec_options", force: :cascade do |t|
+    t.integer  "product_id",     null: false
+    t.integer  "spec_option_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "products", force: :cascade do |t|
