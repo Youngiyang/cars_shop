@@ -9,5 +9,6 @@ class CreateBrands < ActiveRecord::Migration
       t.string :nationality, null: false, default: ""
       t.timestamps null: false
     end
+    add_index :brands, :cn_name, unique: true
   end
 end

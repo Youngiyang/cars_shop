@@ -5,5 +5,6 @@ class CreateAttributes < ActiveRecord::Migration
       t.string :key, null: false
       t.timestamps null: false
     end
+    add_index :attributes, :key, unique: true
   end
 end

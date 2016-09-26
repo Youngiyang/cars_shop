@@ -5,5 +5,6 @@ class CreateSpecOptions < ActiveRecord::Migration
       t.string :value, null: false
       t.timestamps null: false
     end
+    add_index :spec_options, [:spec_id, :value], unique: true
   end
 end

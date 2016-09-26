@@ -5,5 +5,6 @@ class CreateAttributeOptions < ActiveRecord::Migration
       t.string :value, null: false
       t.timestamps null: false
     end
+    add_index :attribute_options, [:attribute_id, :value], unique: true
   end
 end

@@ -7,5 +7,6 @@ class CreateCategories < ActiveRecord::Migration
       t.integer :sort_order, null: false
       t.timestamps null: false
     end
+    add_index :categories, :name, unique: true
   end
 end

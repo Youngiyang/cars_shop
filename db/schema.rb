@@ -20,12 +20,14 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.text     "description", default: "", null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["name"], name: "index_albums_on_name", unique: true, using: :btree
   end
 
   create_table "attribute_groups", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_attribute_groups_on_name", unique: true, using: :btree
   end
 
   create_table "attribute_options", force: :cascade do |t|
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "value",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["attribute_id", "value"], name: "index_attribute_options_on_attribute_id_and_value", unique: true, using: :btree
   end
 
   create_table "attributes", force: :cascade do |t|
@@ -40,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "key",                null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.index ["key"], name: "index_attributes_on_key", unique: true, using: :btree
   end
 
   create_table "brands", force: :cascade do |t|
@@ -51,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "nationality", default: "",    null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.index ["cn_name"], name: "index_brands_on_cn_name", unique: true, using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -60,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.integer  "sort_order",               null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
   create_table "good_attribute_options", force: :cascade do |t|
@@ -137,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.decimal  "min_price",   precision: 11, scale: 2
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
 
   create_table "spec_options", force: :cascade do |t|
@@ -144,6 +151,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["spec_id", "value"], name: "index_spec_options_on_spec_id_and_value", unique: true, using: :btree
   end
 
   create_table "specs", force: :cascade do |t|
@@ -151,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.text     "description", default: "", null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["name"], name: "index_specs_on_name", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -159,6 +168,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "user_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
   end
 
 end

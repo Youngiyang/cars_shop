@@ -5,5 +5,6 @@ class CreateSpecs < ActiveRecord::Migration
       t.text :description, null: false, default: ""
       t.timestamps null: false
     end
+    add_index :specs, :name, unique: true
   end
 end

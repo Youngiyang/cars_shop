@@ -5,5 +5,6 @@ class CreateAlbums < ActiveRecord::Migration
       t.text :description, null: false, default: ""
       t.timestamps null: false
     end
+    add_index :albums, :name, unique: true
   end
 end
