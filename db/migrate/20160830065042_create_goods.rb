@@ -12,6 +12,7 @@ class CreateGoods < ActiveRecord::Migration
       t.boolean :is_hot, null: false, default: false
       t.boolean :in_stock, null: false, default: false
       t.boolean :is_recommended, null: false, default: false
+      t.string :recommended_words
       t.integer :status, null: false, default: 0
       t.timestamps null: false
     end

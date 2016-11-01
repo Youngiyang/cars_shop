@@ -4,6 +4,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name, null: false
       t.integer :brand_id, null: false
       t.integer :category_id, null: false
+      t.string :slogan, null:false
       t.decimal :min_price, precision: 11, scale: 2
       t.timestamps null: false
     end

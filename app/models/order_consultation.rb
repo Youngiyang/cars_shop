@@ -1,0 +1,2 @@
+class OrderConsultation < ApplicationRecord
+end

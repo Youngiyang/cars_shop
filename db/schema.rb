@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923072627) do
+ActiveRecord::Schema.define(version: 20161101025143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertisements", force: :cascade do |t|
+    t.string   "img_url",                  null: false
+    t.string   "link"
+    t.text     "description", default: "", null: false
+    t.integer  "position",                 null: false
+    t.integer  "sort_order",               null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -68,6 +78,23 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
+  create_table "consultations", force: :cascade do |t|
+    t.string   "intention",   null: false
+    t.integer  "province_id", null: false
+    t.integer  "city_id",     null: false
+    t.string   "name",        null: false
+    t.string   "phone_num",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string   "question",   null: false
+    t.text     "answer",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "good_attribute_options", force: :cascade do |t|
     t.integer  "good_id",              null: false
     t.integer  "attribute_option_idl", null: false
@@ -94,31 +121,33 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.boolean  "is_hot",                                     default: false, null: false
     t.boolean  "in_stock",                                   default: false, null: false
     t.boolean  "is_recommended",                             default: false, null: false
+    t.string   "recommended_words"
     t.integer  "status",                                     default: 0,     null: false
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id",                                         null: false
-    t.integer  "good_id",                                          null: false
-    t.integer  "quantity",                             default: 1, null: false
-    t.decimal  "unit_price",  precision: 11, scale: 2,             null: false
-    t.decimal  "total_price", precision: 11, scale: 2,             null: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+  create_table "order_consultations", force: :cascade do |t|
+    t.string   "order_cn",    null: false
+    t.integer  "user_id",     null: false
+    t.string   "mobile",      null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_cn",                                null: false
-    t.integer  "user_id",                                 null: false
-    t.decimal  "pay_price",      precision: 11, scale: 2, null: false
-    t.decimal  "original_price", precision: 11, scale: 2, null: false
-    t.integer  "pay_status",                              null: false
-    t.datetime "pay_time"
-    t.integer  "order_status",                            null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "order_cn",                  null: false
+    t.integer  "user_id",                   null: false
+    t.integer  "good_id",                   null: false
+    t.string   "name",                      null: false
+    t.string   "phone_num",                 null: false
+    t.integer  "province_id",               null: false
+    t.integer  "city_id",                   null: false
+    t.text     "requirements", default: "", null: false
+    t.integer  "status",       default: 1,  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -140,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160923072627) do
     t.string   "name",                                 null: false
     t.integer  "brand_id",                             null: false
     t.integer  "category_id",                          null: false
+    t.string   "slogan",                               null: false
     t.decimal  "min_price",   precision: 11, scale: 2
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
