@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :attribute_option do
+  factory :product_spec do
     
   end
 end
