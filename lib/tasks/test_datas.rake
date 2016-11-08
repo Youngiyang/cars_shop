@@ -1,111 +1,119 @@
 namespace :test_datas do
   desc "add test datas"
-  task :add => [:environment] do
-    bmw = Brand.create!(en_name: 'BMW', cn_name: '宝马', 
-                        logo: 'logo', sort_order: 1 )
+  task :init => [:environment] do
+    categories = Category.create!([
+      { name: "SUV", sort_order: 1 },
+      { name: "轿车", sort_order: 2 },
+      { name: "跑车", sort_order: 3 },])
 
-    benz = Brand.create!(en_name: 'Mercedes-Benz', cn_name: '梅赛德斯奔驰', 
-                         logo: 'logo', sort_order: 2)
+    brands = Brand.create!([
+      { cn_name: "宝马", logo: "宝马logo", sort_order: 1, is_show: true },
+      { cn_name: "奔驰", logo: "奔驰LOGO", sort_order: 2, is_show: true },
+      { cn_name: "玛莎拉蒂", logo: "玛莎拉蒂logo", sort_order:3, is_show: true },
+      { cn_name: "保时捷", logo: "保时捷logo", sort_order:4, is_show: false },
+      { cn_name: "路虎", logo: "路虎LOGO", sort_order: 5, is_show: false }])
 
-    suv = Category.create!(name: 'SUV', sort_order: 1)
-    jc = Category.create!(name: '轿车', sort_order: 2)
-    bmw_x6 = Product.create!(name: '宝马X6', brand_id: bmw.id,
-                             category_id: suv.id, min_price: 0)
-    s500 = Product.create!(name: '奔驰S500', brand_id: benz.id,
-                           category_id: jc.id, min_price: 0)
+    #为每个品牌创建5个货品
+    brands.each do |brand|
+      5.times do |i|
+        Product.create!(name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
+                        brand_id: brand.id,
+                        category_id: categories[rand(2)].id,
+                        slogan: Faker::Lorem.sentence,
+                        min_price: rand(1000000))
+      end
+    end
+
     specs = Spec.create!([
-      {name: '颜色'}, {name: '燃油'}, {name: '排量'}])
-
-    spec_options = SpecOption.create!([
-      {spec_id: specs[0].id, value: '外白色/内红色'},
-      {spec_id: specs[0].id, value: '外红色/内棕色'},
-      {spec_id: specs[1].id, value: '汽油'},
-      {spec_id: specs[1].id, value: '柴油'},
-      {spec_id: specs[2].id, value: '3.0T'},
-      {spec_id: specs[2].id, value: '3.5T'}])
-    ProductSpecOption.create!([
-      {product_id: bmw_x6.id, spec_option_id: spec_options[0].id},
-      {product_id: bmw_x6.id, spec_option_id: spec_options[1].id},
-      {product_id: bmw_x6.id, spec_option_id: spec_options[2].id},
-      {product_id: bmw_x6.id, spec_option_id: spec_options[3].id},
-      {product_id: bmw_x6.id, spec_option_id: spec_options[4].id},
-      {product_id: bmw_x6.id, spec_option_id: spec_options[5].id},
-      {product_id: s500.id, spec_option_id: spec_options[0].id},
-      {product_id: s500.id, spec_option_id: spec_options[1].id},
-      {product_id: s500.id, spec_option_id: spec_options[2].id},
-      {product_id: s500.id, spec_option_id: spec_options[3].id},
-      {product_id: s500.id, spec_option_id: spec_options[4].id},
-      {product_id: s500.id, spec_option_id: spec_options[5].id}])
-
-    goods = Good.create!([
-      {product_id: bmw.id, name: '宝马X6 3.0T汽油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 汽油, 3.0T
-       {product_id: bmw.id, name: '宝马X6 3.0T柴油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 柴油, 3.0T
-       {product_id: bmw.id, name: '宝马X6 3.5T柴油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 柴油, 3.5T
-       {product_id: bmw.id, name: '宝马X6 3.T汽油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外红色/内棕色, 汽油, 3.5T
-       {product_id: s500.id, name: '宝马X6 3.0T汽油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 汽油, 3.0T
-       {product_id: s500.id, name: '宝马X6 3.0T柴油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 柴油, 3.0T
-       {product_id: s500.id, name: '宝马X6 3.5T柴油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       },# 外白色/内红色, 柴油, 3.5T
-       {product_id: s500.id, name: '宝马X6 3.T汽油版', 
-       photo_ids: '1,2,3,4', content_photo_ids: '5,6,7,8', 
-       source_from: '中东', current_price: 500000,
-       market_price: 530000, registered_info: 'a,b,c,d,e'
-       }# 外红色/内棕色, 汽油, 3.5T
-       ])
-
-    GoodSpecOption.create!([
-      {good_id: goods[0].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[0].id, spec_option_id: spec_options[2].id},
-      {good_id: goods[0].id, spec_option_id: spec_options[4].id},
-      {good_id: goods[1].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[1].id, spec_option_id: spec_options[3].id},
-      {good_id: goods[1].id, spec_option_id: spec_options[4].id},
-      {good_id: goods[2].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[2].id, spec_option_id: spec_options[3].id},
-      {good_id: goods[2].id, spec_option_id: spec_options[5].id},
-      {good_id: goods[3].id, spec_option_id: spec_options[1].id},
-      {good_id: goods[3].id, spec_option_id: spec_options[2].id},
-      {good_id: goods[3].id, spec_option_id: spec_options[5].id},
-      {good_id: goods[4].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[4].id, spec_option_id: spec_options[2].id},
-      {good_id: goods[4].id, spec_option_id: spec_options[4].id},
-      {good_id: goods[5].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[5].id, spec_option_id: spec_options[3].id},
-      {good_id: goods[5].id, spec_option_id: spec_options[4].id},
-      {good_id: goods[6].id, spec_option_id: spec_options[0].id},
-      {good_id: goods[6].id, spec_option_id: spec_options[3].id},
-      {good_id: goods[6].id, spec_option_id: spec_options[5].id},
-      {good_id: goods[7].id, spec_option_id: spec_options[1].id},
-      {good_id: goods[7].id, spec_option_id: spec_options[2].id},
-      {good_id: goods[7].id, spec_option_id: spec_options[5].id}
+      { name: "燃油"},
+      { name: "排量"},
+      { name: "颜色"}
       ])
+
+    #货品与规格关联
+    products = Product.all
+    products.each do |product|
+      specs.each do |spec|
+        ProductSpec.create!(product_id: product.id, spec_id: spec.id)
+      end
+    end
+
+    SpecOption.create!([
+      { spec_id: Spec.first.id, value: "汽油" },
+      { spec_id: Spec.first.id, value: "柴油" },
+      { spec_id: Spec.second.id, value: "2.0L" },
+      { spec_id: Spec.second.id, value: "2.4L" },
+      { spec_id: Spec.second.id, value: "3.0L" },
+      { spec_id: Spec.second.id, value: "3.5L" },
+      { spec_id: Spec.last.id, value: "白色" },
+      { spec_id: Spec.last.id, value: "黑色" },
+      { spec_id: Spec.last.id, value: "红色" },
+      { spec_id: Spec.last.id, value: "蓝色" },
+      ])
+    
+    # 规格选项ID的排列组合
+    a = [1, 2]
+    b = [3, 4, 5, 6]
+    c = [7, 8, 9, 10]
+    n = a.length * b.length * c.length
+    results = []
+    a.each do |i|
+      b.each do |j|
+        c.each do |k|
+          results << [i, j, k]
+        end
+      end
+    end
+
+    attr_gs = AttrGroup.create!([
+      { name: "基本参数" }, { name: "车身" }, { name: "发动机" }])
+
+    attrs = Attr.create!([
+      { attr_group_id: attr_gs[0].id, key: "发动机" },
+      { attr_group_id: attr_gs[0].id, key: "变速箱" },
+      { attr_group_id: attr_gs[0].id, key: "车身结构" },
+      { attr_group_id: attr_gs[1].id, key: "长度（mm）" },
+      { attr_group_id: attr_gs[1].id, key: "宽度（mm）" },
+      { attr_group_id: attr_gs[1].id, key: "高度（mm）" },
+      { attr_group_id: attr_gs[2].id, key: "排量（L）" },
+      { attr_group_id: attr_gs[2].id, key: "进气形式" },
+      { attr_group_id: attr_gs[2].id, key: "气缸排列形式" }
+      ])
+
+    attrs.each do |attr|
+      3.times do
+        AttrOption.create!(attr_id: attr.id,
+                           value: Faker::Lorem.word)
+      end
+    end
+
+    # 为每个货品创建商品，包括所有的规格组合
+    products.each do |product|
+      results.each do |result|
+        good = product.goods.create!(
+          name: product.name + Faker::Lorem.word,
+          source_from: Faker::Address.country,
+          current_price: rand(1000000),
+          market_price: rand(1000000),
+          registered_info: "a,b,c,d,e",
+          is_hot: Faker::Boolean.boolean(0.2),
+          in_stock: Faker::Boolean.boolean,
+          is_recommended: Faker::Boolean.boolean(0.2))
+        if good.is_recommended
+          good.recommended_words = Faker::Lorem.sentence
+          good.save!
+        end
+        result.each do |id|
+          GoodSpecOption.create!(good_id: good.id, spec_option_id: id)
+        end
+        #为商品关联具体属性
+        attrs.each do |attr|
+          GoodAttrOption.create!(
+            good_id: good.id,
+            attr_option_id: attr.attr_options[rand(3)].id
+            )
+        end
+      end
+    end
   end
 end
-

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101025143) do
+ActiveRecord::Schema.define(version: 20161108081908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,27 +33,24 @@ ActiveRecord::Schema.define(version: 20161101025143) do
     t.index ["name"], name: "index_albums_on_name", unique: true, using: :btree
   end
 
-  create_table "attribute_groups", force: :cascade do |t|
+  create_table "attr_groups", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_attribute_groups_on_name", unique: true, using: :btree
   end
 
-  create_table "attribute_options", force: :cascade do |t|
-    t.integer  "attribute_id", null: false
-    t.string   "value",        null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["attribute_id", "value"], name: "index_attribute_options_on_attribute_id_and_value", unique: true, using: :btree
+  create_table "attr_options", force: :cascade do |t|
+    t.integer  "attr_id",    null: false
+    t.string   "value",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "attributes", force: :cascade do |t|
-    t.integer  "attribute_group_id", null: false
-    t.string   "key",                null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["key"], name: "index_attributes_on_key", unique: true, using: :btree
+  create_table "attrs", force: :cascade do |t|
+    t.integer  "attr_group_id", null: false
+    t.string   "key",           null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "brands", force: :cascade do |t|
@@ -95,11 +92,11 @@ ActiveRecord::Schema.define(version: 20161101025143) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "good_attribute_options", force: :cascade do |t|
-    t.integer  "good_id",              null: false
-    t.integer  "attribute_option_idl", null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "good_attr_options", force: :cascade do |t|
+    t.integer  "good_id",        null: false
+    t.integer  "attr_option_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "good_spec_options", force: :cascade do |t|
@@ -158,11 +155,11 @@ ActiveRecord::Schema.define(version: 20161101025143) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_spec_options", force: :cascade do |t|
-    t.integer  "product_id",     null: false
-    t.integer  "spec_option_id", null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "product_specs", force: :cascade do |t|
+    t.integer  "product_id", null: false
+    t.integer  "spec_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
