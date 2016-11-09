@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(version: 20161108081908) do
     t.string   "name",                                 null: false
     t.integer  "brand_id",                             null: false
     t.integer  "category_id",                          null: false
+    t.integer  "photo_id",                             null: false
     t.string   "slogan",                               null: false
     t.decimal  "min_price",   precision: 11, scale: 2
     t.datetime "created_at",                           null: false

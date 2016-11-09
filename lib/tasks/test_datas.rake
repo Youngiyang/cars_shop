@@ -7,11 +7,19 @@ namespace :test_datas do
       { name: "跑车", sort_order: 3 },])
 
     brands = Brand.create!([
-      { cn_name: "宝马", logo: "宝马logo", sort_order: 1, is_show: true },
-      { cn_name: "奔驰", logo: "奔驰LOGO", sort_order: 2, is_show: true },
-      { cn_name: "玛莎拉蒂", logo: "玛莎拉蒂logo", sort_order:3, is_show: true },
-      { cn_name: "保时捷", logo: "保时捷logo", sort_order:4, is_show: false },
-      { cn_name: "路虎", logo: "路虎LOGO", sort_order: 5, is_show: false }])
+      { cn_name: "宝马", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 1, is_show: true },
+      { cn_name: "奔驰", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 2, is_show: true },
+      { cn_name: "玛莎拉蒂", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 3, is_show: true },
+      { cn_name: "保时捷", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 4, is_show: false },
+      { cn_name: "路虎", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 5, is_show: false }])
+
+    #默认相册
+    album = Album.create!(name: 'default')
+    50.times do |i|
+      Photo.create!(album_id: album.id,
+                    name: 'img'+ i.to_s,
+                    img_url: Faker::Avatar.image('car','200x200','jpg'))
+    end
 
     #为每个品牌创建5个货品
     brands.each do |brand|
@@ -19,6 +27,7 @@ namespace :test_datas do
         Product.create!(name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
                         category_id: categories[rand(2)].id,
+                        photo_id: rand(1..50),
                         slogan: Faker::Lorem.sentence,
                         min_price: rand(1000000))
       end
@@ -92,6 +101,7 @@ namespace :test_datas do
       results.each do |result|
         good = product.goods.create!(
           name: product.name + Faker::Lorem.word,
+          photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,
           source_from: Faker::Address.country,
           current_price: rand(1000000),
           market_price: rand(1000000),
