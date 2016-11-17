@@ -29,6 +29,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'grape'
+gem 'grape-entity'
+gem 'grape_on_rails_routes' # show api routes: rake grape:routes
 # Use Unicorn as the app server
 # gem 'unicorn'
 
