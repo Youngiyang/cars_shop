@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get 'users/personal'
+
+  get 'users/appointment'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :goods, only: [:index, :show]
   root 'home#index'
   get 'detail' => 'details#index'
+  get 'appointment' => 'users#appointment'
+  get 'personal' => 'users#personal'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
