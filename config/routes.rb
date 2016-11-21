@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  resources :goods, only: [:index, :show]
+  root 'home#index'
+  get 'detail' => 'details#index'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

@@ -1,0 +1,410 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+img {border:none;}
+li {list-style:none;}
+a {text-decoration: none;}
+a:hover {text-decoration: none;}
+body {
+  background-color: #f2f2f2;
+}
+.container {
+  -webkit-box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+  -webkit-transform:translate3d(0, -2px, 0);
+  transform:translate3d(0, -2px, 0);
+  position: relative;
+  width: 1226px;
+  background-color: #ffffff;
+  margin: 0 auto;
+  .wechat-contact {
+    position: fixed;
+    z-index: 999;
+    margin-top: 390px;
+    margin-left: 1126px;
+    ul {
+      li {
+        margin-top: 38px;
+        .iconfont {
+          font-size: 35px;
+          color: #434343;
+        }
+      }
+    }
+
+  }
+  .top {
+    height: 748px;
+    .header{
+      width: 1141px;
+      height: 90px;
+      float: right;
+      .header-nav {
+        padding-left: 35px;
+        line-height: 20px;
+        padding-top: 35px;
+        .active {
+          color: #333333;
+        }
+        li {
+          font-size: 16px;
+          float: left;
+          color: #878787;
+          padding:0 20px;
+          border-right: 1px solid #878787 ;
+        }
+        li:nth-last-child(2) {
+          border:none;
+        }
+        li:last-child {
+          border:none;
+          float: right;
+          padding: 0 60px;
+        }
+      }
+    }
+    .sidebar {
+      position: relative;
+      float: left;
+      width: 85px;
+      height: 748px;
+      background-color: #2A2A26;
+      .zy-all-icons {
+        margin-top: 112px;
+        li {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        li:hover {
+          background-color:#383835;
+        }
+        li:hover > .zy-brand-cars{
+          display: block;
+        }
+        .zy-brand-cars {
+          height: 481px;
+          width: 1012px;
+          position: absolute;
+          background-color: #2A2A26;
+          display: none;
+          top: 112px;
+          left: 90px;
+          z-index: 999;
+          color: #ffffff;
+          .zy-brand-cars-left {
+            margin-top: 35px;
+            float: left;
+            height: 390px;
+            width: 640px;
+            ul {
+              padding-left: 50px;
+              padding-top: 20px;
+              li {
+                float: left;
+                background-color: #ffffff;
+                width: 185px;
+                height: 181px;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                overflow: hidden;
+                .brand-car-style {
+                  margin: 25px auto;
+                }
+                a {
+                  color: #000000;
+                }
+              }
+            }
+
+          }
+          .zy-brand-cars-right {
+            height: 390px;
+            margin-top: 45px;
+            ul {
+              li {
+                margin-bottom: 10px;
+                overflow: hidden;
+              }
+            }
+
+          }
+        }
+        .zy-all-brands {
+          .zy-model-all-brands {
+            height: 481px;
+            width: 1012px;
+            position: absolute;
+            background-color: #2A2A26;
+            display: none;
+            top: 112px;
+            left: 90px;
+            z-index: 999;
+            color: #ffffff;
+            .all-brands {
+              width: 764px;
+              height: 396px;
+              float: left;
+              border-right: 1px solid #ffffff;
+              margin-top: 42px;
+              letter-spacing: 1px;
+              .brands {
+                height: 230px;
+                h4 {
+                  float: left;
+                  padding-left: 51px;
+                  padding-top: 110px;
+                  height: 100px;
+                }
+                ul {
+                  li {
+                    float: left;
+                    margin-left: 30px;
+                    margin-top:10px;
+                    font-size: 14px;
+                    a {
+                      color:#ffffff;
+                    }
+                  }
+                }
+              }
+              .price {
+                height: 80px;
+                margin-top: 60px;
+                h4 {
+                  padding-left: 51px;
+                  float: left;
+                  height: 80px;
+
+                }
+                ul {
+                  li {
+                    margin-left: 30px;
+                    float: left;
+                    font-size: 14px;
+                    a {
+                      color:#ffffff;
+                    }
+                  }
+                }
+              }
+              .style {
+                height: 100px;
+                h4 {
+                  padding-left: 51px;
+                  float: left;
+                  height: 100px;
+                }
+                ul {
+                  bottom: 0;
+                  .bigger-img {
+                    margin-top: -5px;
+                  }
+                  li {
+                    margin-left: 30px;
+                    float: left;
+                    a {
+                      color:#ffffff;
+                    }
+                  }
+                }
+              }
+            }
+            .tuijian-cars {
+              height: 396px;
+              float: left;
+              width: 247px;
+              margin-top: 42px;
+              h4 {
+                padding-top: 110px;
+              }
+              ul {
+                padding-left: 10px;
+                li {
+                  float: left;
+                  margin: 18px 10px;
+                  width: 92px;
+                  height: 22px;
+                  overflow:hidden;
+                  text-overflow:ellipsis;
+                  font-size: 14px;
+                  a {
+                    color: #ffffff;
+                    border: 1px solid;
+                    padding:2px 5px;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    display:block;
+                    white-space:nowrap;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .zy-all-brands:hover > .zy-model-all-brands{
+          display: block;
+        }
+      }
+    }
+    .banner {
+      float: left;
+      height: 528px;
+      padding-left: 20px;
+      width: 1016px;
+      overflow: hidden;
+      padding-left: 57px;
+    }
+    .top-bottom {
+      float: left;
+      width: 1141px;
+      height: 130px;
+      // overflow: hidden;
+      background-color: #F5F5F5;
+      ul {
+        height: 130px;
+        padding-left: 55px;
+        li {
+          float: left;
+          width: 250px;
+          margin-right: 20px;
+          margin-top: 35px;
+          .advance-icon {
+            float: left;
+            width: 60px;
+          }
+          .advance-description {
+            float: left;
+            width: 160px;
+            font-size: 10px;
+            padding-left: 20px;
+            p {
+              color:#666666;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  section {
+    margin-top: 89px;
+    .zy-section-title {
+      border-left: 4px solid #93732D;
+      font-size: 16px;
+      height: 24px;
+      margin-left: 60px;
+      margin-bottom: 33px;
+      line-height: 24px;
+      padding-left: 12px;
+    }
+  }
+  .hot-cars {
+    margin: 0 auto;
+    li {
+      cursor:pointer;
+      float: left;
+      width: 305px;
+      height: 318px;
+      text-align: center;
+      border: 1px solid #F2F2F2;
+      margin-right: -1px;
+      margin-top: -1px;
+      overflow: hidden;
+      a {
+        display: block;
+      }
+      .hot-car-img {
+        width: 244px;
+        height: 128px;
+        margin: 32px auto;
+        img {
+          padding-top: 20px;
+        }
+      }
+      .hot-car-style {
+        color: #1D1D1D;
+        font-size: 15px;
+        margin-top: 22px;
+      }
+      .hot-car-price {
+        font-size: 15px;
+        color: #D90000;
+        margin-top: 16px;
+      }
+      .hot-car-book{
+        font-size: 12px;
+        color:#7D7D7D;
+        margin-top: 17px;
+
+      }
+    }
+    li:hover {
+      -webkit-box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+      box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+      -webkit-transform:translate3d(0, 0, -2px);
+      transform:translate3d(0, 0, -2px);
+      -webkit-transition:all .2s linear;
+      transition:all .2s linear
+    }
+  }
+  .recommend-cars {
+    li {
+      width: 611px;
+      height: 349px;
+      border: 1px solid #F2F2F2;
+      float: left;
+      margin-right: -1px;
+      margin-top: -1px;
+      .recommend-car-entry {
+        height: 258px;
+        .recommend-car-item {
+          width: 245px;
+          float: left;
+          padding-left: 60px;
+          color: #1D1D1D;
+          .recommend-car-title {
+            font-size: 16px;
+            margin-top: 64px;
+            font-weight: 700;
+          }
+          .recommend-car-sub-title {
+            font-size: 12px;
+            margin-top: 15px;
+          }
+          .recommend-car-descrip {
+            font-size: 12px;
+            margin-top: 55px;
+          }
+        }
+
+        img {
+          float: left;
+          width: 305px;
+          margin-top: 78px;
+        }
+      }
+      .recommend-botton {
+        a {
+          display: block;
+          line-height: 30px;
+          font-size: 12px;
+          width: 156px;
+          text-align: center;
+          margin: 10px 60px;
+        }
+        .recommend-more-info {
+          border: 1px solid #1D1D1D;
+          float: left;
+        }
+        .recommend-book-now {
+          background-color: #93732D;
+          color: #ffffff;
+          border: 1px solid #93732D;
+          float: right;
+
+        }
+      }
+    }
+  }
+}
