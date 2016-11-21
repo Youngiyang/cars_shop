@@ -1,0 +1,128 @@
+.zy-advanced-filter {
+  background-color: #F6F6F6;
+  .active {
+    color: #93732D;
+  }
+  .bottom-line {
+    border-bottom: 1px solid #ADADAD;
+  }
+  .filter {
+    padding-left: 62px;
+    line-height: 70px;
+
+    .supply {
+      margin-left: 123px;
+    }
+    .advanced-filter {
+      float: right;
+      padding-right: 62px;
+
+    }
+    dl {
+      float: left;
+      dt {
+        float: left;
+      }
+      dd {
+        float: left;
+        margin-left: 24px;
+      }
+    }
+  }
+  .advanced-filter {
+    cursor:pointer;
+  }
+  .hidden-filter {
+    width: 1102px;
+    display: none;
+    padding-bottom: 26px;
+    padding-left: 62px;
+    .condition {
+      width: 100%;
+      line-height: 70px;
+      border-bottom: 1px solid #ADADAD;
+      dl {
+        dd {
+          float: left;
+          margin-left: 24px;
+        }
+        dt {float: left;}
+      }
+    }
+  }
+}
+.zy-car-list {
+  background-color: #ffffff;
+  padding:24px 50px;
+  .zy-car-all {
+    li {
+      position: relative;
+      width: 360px;
+      background-color: #fff;
+      float: left;
+      height: 333px;
+      margin-left: 13px ;
+      margin-top: 14px ;
+      overflow: hidden;
+      border: 1px solid #979797;
+      .car-item-feed-title {
+        p {
+          margin: 0 15px;
+        }
+      }
+      .car-item-feed-img {
+        text-align: center;
+        padding-top: 30px;
+        .color-item {
+          font-size: 14px;
+          letter-spacing: 3px;
+          .outer-color {
+            position: absolute;
+            top:15px;
+            right: 55px;
+          }
+          .inner-color {
+            position: absolute;
+            top:15px;
+            right: 10px;
+          }
+          .icon {
+            width: 14px;
+            height: 14px;
+            background-color: #000;
+            display: inline-block;
+            vertical-align:middle;
+          }
+        }
+      }
+      .price-item {
+        .price {
+          position: absolute;
+          color:rgba(236, 0, 0, 1);
+          bottom: 40px;
+          left: 15px;
+        }
+        .supply {
+          position: absolute;
+          color:rgba(102, 102, 102, 1);
+          font-size: 14px;
+          bottom: 40px;
+          right: 15px;
+        }
+      }
+
+    }
+  }
+}
+// 分页样式
+#pagination {
+  margin-top: 55px;
+  margin-left: 47%;
+  height: 55px;
+  ul {
+    li {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+}

@@ -19,4 +19,9 @@
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_zh
 //= require init
+//= require slideBox/lovelygallery
+//= require slideBox/html5zoo
+
+
+
 

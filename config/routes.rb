@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'detail' => 'details#index'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
+  get 'select_car_online' => 'select_car_online#index'
+  get 'advanced_select' => 'select_car_online#advanced_select'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
