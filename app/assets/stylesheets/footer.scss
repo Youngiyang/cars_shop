@@ -1,0 +1,28 @@
+footer {
+  background-color: #2A2A26;
+  .img {
+    height: 75px;
+    text-align: center;
+    padding-top: 75px;
+  }
+  .footer_container {
+    padding-left: 155px;
+    padding-bottom: 60px;
+    ul {
+      font-size: 14px;
+      color: #ffffff;
+      float: left;
+      margin-left: 120px;
+      li:first-child {
+        margin-bottom: 35px;
+      }
+      li {
+        a {
+          color: #ffffff;
+        }
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+}
