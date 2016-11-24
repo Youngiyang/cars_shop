@@ -1,0 +1,97 @@
+.select-car-online {
+  background-color: #2a2a26;
+  height: 314px;
+  color: #ffffff;
+  .brands {
+    height: 155px;
+    padding-top: 10px;
+    padding-left: 60px;
+    ul {
+      li {
+        margin-top: 18px;
+        a {
+          color: #ffffff;
+        }
+        img {
+          margin-bottom: 2px;
+        }
+      }
+    }
+  }
+  .price {
+    height: 50px;
+    padding-left: 60px;
+    margin-top: 37px;
+  }
+  .style {
+    height: 50px;
+    padding-left: 60px;
+    margin-top: 10px;
+    .bigger-img {
+      margin-top: -5px;
+    }
+  }
+  .brands-title {
+    float: left;
+    height: 100px;
+    padding-top: 42px;
+  }
+  .price-title {
+    float: left;
+  }
+  .style-title {
+    float: left;
+  }
+  ul {
+    li {
+      float: left;
+      margin-left: 38px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      a {
+          color: #ffffff;
+        }
+    }
+  }
+}
+.select-car-list {
+  background-color: #ffffff;
+  margin-top: 23px;
+  ul {
+    padding-left: 60px;
+    li {
+      float: left;
+      overflow: hidden;
+      width: 364px;
+      height: 324px;
+      text-align: center;
+      // border:1px solid #93732d;
+      box-sizing:border-box;
+      margin: 1px;
+      img {
+        margin: 14px 18px;
+      }
+      .select-title {
+        font-size: 18px;
+      }
+      .select-price {
+        font-size: 14px;
+        color: #d90000;
+        margin: 21px;
+      }
+      .select-ad {
+        font-size: 15px;
+        color: #7d7d7d;
+      }
+    }
+    li:hover {
+      border:1px solid #93732d;
+      -webkit-box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+      box-shadow:0 15px 30px rgba(0, 0, 0, 0.1);
+      -webkit-transform:translate3d(0, 0, -2px);
+      transform:translate3d(0, 0, -2px);
+      -webkit-transition:all .2s linear;
+      transition:all .2s linear
+    }
+  }
+}
