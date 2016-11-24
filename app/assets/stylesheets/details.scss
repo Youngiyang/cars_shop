@@ -206,13 +206,13 @@
   }
 }
 
-footer {
+.more-config {
   ul {
     margin-bottom: 120px;
     li {
       width: 25%;
       float: left;
-      list-style-image: url(../images/circle2.png);
+      list-style-image: image-url("circle2.png");
       list-style-position: inside;
       font-size: 20px;
       margin: 40px 0 0 0;
@@ -299,6 +299,10 @@ footer {
     .public-bg-wrap {
       padding: 10px 0;
       background: rgba(245, 245, 245, 1);
+    }
+
+    .car-config {
+      margin-bottom: 40px;
     }
 
 
