@@ -19,13 +19,8 @@
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_zh
 //= require init
-<<<<<<< HEAD
 //= require golbal.js
-=======
 //= require slideBox/lovelygallery
 //= require slideBox/html5zoo
 
-
-
->>>>>>> 4f1e6fc8159f3048c20d21fa9f1891a2de55f737
 
