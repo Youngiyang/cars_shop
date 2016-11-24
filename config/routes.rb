@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
 
+
+
+  namespace :admin do
+    resources :brands
+  end
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
