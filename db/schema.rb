@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124083309) do
+ActiveRecord::Schema.define(version: 20161125022924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,10 +115,7 @@ ActiveRecord::Schema.define(version: 20161124083309) do
     t.decimal  "current_price",     precision: 11, scale: 2
     t.decimal  "market_price",      precision: 11, scale: 2
     t.string   "registered_info",                                            null: false
-    t.boolean  "is_hot",                                     default: false, null: false
     t.boolean  "in_stock",                                   default: false, null: false
-    t.boolean  "is_recommended",                             default: false, null: false
-    t.string   "recommended_words"
     t.integer  "status",                                     default: 0,     null: false
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
@@ -163,15 +160,18 @@ ActiveRecord::Schema.define(version: 20161124083309) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",                                 null: false
-    t.integer  "brand_id",                             null: false
-    t.integer  "category_id",                          null: false
-    t.integer  "photo_id",                             null: false
-    t.string   "slogan",                               null: false
-    t.decimal  "min_price",   precision: 11, scale: 2
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "name",                                                       null: false
+    t.integer  "brand_id",                                                   null: false
+    t.integer  "category_id",                                                null: false
+    t.integer  "photo_id",                                                   null: false
+    t.string   "slogan",                                                     null: false
+    t.decimal  "min_price",         precision: 11, scale: 2
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.string   "img_url"
+    t.boolean  "is_hot",                                     default: false, null: false
+    t.boolean  "is_recommended",                             default: false, null: false
+    t.string   "recommended_words"
     t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
 
