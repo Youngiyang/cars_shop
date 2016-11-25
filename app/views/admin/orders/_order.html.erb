@@ -1,0 +1,26 @@
+<tr>
+  <td><%= order.code %></td>
+  <td><%= order.created_at.strftime("%Y%m%d %H:%M:%S") %></td>
+  <td><%= order.try(:order_shop_service).try(:shop_service).try(:name) %></td>
+  <td>
+    <% if order.source_from == 1%>
+    微信
+    <% else %>
+    线下
+    <% end %>
+  </td>
+  <td>
+    <% if order.try(:barber).try(:name).blank? %>
+    <%= link_to '未指派', admins_assign_service_path(order)  %>
+    <% else %>
+    <%=  order.try(:barber).try(:name) %>
+    <% end %>
+  </td>
+  <td>
+    <% if order.status == 202 %>
+    已验证
+    <% else %>
+      <%= link_to '未验证', admins_order_check_path(order), remote: true, data: { confirm: '确定验证?' } %>
+    <% end %>
+  </td>
+</tr>

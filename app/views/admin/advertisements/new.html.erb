@@ -1,0 +1,157 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="admin-content">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <h1 class="title">
+          创建广告
+          <a class="btn btn-default btn-xs" title="添加店铺" data-skip-pjax="true" href="/admins/shops/new">
+            <i class="fa fa-plus"></i>
+          </a>
+          </h1>
+          <hr>
+          <div class="well">
+            <form class="new_service" id="new_service" action="/admins/services" accept-charset="UTF-8" method="post" novalidate="novalidate">
+              
+              <div class="form-group" data-required="true">
+                <label class="control-label" for="service_name">名称</label>
+                <input class="form-control validate" autofocus="autofocus" required="required" type="text" name="service[name]" id="service_name" aria-required="true">
+              </div>
+              <div class="form-group" data-required="true">
+                <label class="control-label" for="service_price">价格</label>
+                <input class="form-control validate" required="required" type="text" name="service[price]" id="service_price" aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="E5rcADdEFdxT4EKSY" class="control-label">图片链接</label>
+                <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
+                  <span class="btn btn-file btn-xs">
+                    <input type="file" name="image_upload" id="image_upload" class="form-control" placeholder="点击上传图片">
+                    <input type="hidden" name="service[image]" id="service_image">
+                  </span>
+                </div>
+                <br>
+                <div class="progress" id="progress" style="display: none;">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    请上传图片
+                  </div>
+                </div>
+                <img id="show_image" width="180" src="">
+              </div>
+              <div class="form-group" data-required="true">
+                <label for="service_description">跳转描述</label>
+                <div class="simditor simditor-mac">
+                  <div class="simditor-wrapper"><div class="simditor-toolbar" style="top: 0px; width: 1320px; left: 425.156px;"><ul><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-title" href="javascript:;" title="标题"><span></span></a><div class="toolbar-menu toolbar-menu-title"><ul><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-normal" href="javascript:;" title="普通文本" data-param="p"><span>普通文本</span></a></li><li><span class="separator"></span></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-h1" href="javascript:;" title="标题 1" data-param="h1"><span>标题 1</span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-h2" href="javascript:;" title="标题 2" data-param="h2"><span>标题 2</span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-h3" href="javascript:;" title="标题 3" data-param="h3"><span>标题 3</span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-h4" href="javascript:;" title="标题 4" data-param="h4"><span>标题 4</span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-h5" href="javascript:;" title="标题 5" data-param="h5"><span>标题 5</span></a></li></ul></div></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-bold" href="javascript:;" title="加粗文字 ( Cmd + b )"><span class="simditor-icon simditor-icon-bold"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-italic" href="javascript:;" title="斜体文字 ( Cmd + i )"><span class="simditor-icon simditor-icon-italic"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-underline" href="javascript:;" title="下划线文字 ( Cmd + u )"><span class="simditor-icon simditor-icon-underline"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-strikethrough" href="javascript:;" title="删除线文字"><span class="simditor-icon simditor-icon-strikethrough"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-color" href="javascript:;" title="文字颜色"><span class="simditor-icon simditor-icon-tint"></span></a><div class="toolbar-menu toolbar-menu-color"><ul class="color-list">
+                  <li><a href="javascript:;" class="font-color font-color-1"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-2"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-3"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-4"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-5"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-6"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-7"></a></li>
+                  <li><a href="javascript:;" class="font-color font-color-default"></a></li>
+                  </ul></div></li><li><span class="separator"></span></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-ol" href="javascript:;" title="有序列表 ( Cmd + / )"><span class="simditor-icon simditor-icon-list-ol"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-ul" href="javascript:;" title="无序列表 ( Cmd + . )"><span class="simditor-icon simditor-icon-list-ul"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-blockquote" href="javascript:;" title="引用"><span class="simditor-icon simditor-icon-quote-left"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-code" href="javascript:;" title="插入代码"><span class="simditor-icon simditor-icon-code"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-table" href="javascript:;" title="表格"><span class="simditor-icon simditor-icon-table"></span></a><div class="toolbar-menu toolbar-menu-table"><div class="menu-create-table">
+                  <table><thead><tr><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+                  <div class="menu-edit-table">
+                    <ul>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="deleteRow">
+                          <span>删除行</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="insertRowAbove">
+                          <span>在上面插入行 ( Ctrl + Alt + ↑ )</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="insertRowBelow">
+                          <span>在下面插入行 ( Ctrl + Alt + ↓ )</span>
+                        </a>
+                      </li>
+                      <li><span class="separator"></span></li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="deleteCol">
+                          <span>删除列</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="insertColLeft">
+                          <span>在左边插入列 ( Ctrl + Alt + ← )</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="insertColRight">
+                          <span>在右边插入列 ( Ctrl + Alt + → )</span>
+                        </a>
+                      </li>
+                      <li><span class="separator"></span></li>
+                      <li>
+                        <a tabindex="-1" unselectable="on" class="menu-item" href="javascript:;" data-param="deleteTable">
+                          <span>删除表格</span>
+                        </a>
+                      </li>
+                    </ul>
+                    </div></div></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-link" href="javascript:;" title="插入链接"><span class="simditor-icon simditor-icon-link"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-image" href="javascript:;" title="插入图片"><span class="simditor-icon simditor-icon-picture-o"></span></a><div class="toolbar-menu toolbar-menu-image"><ul><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-upload-image" href="javascript:;" title="上传图片"><span>上传图片</span><input type="file" title="上传图片" multiple="multiple" accept="image/*"></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-external-image" href="javascript:;" title="外链图片"><span>外链图片</span></a></li></ul></div></li><li><span class="separator"></span></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-hr" href="javascript:;" title="分隔线"><span class="simditor-icon simditor-icon-minus"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-indent" href="javascript:;" title="向右缩进 (Tab)"><span class="simditor-icon simditor-icon-indent"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-outdent" href="javascript:;" title="向左缩进 (Shift + Tab)"><span class="simditor-icon simditor-icon-outdent"></span></a></li><li><a tabindex="-1" unselectable="on" class="toolbar-item toolbar-item-alignment" href="javascript:;" title="水平对齐"><span class="simditor-icon simditor-icon-align-left"></span></a><div class="toolbar-menu toolbar-menu-alignment"><ul><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-left" href="javascript:;" title="居左" data-param="left"><span class="simditor-icon simditor-icon-align-left"></span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-center" href="javascript:;" title="居中" data-param="center"><span class="simditor-icon simditor-icon-align-center"></span></a></li><li><a tabindex="-1" unselectable="on" class="menu-item menu-item-right" href="javascript:;" title="居右" data-param="right"><span class="simditor-icon simditor-icon-align-right"></span></a></li></ul></div></li></ul></div>
+                    <div class="simditor-placeholder" style="display: block; top: 41px;">这里输入文字...</div>
+                    <div class="simditor-body" contenteditable="true"><p><br></p></div>
+                  <textarea length="120" name="service[description]" id="service_description"></textarea></div>
+                  <div class="simditor-popover code-popover"><div class="code-settings">
+                    <div class="settings-field">
+                      <select class="select-lang">
+                        <option value="-1">选择程序语言</option>
+                        <option value="bash">Bash</option><option value="c++">C++</option><option value="cs">C#</option><option value="css">CSS</option><option value="erlang">Erlang</option><option value="less">Less</option><option value="sass">Sass</option><option value="diff">Diff</option><option value="coffeescript">CoffeeScript</option><option value="html">HTML,XML</option><option value="json">JSON</option><option value="java">Java</option><option value="js">JavaScript</option><option value="markdown">Markdown</option><option value="oc">Objective C</option><option value="php">PHP</option><option value="parl">Perl</option><option value="python">Python</option><option value="ruby">Ruby</option><option value="sql">SQL</option></select>
+                      </div>
+                    </div></div><div class="simditor-popover link-popover"><div class="link-settings">
+                    <div class="settings-field">
+                      <label>链接文字</label>
+                      <input class="link-text" type="text">
+                      <a class="btn-unlink" href="javascript:;" title="移除链接" tabindex="-1">
+                        <span class="simditor-icon simditor-icon-unlink"></span>
+                      </a>
+                    </div>
+                    <div class="settings-field">
+                      <label>链接地址</label>
+                      <input class="link-url" type="text">
+                    </div>
+                    <div class="settings-field">
+                      <label>打开方式</label>
+                      <select class="link-target">
+                        <option value="_blank">在当前窗口中打开 (_blank)</option>
+                        <option value="_self">在新窗口中打开 (_self)</option>
+                      </select>
+                    </div>
+                  </div></div><div class="simditor-popover image-popover"><div class="link-settings">
+                  <div class="settings-field">
+                    <label>图片地址</label>
+                    <input class="image-src" type="text" tabindex="1">
+                    <a class="btn-upload" href="javascript:;" title="上传图片" tabindex="-1">
+                      <span class="simditor-icon simditor-icon-upload"></span>
+                      <input type="file" title="上传图片" multiple="multiple" accept="image/*"></a>
+                    </div>
+                    <div class="settings-field">
+                      <label>图片描述</label>
+                      <input class="image-alt" id="image-alt" type="text" tabindex="1">
+                    </div>
+                    <div class="settings-field">
+                      <label>图片尺寸</label>
+                      <input class="image-size" id="image-width" type="text" tabindex="2">
+                      <span class="times">×</span>
+                      <input class="image-size" id="image-height" type="text" tabindex="3">
+                      <a class="btn-restore" href="javascript:;" title="还原图片尺寸" tabindex="-1">
+                        <span class="simditor-icon simditor-icon-undo"></span>
+                      </a>
+                    </div>
+                  </div></div></div>
+                </div>
+                <br>
+                <div class="buttons text-right">
+                  <a class="btn btn-default" title="取消" href="/admins/services">取消</a>
+                  <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -16,7 +16,18 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root 'users#guide'
     resources :brands
+    resources :orders
+    resources :advertisements
+    resources :users, only: [:index]
+    get 'order_search' => 'orders#order_search'
+    post 'create_order_search' => 'orders#create_order_search'
+    get 'create_order_search' => 'orders#create_order_search'
+    get 'order_check/:order_id' => 'orders#order_check', as: 'order_check'
+    get 'order_check_list' => 'orders#order_check_list'
+    get 'assign_service/:order_id' => 'orders#assign_service', as: 'assign_service'
+    post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
   end
 
   # You can have the root of your site routed with "root"
