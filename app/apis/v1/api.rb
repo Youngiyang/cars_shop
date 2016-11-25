@@ -3,6 +3,8 @@ module V1
     format :json
 
     helpers V1::Helpers
+    mount V1::CarDetailsAPI
+    mount V1::HomePageAPI
 
     route :any, '*path' do
       error!({message: "路由错误"}, 404)
