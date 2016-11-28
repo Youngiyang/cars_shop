@@ -6,6 +6,9 @@ gem 'simditor'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'will_paginate'
+gem 'carrierwave-qiniu', '~> 1.0.0'
+gem 'carrierwave', '0.6.2'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'

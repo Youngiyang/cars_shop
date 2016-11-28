@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'uploaders/index'
+
   get 'users/personal'
 
   get 'users/appointment'
@@ -14,13 +16,13 @@ Rails.application.routes.draw do
   get 'advanced_select' => 'select_car_online#advanced_select'
 
 
-
   namespace :admin do
     root 'users#guide'
     resources :brands
     resources :orders
     resources :advertisements
     resources :users, only: [:index]
+    post 'upload' => 'image_uploads#upload'
     get 'order_search' => 'orders#order_search'
     post 'create_order_search' => 'orders#create_order_search'
     get 'create_order_search' => 'orders#create_order_search'

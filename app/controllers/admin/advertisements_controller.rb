@@ -3,7 +3,7 @@ class Admin::AdvertisementsController < ApplicationController
   end
 
   def new
-    
+    @advertisement = Advertisement.new
   end
 
 

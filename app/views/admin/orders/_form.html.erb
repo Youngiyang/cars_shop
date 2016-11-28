@@ -1,10 +1,22 @@
-<%= form_for [:admin, Order.new],  html:{ class:"col s12 admin_form" } do |f| %>
+<%= form_for [:admin, @orders],  html:{ class:"col s12 admin_form" } do |f| %>
    <%# render "admins/share/error_messages", target: @order %>
-   <div class="form-group" data-required="true">
-      
-      <%= f.hidden_field :total_price, class:"form-control validate", autofocus: true, required: '', value: @shop_services[0].price %>
-   </div>
 
+     <div class="city-group">
+        <div class="form-group" data-required="true">
+        <%= select_tag "province_id", options_for_select(ChinaCity.list,@shop.province_id)   , class: 'city-select form-control', prompt: "--省份--", name: 'shop[province_id]' %>
+
+       </div>
+       <div class="form-group" data-required="true">
+         <%= select_tag "city"    , options_for_select(ChinaCity.list(@shop.province_id.to_s),@shop.city_id.to_s)   , class: 'city-select form-control', prompt: "--城市--", name: 'shop[city_id]' %>
+            </div>
+
+
+       <div class="form-group" data-required="true">
+          <%= select_tag "region_id", options_for_select(ChinaCity.list(@shop.city_id.to_s),@shop.region_id.to_s)   , class: 'city-select form-control', name: 'shop[region_id]', prompt: "--地区--" %>
+
+       </div>
+     </div>
+   
    <div class="form-group" data-required="true">
       <%= f.label :name, '服务项目', class: 'control-label' %>
       <div class="control-label">
