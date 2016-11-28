@@ -27,6 +27,13 @@ class Admin::AdvertisementsController < ApplicationController
   def edit
   end
 
+  def destroy
+    @advertisement = Advertisement.find(params[:id])
+    @advertisement.destroy
+    redirect_to admin_advertisements_path
+  end
+
+
     private 
       def advertisement_params
         params.require(:advertisement).permit(:img_url, :link, :description, :position)

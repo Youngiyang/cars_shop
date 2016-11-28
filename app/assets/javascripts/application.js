@@ -22,5 +22,7 @@
 //= require golbal.js
 //= require slideBox/lovelygallery
 //= require slideBox/html5zoo
+//= require turbolinks
+
 
 

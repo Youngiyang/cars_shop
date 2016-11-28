@@ -1,7 +1,6 @@
 $(document).ready(function(){
   // init pjax
   $(function() {
-       // $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '#content');
   });
 
   $('.menu-toggle').on('click', function(e){
