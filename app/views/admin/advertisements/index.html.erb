@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">服务列表
+      <%= link_to new_admin_advertisement_path, class: 'btn btn-default btn-xs', title: '添加服务' do%>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </h1>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                <th>图片链接</th>
+                <th>跳转描述</th>
+                <th>显示位置</th>
+                <th>描述</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @advertisements %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @services %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,11 @@
 module ApplicationHelper
   def image_tag(source, options = {})
-    super(source, options) unless source.blank?
+    if source
+      super(source, options)
+    else
+      super('', options)
+    end
+     
   end
 
   def image_size

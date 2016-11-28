@@ -6,14 +6,14 @@
         <label for="E5rcADdEFdxT4EKSY" class="control-label">banner图片</label>
         <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
           <span class="btn btn-file btn-xs">
-            <%= f.file_field :img_url,
+            <%= file_field_tag :img_url,
             class: 'form-control',
             placeholder: '点击上传图片' %>
             <%= f.hidden_field :img_url %>
           </span>
         </div>
 
-        <%= image_tag '#', id: 'advertisement_thumb_img_url', width: "180" %>
+        <%= image_tag @advertisement.img_url, id: 'advertisement_thumb_img_url', width: "180" %>
       </div>
 
       <div class="progress" id="progress" style="display: none;">
@@ -23,44 +23,26 @@
       </div>
 
 
-      <div class="form-group">
-        <label for="E5rcADdEFdxT4EKSY" class="control-label">banner图片</label>
-        <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
-          <span class="btn btn-file btn-xs">
-            <%= f.file_field :link,
-            class: 'form-control',
-            placeholder: '点击上传图片' %>
-            <%= f.hidden_field :link %>
-          </span>
-        </div>
-
-        <%= image_tag @advertisement.link, id: 'advertisement_link', width: "180" %>
-      </div>
-
-      <div class="progress" id="progress1" style="display: none;">
-        <div class="progress-bar"  role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-          请上传图片
-        </div>
-      </div>
-
     <div class="form-group" data-required="true">
       <%= f.label :link, '跳转链接', class: 'control-label' %>
-      <%= f.file_field :link, class:"form-control validate", required: '' %>
+      <%= f.text_field :link, class:"form-control validate", required: '' %>
     </div>
 
     <div class="form-group" data-required="true">
-       <%= f.label :description, "简介" %>
+       <select name="advertisement[position]" id="" class="form-control validate">
+         <option value="">请选择位置</option>
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+       </select>
+     </div>
+
+    <div class="form-group" data-required="true">
+       <%= f.label :description, "描述" %>
        <%= f.text_area :description , length: "120", required:''%>
     </div>
 
-     <div class="form-group" data-required="true">
-       <select name="" id="">
-         <option value="">1</option>
-         <option value="">1</option>
-         <option value="">1</option>
-         <option value="">1</option>
-       </select>
-     </div>
+     
 
 
     <div class="buttons text-right">
@@ -87,12 +69,12 @@ $(function(){
     }
   });
 
-   $('#advertisement_img_url').change(function(e){
+   $('#img_url').change(function(e){
      var fd = new FormData();
-      fd.append("upload_file", $("#advertisement_img_url").get(0).files[0]);
+      fd.append("upload_file", $("#img_url").get(0).files[0]);
       console.log(fd);
-      // setProgress(progress, 0, "开始上传");
-      // setProgress(progress, 50, "50%");
+      setProgress(progress, 0, "开始上传");
+      setProgress(progress, 50, "50%");
       $.ajax({
         url: "/admin/upload",
         type: "POST",
@@ -101,14 +83,30 @@ $(function(){
         data: fd,
         success: function(data) {
           console.log(data.file_path);
-          // setProgress(progress, 100, "上传成功");
-                // $('#advertisement_img_url').val(data.file_path);
+          setProgress(progress, 100, "上传成功");
+              $('#advertisement_img_url').val(data.file_path);
               $('#advertisement_thumb_img_url').attr('src', data.file_path + "<%= image_size %>");
 
         }
       });
   })
+   
 })
+
+ 
+
+
+ //设置进度条
+var progress = document.getElementById("progress");
+
+function setProgress(ele, percent, content) {
+  ele.style.display = "block";
+  if (!!percent) {
+    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+  }
+  ele.getElementsByClassName("progress-bar")[0].innerText = content;
+}
 </script>
 
 
