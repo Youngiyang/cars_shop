@@ -1,6 +1,10 @@
 $(document).ready(function(){
   // init pjax
   $(function() {
+<<<<<<< HEAD
+=======
+       // $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '#content');
+>>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
   });
 
   $('.menu-toggle').on('click', function(e){

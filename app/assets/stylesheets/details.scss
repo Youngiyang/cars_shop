@@ -213,7 +213,11 @@
     li {
       width: 25%;
       float: left;
+<<<<<<< HEAD
       list-style-image: image-url("circle2.png");
+=======
+      list-style-image: url(../images/circle2.png);
+>>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
       list-style-position: inside;
       font-size: 20px;
       margin: 40px 0 0 0;
@@ -302,8 +306,11 @@
       background: rgba(245, 245, 245, 1);
     }
 
+<<<<<<< HEAD
     .car-config {
       margin-bottom: 40px;
     }
 
+=======
+>>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
 
