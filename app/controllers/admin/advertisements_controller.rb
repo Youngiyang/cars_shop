@@ -21,10 +21,18 @@ class Admin::AdvertisementsController < ApplicationController
     @advertisement = Advertisement.find(params[:id])
   end
 
-  def update
-  end
 
   def edit
+    @advertisement = Advertisement.find(params[:id])
+  end
+
+  def update
+    @advertisement = Advertisement.find(params[:id])
+    if @advertisement.update(advertisement_params)
+      redirect_to admin_advertisement_path(@advertisement)
+    else
+      render :edit
+    end
   end
 
   def destroy

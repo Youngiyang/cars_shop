@@ -4,15 +4,6 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
           <h1 class="title">修改店铺信息
-          <% if can? :create, :Shop %>
-            <%= link_to admins_shops_path, class: 'btn btn-default btn-xs', title: '取消' do%>
-              <i class="fa fa-mail-reply"></i>
-            <% end %>
-          <% else %>
-            <%= link_to admins_my_shop_path, class: 'btn btn-default btn-xs', title: '取消' do%>
-              <i class="fa fa-mail-reply"></i>
-            <% end %>
-          <% end %>
           </h1>
           <hr>
           <div class="well">

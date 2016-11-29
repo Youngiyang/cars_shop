@@ -31,9 +31,20 @@
     <div class="form-group" data-required="true">
        <select name="advertisement[position]" id="" class="form-control validate">
          <option value="">请选择位置</option>
-         <option value="1">1</option>
-         <option value="2">2</option>
-         <option value="3">3</option>
+          <% case @advertisement.position %>
+          <% when 1 %>
+           <option value="1" selected>1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+          <% when 2 %>  
+           <option value="1">1</option>
+           <option value="2" selected>2</option>
+           <option value="3">3</option>
+           <% else %>
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3" selected>3</option>
+           <% end %>
        </select>
      </div>
 
@@ -46,7 +57,7 @@
 
 
     <div class="buttons text-right">
-      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">生成订单</button>
+      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
 
