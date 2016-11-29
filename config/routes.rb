@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :brands
   end
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
