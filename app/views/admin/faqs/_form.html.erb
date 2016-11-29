@@ -1,0 +1,54 @@
+<%= form_for [:admin, @faq],  html:{ class:"col s12 admin_form" } do |f| %>
+   <%# render "admins/share/error_messages", target: @order %>
+
+   
+
+    <div class="form-group" data-required="true">
+      <%= f.label :question, '问题描述', class: 'control-label' %>
+      <%= f.text_field :question, class:"form-control validate", required: '' %>
+    </div>
+
+
+    <div class="form-group" data-required="true">
+       <%= f.label :answer, "解答" %>
+       <%= f.text_area :answer , length: "120", required:''%>
+    </div>
+
+     
+
+
+    <div class="buttons text-right">
+      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+    </div>
+<% end %>
+
+
+<script>
+
+ 
+$(function(){
+  var editor = new Simditor({
+    textarea: $('textarea'),
+    toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', '|', 'hr', 'indent', 'outdent', 'alignment'],
+    placeholder: '这里输入文字...',
+    pasteImage: true,
+    fileKey: 'file',
+    upload: {
+      url: '/admins/upload',
+      params: null,
+      connectionCount: 3,
+      leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
+    }
+  });
+
+  
+   
+})
+
+ 
+
+
+
+</script>
+
+

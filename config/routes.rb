@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :brands
     resources :orders
     resources :advertisements
+    resources :faqs
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
     get 'order_search' => 'orders#order_search'
