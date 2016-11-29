@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">品牌列表
+    </h1>
+    <%= link_to "新增品牌", new_admin_brand_path, class: "btn btn-primary" %>
+    <!-- <button type="button" class="btn btn-primary"></button> -->
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                  <th>品牌名</th>
+                  <th>英文名</th>
+                  <th>图标</th>
+                  <th>国家</th>
+                  <th>排序</th>
+                  <th>显示/隐藏</th>
+                  <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @brands %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @brands %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

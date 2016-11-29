@@ -1,0 +1,17 @@
+<tr id="brand_<%= brand.id %>">
+  <td><%= brand.cn_name %></td>
+  <td><%= brand.en_name %></td>
+  <td><%= image_tag brand.logo, width: 100, height: 100 %></td>
+  <td><%= brand.nationality %></td>
+  <td><%= brand.sort_order %></td>
+  <td><%= brand.is_show %></td>
+  <td>
+  <%= link_to  '编辑', edit_admin_brand_path(brand), title: '品牌编辑' %>
+  <%= link_to  '删除',  admin_brand_path(brand),
+        method: "delete",
+        remote: true,
+        data: {:confirm => "确定删除？"},
+        title: '品牌删除'
+  %>
+  </td>
+</tr>

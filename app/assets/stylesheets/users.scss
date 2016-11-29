@@ -1,0 +1,126 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.zy-order-title {
+  margin: 42px 0 0 0;
+  font-size: 20px;
+}
+
+.order-list {
+  margin: 35px 0 400px 0;
+  width: 1106px;
+  height: 464px;
+  border: 1px solid rgba(151, 151, 151, 1);
+  img {
+    width: 205px;
+    height: 166px;
+    margin: 40px 0 20px 20px;
+    float: left;
+  }
+  .order-params-name {
+    font-size: 20px;
+    margin: 50px 0 0px 64px;
+    line-height: 30px;
+  }
+  .order-list-intro {
+    width: 520px;
+    float: left;
+  }
+  .order-pay-way {
+    display: block;
+    margin: 30px 0 0 64px;
+    font-size: 16px;
+    color: rgba(153, 153, 153, 1);
+  }
+  .order-list-button {
+    float: left;
+    button {
+      display: block;
+      border: none;
+      width: 130px;
+      height: 43px;
+      border: 1px solid rgba(168, 133, 67, 1);
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    .order-detail-btn {
+      background: #fff;
+      margin: 57px 0 0 100px;
+    }
+    .order-contact-btn {
+      background: rgba(168, 133, 67, 1);
+      color: #fff;
+      margin: 28px 0 0 100px;
+    }
+  }
+}
+.order-title {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid rgba(151, 151, 151, 1);
+}
+.order-code {
+  margin: 0 0 0 25px;
+  float: left;
+  color: rgba(153, 153, 153, 1);
+}
+.order-time {
+  margin: 0 0 0 25px;
+  float: left;
+  color: rgba(153, 153, 153, 1);
+}
+.order-total {
+  float: right;
+  margin: 0 65px 0 0;
+  color: red;
+}
+.order-status {
+  color: rgba(168, 133, 67, 1);
+  font-size: 16px;
+  float: left;
+  margin: 60px 0 0 27px;
+}
+.order-line {
+  width: 790px;
+  height: 1px;
+  background: rgba(151, 151, 151, 1);
+  margin: 60px 0 0 160px;
+  .active {
+    background: rgba(168, 133, 67, 1);
+  }
+  span {
+    float: left;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(151, 151, 151, 1);
+    margin-left: 120px;
+    margin-top: -5px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+}
+
+.order-right  {
+    height: 175px;
+    float: left;
+    ul {
+      margin-left: 120px;
+      margin-top: 18px;
+      li {
+        &.active {
+          color: rgba(168, 133, 67, 1);
+        }
+        text-align: center;
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 22px;
+        p {
+          margin-top: 10px;
+        }
+      }
+
+    }
+  }

@@ -1,0 +1,305 @@
+// Place all the styles related to the details controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.nav-logo {
+  margin: 24px 0 0 0px;
+  float: left;
+  width: 25px;
+  height: 25px;
+}
+.nav-cate {
+  margin-left: 12px;
+  float: left;
+  position: relative;
+  &:hover {
+    .nav-brand {
+      display: block;
+      z-index: 1;
+    }
+  }
+}
+.nav-type{
+  float: left;
+  li.nav-way {
+    margin-top: 20px;
+    margin-left: 30px;
+    float: left;
+    border: 1px solid #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    font-size: 12px;
+    position: relative;
+    &:hover{
+      ul {
+        display: block;
+      }
+    }
+    ul {
+      display: none;
+      position: absolute;
+      left: -1px;
+      li {
+          width: 200px;
+          border: 1px solid #fff;
+          height: 30px;
+          background: rgba(56, 55, 51, 1);
+          margin-bottom: -1px;
+          text-indent: 12px;
+           }
+    }
+  }
+}
+
+.nav-brand {
+  display: none;
+  width: 1226px;
+  position: absolute;
+  left: -97px;
+  background: rgba(56, 55, 51, 1);
+  .nav-brand-title {
+    width: 50px;
+    margin: -10px 0 0 60px;
+    float: left;
+  }
+  .nav-brand-list {
+    width: 1116px;
+    float: left;
+    img {
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+    span {
+      display: block;
+      margin: -26px 0 0 -2px;
+    }
+  }
+  .nav-brand-logo {
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+.car-config-left {
+  width: 613px;
+  float: left;
+  .car-config-img {
+    width: 540px;
+    height: 447px;
+    margin: 38px 0 0 60px;
+  }
+}
+.car-config-right {
+  width: 613px;
+  float: left;
+  .car-config-title {
+    width: 532px;
+    height: 68px;
+    font-size: 20px;
+    margin: 49px 58px 0 0;
+    line-height: 30px;
+  }
+  .car-fonfig-price {
+    height: 70px;
+    background: rgba(245, 245, 245, 1);
+    font-size: 24px;
+    line-height: 70px;
+    text-indent: 12px;
+    strong {
+      font-size: 38px;
+      color: red;
+      margin-left: 4px;
+      letter-spacing: -4px;
+    }
+  }
+   .car-config-way {
+      margin: 16px 0 ;
+      dt {
+        margin-top: 15px;
+        margin-right: 24px;
+        float: left;
+        color: rgba(102, 102, 102, 1);
+        font-size: 18px;
+      }
+      dd {
+        font-size: 18px;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        padding: 2px 20px;
+        margin: 5px 10px 0 0;
+        border: 1px  solid #666666;
+      }
+    }
+    button {
+      width: 180px;
+      height: 52px;
+      border: none;
+      font-size: 20px;
+    }
+    .car-config-button {
+      margin: 44px 0 0 0;
+    }
+    .car-config-pre {
+      margin-left: 96px;
+      margin-right: 24px;
+      background:  #AA844E;
+      color: #fff;
+    }
+    .car-config-consult {
+      background: #fff;
+      color: #666666;
+      border: 1px solid #666666;
+    }
+}
+.zy-body {
+  width: 1106px;
+  margin: 0 auto;
+  .zy-title-list {
+    margin-top: 90px;
+    margin-bottom: 30px;
+    font-weight: normal;
+    font-size: 20px;
+    border-left: 4px solid rgba(168, 133, 67, 1);
+    text-indent: 12px;
+  }
+  .zy-show-img-wrap {
+    li {
+      width: 553px;
+      float: left;
+      img {
+        width: 540px;
+        height: 480px;
+      }
+    }
+    h1 {
+      font-size: 18px;
+      font-weight: normal;
+      margin: 30px 0 10px 0;
+    }
+    p {
+      width: 453px;
+      margin-bottom: 48px;
+    }
+  }
+}
+.zy-container {
+  background: rgba(245, 245, 245, 1);
+}
+.zy-config-params {
+  border-bottom: 1px solid   #010101;
+  li {
+    float: left;
+    width: 157px;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #CCCCCC;
+    margin-left: -1px;
+    margin-bottom: -1px;
+    text-align: center;
+    color: #C4C4C4;
+  }
+  .active {
+    color:  #010101;
+    border-left: 1px solid  #010101;
+    border-top: 1px solid  #010101;
+  }
+}
+
+.more-config {
+  ul {
+    margin-bottom: 120px;
+    li {
+      width: 25%;
+      float: left;
+      list-style-image: url(../images/circle2.png);
+      list-style-position: inside;
+      font-size: 20px;
+      margin: 40px 0 0 0;
+    }
+  }
+
+
+}
+ #current-show {
+      display: block;
+  }
+ .zy-params-list {
+    display: none;
+    margin-bottom: 60px;
+
+     dl {
+      height: 60px;
+      border-top: 1px solid #010101;
+      border-bottom: 1px solid #010101;
+      margin-bottom: -1px;
+      dd {
+        width: 50%;
+        float: left;
+        line-height: 60px;
+        text-align: center;
+      }
+    }
+  }
+
+  .d-img-list {
+      margin-left: 60px;
+      width: 540px;
+      height: 62px;
+      position: relative;
+      overflow: hidden;
+      .icon-left {
+        position: absolute;
+        left: 0px;
+        width: 20px;
+        z-index: 99999;
+        height: 60px;
+        line-height: 60px;
+        font-size: 20px;
+        background-color: #000000;
+        color: #fff;
+      }
+      .icon-right {
+        position: absolute;
+        width: 20px;
+        top: 0;
+        right: 0px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 20px;
+        background-color: #000000;
+        color: #fff;
+      }
+      .d-list-wrap {
+        width: 700px;
+        margin: 0 auto;
+        height: 60px;
+        overflow:visible;
+        position: relative;
+        overflow: hidden;
+        left: 0px;
+         img{
+            width: 90px;
+            height: 60px;
+            float: left;
+            margin: 0 7px;
+            margin-right: 10px;
+            &:last-child {
+              margin-right: 0;
+            }
+            &:hover {
+              border: 3px solid #AA844E;
+            }
+          }
+      }
+
+    }
+
+
+    .public-bg-wrap {
+      padding: 10px 0;
+      background: rgba(245, 245, 245, 1);
+    }
+
+

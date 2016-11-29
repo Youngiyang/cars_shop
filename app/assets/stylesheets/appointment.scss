@@ -1,0 +1,197 @@
+h1.nomarl {
+  font-weight: normal;
+  font-size: 18px;
+}
+.container-wrap {
+  width: 100%;
+  background: #fff ;
+}
+.header{
+  width: 1126px;
+  height: 90px;
+  float: right;
+  .header-nav {
+    padding-left: 35px;
+    line-height: 20px;
+    padding-top: 35px;
+    .active {
+      color: #333333;
+    }
+    li {
+      font-size: 16px;
+      float: left;
+      color: #878787;
+      padding:0 20px;
+      border-right: 1px solid #878787 ;
+    }
+    li:nth-last-child(2) {
+      border:none;
+    }
+    li:last-child {
+      border:none;
+      float: right;
+      padding: 0 60px;
+    }
+  }
+}
+nav {
+  background: rgba(56, 55, 51, 1);
+  height: 72px;
+  color: #fff;
+  line-height: 72px;
+  .nav-title {
+    margin-left: 60px;
+  } 
+}
+
+.zy-car-show-img {
+  width: 355px;
+  float: left;
+  height: 345px;
+  img {
+    width: 294px;
+    height: 244px;
+    margin: 39px 0 0 30px;
+  }
+}
+.zy-car-show-product{
+  width: 381px;
+  float: left;
+  height: 345px;
+  h1 {
+    margin-top: 39px;
+    line-height: 40px;
+    @extend h1.nomarl;
+  }
+  p {
+    margin-top: 76px;
+    font-size: 16px;
+    span {
+      margin-left: 20px;
+      font-size: 25px;
+      color: red;
+    }
+  }
+}
+.zy-car-show-config {
+  float: left;
+  height: 248px;
+  width: 379px;
+  margin: 34px 0 0 44px;
+  background: rgba(245, 245, 245, 1);
+  h1 {
+    margin-top: 31px;
+    text-align: center;
+    @extend h1.nomarl;
+  }
+  ul {
+    width: 232px;
+    margin: 0 auto;
+    li {
+      width: 48%;
+      float: left;
+      font-size: 12px;
+      text-indent: 10px;
+      margin-top: 26px;
+      list-style-image: url(../images/circle2.png);
+      list-style-position: inside;
+    }
+  }
+}
+
+.zy-info-title {
+  display: block;
+  margin-left: 60px;
+  @extend h1.nomarl;
+}
+.zy-line {
+  border: 1px solid  rgba(245, 245, 245, 1);
+  margin: 18px 0 38px 0;
+}
+.zy-list-info {
+  width: 1106px;
+  margin: 0 auto;
+}
+
+.form-group {
+  border-bottom: 1px solid rgba(245, 245, 245, 1);
+}
+ .form-select {
+    margin-top: 42px;
+    margin-bottom: 50px;
+  }
+.form-input {
+  font-size: 16px;
+  label {
+    letter-spacing: 24px;
+  }
+  input {
+    margin-left: 40px;
+    width: 278px;
+    height: 38px;
+    border: 1px solid rgba(168, 133, 67, 1);
+    text-indent: 12px;
+    &:last-child {
+      margin-top: 12px;
+    }
+  }
+  .input-bottom {
+      margin-bottom: 38px;
+  }
+  .form-left {
+    line-height: 32px;
+    float: left;
+  }
+  select {
+    width: 172px;
+    height: 40px;
+    border: 1px solid rgba(168, 133, 67, 1);
+    background: #fff;
+    float: left;
+    margin-left: 16px;
+  }
+  .input-chose {
+    width: 324px;
+    height: 133px;
+    border: 1px solid rgba(168, 133, 67, 1);
+    margin: 25px 0 80px 0;
+  }
+  .input-ask {
+    width: 947px;
+    height: 133px;
+    border: 1px solid rgba(168, 133, 67, 1);
+    margin: 25px 0 80px 0;
+  }
+}
+.form-submit {
+  margin-bottom: 60px;
+  button {
+    display: block;
+    float: right;
+    margin: 96px 0 12px 0;
+    width: 200px;
+    height: 48px;
+    border-radius: 5px;
+    color: #fff;
+    background: rgba(168, 133, 67, 1);
+    border: none;
+    font-size: 20px;
+  }
+  .zy-deal-ag {
+    text-align: right;
+    span {
+      margin-left: 4px;
+    }
+    strong {
+      color: red;
+    }
+  }
+}
+.zy-list-title {
+  display: block;
+  margin-top: 50px;
+  span {
+    margin-left: 8px;
+  }
+}
+
