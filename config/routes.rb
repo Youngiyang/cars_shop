@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
+  mount V1::API => '/v1'
+ 
   get 'uploaders/index'
 
-=======
->>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
+
   get 'users/personal'
 
   get 'users/appointment'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
   resources :goods, only: [:index, :show]
   root 'home#index'
   get 'detail' => 'details#index'
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   get 'advanced_select' => 'select_car_online#advanced_select'
 
 
-<<<<<<< HEAD
   namespace :admin do
     root 'users#guide'
     resources :brands
@@ -35,11 +35,9 @@ Rails.application.routes.draw do
     get 'order_check_list' => 'orders#order_check_list'
     get 'assign_service/:order_id' => 'orders#assign_service', as: 'assign_service'
     post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
-=======
 
   namespace :admin do
     resources :brands
->>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
   end
 
   # You can have the root of your site routed with "root"

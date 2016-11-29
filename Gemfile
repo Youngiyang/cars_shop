@@ -20,6 +20,17 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
+<<<<<<< HEAD
+=======
+gem 'grape'
+gem 'grape-entity'
+gem 'grape_on_rails_routes' # show api routes: rake grape:routes
+# Use Unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
+>>>>>>> 3969eb1681c205a90c49364ae29c34e3175e362d
 
 group :development, :test do
   gem 'faker'
