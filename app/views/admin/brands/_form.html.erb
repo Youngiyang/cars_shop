@@ -1,0 +1,55 @@
+<%= form_for [:admin, @brand],  html:{ class:"col s12 admin_form" } do |f| %>
+
+   <%= render "admin/share/error_messages", target: @brand %>
+   <div class="form-group" data-required="true">
+        <%= f.label :cn_name, '中文名', class: 'control-label' %>
+        <%= f.text_field :cn_name, class:"form-control validate", autofocus: true, required: '' %>
+   </div>
+
+   <div class="form-group" data-required="true">
+        <%= f.label :en_name, '英文名', class: 'control-label' %>
+        <%= f.text_field :en_name, class:"form-control validate", required: '' %>
+   </div>
+
+   <div class="form-group" data-required="true">
+      <%= f.label :nationality, '品牌所属国家', class: 'control-label' %>
+      <%= f.text_field :nationality, class:"form-control validate", required: '' %>
+   </div>
+    <div class="form-group" data-required="true">
+        <%= f.label :sort_order, '排序', class: 'control-label' %>
+        <%= f.text_field :sort_order, class:"form-control validate", required: '' %>
+    </div>
+
+    <div class="form-group" data-required="true">
+      <%= check_box_tag :is_show, 'yes', true%>
+      <%= f.label :is_show, '是否显示在首页侧边栏', class: 'control-label' %>
+      <%# f.text_field :is_show, class:"form-control validate", required: '' %>
+   </div>
+
+
+
+    <div class="form-group">
+        <label for="E5rcADdEFdxT4EKSY" class="control-label">头像</label>
+        <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
+          <span class="btn btn-file btn-xs">
+            <%= file_field_tag :img_upload,
+            class: 'form-control',
+            placeholder: '点击上传图片' %>
+            <%= f.hidden_field :logo %>
+          </span>
+        </div>
+        <%# image_tag @brand.logo, id: 'show_brand_logo', width: "180" %>
+    </div>
+
+
+    <div class="progress" id="progress" style="display: none;">
+      <div class="progress-bar"  role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+        请上传图片
+      </div>
+    </div>
+
+    <div class="buttons text-right">
+      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+    </div>
+<% end %>
+
