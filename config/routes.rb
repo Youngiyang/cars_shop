@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount V1::API => '/v1'
- 
+
   get 'uploaders/index'
 
 
@@ -35,11 +35,7 @@ Rails.application.routes.draw do
     get 'order_check_list' => 'orders#order_check_list'
     get 'assign_service/:order_id' => 'orders#assign_service', as: 'assign_service'
     post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
-
-  namespace :admin do
-    resources :brands
   end
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

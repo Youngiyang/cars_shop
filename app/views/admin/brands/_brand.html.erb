@@ -4,7 +4,7 @@
   <td><%= image_tag brand.logo, width: 100, height: 100 %></td>
   <td><%= brand.nationality %></td>
   <td><%= brand.sort_order %></td>
-  <td><%= brand.is_show %></td>
+  <td><%= is_display?(brand.is_show) %></td>
   <td>
   <%= link_to  '编辑', edit_admin_brand_path(brand), title: '品牌编辑' %>
   <%= link_to  '删除',  admin_brand_path(brand),
