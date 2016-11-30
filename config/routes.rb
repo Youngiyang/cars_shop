@@ -37,7 +37,6 @@ Rails.application.routes.draw do
     post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
     resources :brands
   end
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

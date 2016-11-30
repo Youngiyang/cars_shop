@@ -24,12 +24,19 @@ namespace :test_datas do
     #为每个品牌创建5个货品
     brands.each do |brand|
       5.times do |i|
-        Product.create!(name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
+        product = Product.create!(
+                        name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
                         category_id: categories[rand(2)].id,
                         photo_id: rand(1..50),
+                        is_hot: Faker::Boolean.boolean(0.2),
+                        is_recommended: Faker::Boolean.boolean(0.2)
                         slogan: Faker::Lorem.sentence,
                         min_price: rand(1000000))
+        if product.is_recommended
+          product.recommended_words = Faker::Lorem.sentence
+          product.save!
+        end
       end
     end
 
@@ -106,13 +113,8 @@ namespace :test_datas do
           current_price: rand(1000000),
           market_price: rand(1000000),
           registered_info: "a,b,c,d,e",
-          is_hot: Faker::Boolean.boolean(0.2),
           in_stock: Faker::Boolean.boolean,
-          is_recommended: Faker::Boolean.boolean(0.2))
-        if good.is_recommended
-          good.recommended_words = Faker::Lorem.sentence
-          good.save!
-        end
+          )
         result.each do |id|
           GoodSpecOption.create!(good_id: good.id, spec_option_id: id)
         end
