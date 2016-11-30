@@ -21,8 +21,8 @@
     </div>
 
     <div class="form-group" data-required="true">
-      <%= check_box_tag :is_show, 'yes', true%>
-      <%= f.label :is_show, '是否显示在首页侧边栏', class: 'control-label' %>
+      <%= f.check_box :is_show %>
+      <%= f.label :is_show, '不显示在首页侧边栏', class: 'control-label' %>
       <%# f.text_field :is_show, class:"form-control validate", required: '' %>
    </div>
 
@@ -32,13 +32,13 @@
         <label for="E5rcADdEFdxT4EKSY" class="control-label">头像</label>
         <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
           <span class="btn btn-file btn-xs">
-            <%= file_field_tag :img_upload,
+            <%= file_field_tag :logo,
             class: 'form-control',
             placeholder: '点击上传图片' %>
             <%= f.hidden_field :logo %>
           </span>
         </div>
-        <%# image_tag @brand.logo, id: 'show_brand_logo', width: "180" %>
+        <%= image_tag @brand.logo, id: 'show_brand_logo', width: "180" %>
     </div>
 
 
@@ -52,4 +52,49 @@
       <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
+<script>
+
+
+$(function(){
+   $('#logo').change(function(e){
+     var fd = new FormData();
+      fd.append("upload_file", $("#logo").get(0).files[0]);
+      console.log(fd);
+      setProgress(progress, 0, "开始上传");
+      setProgress(progress, 50, "50%");
+      $.ajax({
+        url: "/admin/upload",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd,
+        success: function(data) {
+          console.log(data.file_path);
+          setProgress(progress, 100, "上传成功");
+              $('#brand_logo').val(data.file_path);
+              $('#show_brand_logo').attr('src', data.file_path + "<%= image_size %>");
+        }
+      });
+  })
+
+})
+
+
+
+
+ //设置进度条
+var progress = document.getElementById("progress");
+
+function setProgress(ele, percent, content) {
+  ele.style.display = "block";
+  if (!!percent) {
+    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+  }
+  ele.getElementsByClassName("progress-bar")[0].innerText = content;
+}
+</script>
+
+
+
 

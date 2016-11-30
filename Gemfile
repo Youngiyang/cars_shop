@@ -23,6 +23,11 @@ gem 'grape'
 gem 'grape-entity'
 gem 'grape_on_rails_routes' # show api routes: rake grape:routes
 # Use Unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
+
 group :development, :test do
   gem 'faker'
   gem 'byebug'
