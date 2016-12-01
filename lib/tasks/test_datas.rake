@@ -28,13 +28,14 @@ namespace :test_datas do
                         name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
                         category_id: categories[rand(2)].id,
-                        photo_id: rand(1..50),
+                        img_url: Faker::Avatar.image,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,
                         min_price: rand(1000000))
         if product.is_recommended
           product.recommended_words = Faker::Lorem.sentence
+          product.recommended_sub_title = Faker::Lorem.word
           product.save!
         end
       end
