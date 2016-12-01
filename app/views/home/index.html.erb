@@ -37,7 +37,7 @@
 <div class="top">
   <div class="header">
     <ul class="header-nav">
-      <li class="active">首页</li>
+      <li class="active"><%= link_to "首页", root_path %></li>
       <li>在线选车</li>
       <li>关于我们</li>
       <li class="active"><i class="iconfont">&#xe60d;</i>登陆</li>
@@ -117,11 +117,13 @@
               </ul>
             </div>
             <div class="zy-brand-cars-right">
-              <ul>
+              <ul>   
                 <% @advertisements_1.each do |ad| %>
-                  <%= link_to ad.link do %>
-                    <%= image_tag ad.img_url, size: "320x190" %>
-                  <% end %>
+                  <li>
+                    <%= link_to ad.link do %>
+                      <%= image_tag ad.img_url, size: "320x190" %>
+                    <% end %>
+                  </li>
                 <% end %>
               </ul>
             </div>
