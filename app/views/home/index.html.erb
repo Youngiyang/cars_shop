@@ -37,7 +37,7 @@
 <div class="top">
   <div class="header">
     <ul class="header-nav">
-      <li class="active">首页</li>
+      <li class="active"><%= link_to "首页", root_path %></li>
       <li>在线选车</li>
       <li>关于我们</li>
       <li class="active"><i class="iconfont">&#xe60d;</i>登陆</li>
@@ -52,26 +52,14 @@
             <div class="brands">
               <h4>品牌</h4>
               <ul>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
-                <li><a href=""><%= image_tag "BM.png"%><div>宝马</div></a></li>
+                <% @brands.each do |brand| %>
+                  <li>
+                    <%= link_to '#' do %>
+                      <%= image_tag brand.logo %>
+                      <div><%= brand.cn_name %></div>
+                    <% end %>
+                  </li>
+                <% end %>
               </ul>
             </div>
             <div class="price">
@@ -99,19 +87,50 @@
           <div class="tuijian-cars">
             <h4>推荐车型</h4>
             <ul>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
-              <li><a href="">丰田普拉多</a></li>
+              <% @products_recommended.each do |product_recommended| %>
+                <li>
+                  <%= link_to product_recommended.name, "#" %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </li>
-      <li>
+      <% @brands_with_products.each do |brand_with_products| %>
+        <li>
+          <%= link_to "#" do %>
+            <%= image_tag brand_with_products.logo %>
+          <% end %>
+          <div class="zy-brand-cars">
+            <div class="zy-brand-cars-left">
+              <ul>
+                <% brand_with_products.products.each do |product| %>
+                  <li>
+                    <%= link_to "#" do %>
+                      <%= image_tag product.img_url, size: "184x93" %>
+                      <div class="brand-car-style">
+                        <%= product.name %>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="zy-brand-cars-right">
+              <ul>   
+                <% @advertisements_1.each do |ad| %>
+                  <li>
+                    <%= link_to ad.link do %>
+                      <%= image_tag ad.img_url, size: "320x190" %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <li>
         <a href=""><%= image_tag "BM.png" %></a>
         <div class="zy-brand-cars">
           <div class="zy-brand-cars-left">
@@ -137,12 +156,16 @@
   <div  class="banner">
     <div id="html5zoo-1">
         <ul class="html5zoo-slides" style="display:none;">
+          <% @banners.each do |banner| %>
+            <li>
+              <%= link_to banner.link, target: "_blank" do %>
+                <%= image_tag banner.img_url, size: "959x454" %>
+              <% end %>
+            </li>
+          <% end %>
             <li><a href="###" target="_blank"><%= image_tag "banner.png", size: "959x454" %>
             </a></li>
             <li><a href=""><%= image_tag "banner.png", size: "959x454" %></a></li>
-            <li><a href="###" target="_blank"><%= image_tag "banner.png", size: "959x454" %></a></li>
-            <li><a href="###" target="_blank"><%= image_tag "banner.png", size: "959x454" %></a></li>
-            <li><a href="###" target="_blank"><%= image_tag "banner.png", size: "959x454" %></a></li>
             <li><a href="###" target="_blank"><%= image_tag "banner.png", size: "959x454" %></a></li>
         </ul>
     </div>
@@ -183,66 +206,26 @@
 <section class="clearfix">
   <h3 class="zy-section-title">热销车型</h3>
   <ul class="hot-cars">
+    <% @products_hot.each do |product_hot| %>
+      <li class="hot-car-entry">
+        <%= link_to "#" do %>
+          <div class="hot-car-img">
+            <%= image_tag product_hot.img_url, size:"196x88" %>
+          </div>
+          <h5 class="hot-car-style">
+            <%= product_hot.name %>
+          </h5>
+          <div class="hot-car-price">
+            <%= BigDecimal(product_hot.min_price/10000).round(2).to_s + "万起" %>
+          </div>
+          <div class="hot-car-book">0元预定看车</div>
+        <% end %>
+      </li>
+    <% end %>
     <li class="hot-car-entry">
       <a href="">
         <div class="hot-car-img">
         <%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
-        <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
-        <div class="hot-car-price">46.2万起</div>
-        <div class="hot-car-book">0元预定看车</div>
-      </a>
-    </li>
-    <li class="hot-car-entry">
-      <a href="">
-        <div class="hot-car-img"><%= image_tag "X3.png", size:"196x88" %></div>
         <h5 class="hot-car-style">2016款宝马</h5 class="hot-car-style">
         <div class="hot-car-price">46.2万起</div>
         <div class="hot-car-book">0元预定看车</div>
@@ -253,51 +236,28 @@
 <section class="clearfix">
   <h3  class="zy-section-title">现车推荐</h3>
   <ul class="recommend-cars">
-    <li>
-      <div class="recommend-car-entry clearfix">
-        <div class="recommend-car-item">
-          <div class="recommend-car-title"><h3>Ghibli S Q4</h3></div>
-          <div class="recommend-car-sub-title">非凡引力，光彩夺目</div>
-          <div class="recommend-car-descrip">搭载玛莎拉蒂Q4智能四驱系统，无论何种恶劣环境，始终提供强劲的抓地力和牵引力，保持卓越性能。
+    <% @products_recommended.each do |product_recommended| %>
+      <li>
+        <div class="recommend-car-entry clearfix">
+          <div class="recommend-car-item">
+            <div class="recommend-car-title">
+              <h3><%= product_recommended.name %></h3>
+            </div>
+            <div class="recommend-car-sub-title">
+              <%= product_recommended.recommended_sub_title %>
+            </div>
+            <div class="recommend-car-descrip">
+              <%= product_recommended.recommended_words %>
+            </div>
           </div>
+          <%= image_tag product_recommended.img_url, size: "305x185", class: "recommend-car-img" %>
         </div>
-        <%= image_tag "Q4.png", class: "recommend-car-img" %>
-      </div>
-      <div class="recommend-botton">
-        <a href="" class="recommend-more-info">更多信息</a>
-        <a href="" class="recommend-book-now">立即预定</a>
-      </div>
-    </li>
-    <li>
-      <div class="recommend-car-entry clearfix">
-        <div class="recommend-car-item">
-          <div class="recommend-car-title"><h3>Ghibli S Q4</h3></div>
-          <div class="recommend-car-sub-title">非凡引力，光彩夺目</div>
-          <div class="recommend-car-descrip">搭载玛莎拉蒂Q4智能四驱系统，无论何种恶劣环境，始终提供强劲的抓地力和牵引力，保持卓越性能。
-          </div>
+        <div class="recommend-botton">
+          <%= link_to "更多信息", "#", class: "recommend-more-info" %>
+          <%= link_to "立即预定", "#", class: "recommend-book-now" %>
         </div>
-        <%= image_tag "Q4.png", class: "recommend-car-img" %>
-      </div>
-      <div class="recommend-botton">
-        <a href="" class="recommend-more-info">更多信息</a>
-        <a href="" class="recommend-book-now">立即预定</a>
-      </div>
-    </li>
-    <li>
-      <div class="recommend-car-entry clearfix">
-        <div class="recommend-car-item">
-          <div class="recommend-car-title"><h3>Ghibli S Q4</h3></div>
-          <div class="recommend-car-sub-title">非凡引力，光彩夺目</div>
-          <div class="recommend-car-descrip">搭载玛莎拉蒂Q4智能四驱系统，无论何种恶劣环境，始终提供强劲的抓地力和牵引力，保持卓越性能。
-          </div>
-        </div>
-        <%= image_tag "Q4.png", class: "recommend-car-img" %>
-      </div>
-      <div class="recommend-botton">
-        <a href="" class="recommend-more-info">更多信息</a>
-        <a href="" class="recommend-book-now">立即预定</a>
-      </div>
-    </li>
+      </li>
+    <% end %>
     <li>
       <div class="recommend-car-entry clearfix">
         <div class="recommend-car-item">
@@ -317,6 +277,9 @@
 </section>
 <section class="clearfix">
   <h3 class="zy-section-title">明星单品</h3>
+  <% @ads_3.each do |ad| %>
+    <%= image_tag ad.img_url %>
+  <% end %>
   <%= image_tag "log-banner.png" %>
 </section>
     <section>
