@@ -1,0 +1,112 @@
+<%= form_for admin_brand_products_path ,  html:{ class:"col s12 admin_form" } do |f| %>
+   <%= render "admin/share/error_messages", target: @product %>
+   <div class="form-group" data-required="true">
+        <%= f.label :name, '车型', class: 'control-label' %>
+        <%= f.text_field :name, class:"form-control validate", autofocus: true, required: '' , placeholder: "例如：宝马X6"%>
+   </div>
+
+   <div class="form-group" data-required="true">
+        <%= f.label "分类", class: 'control-label' %>
+        <select name="category" class="form-control validate">
+           <%= options_from_collection_for_select(Category.all, :id, :name) %>
+        </select>
+   </div>
+
+    <div class="form-group" data-required="true">
+      <%= f.label :min_price, '最低价', class: 'control-label' %>
+      <%= f.text_field :min_price, class:"form-control validate", required: '' %>
+   </div>
+
+    <div class="form-group" data-required="true">
+      <%= f.check_box :is_hot %>
+      <%= f.label :is_hot, '热门车型', class: 'control-label' %>
+   </div>
+
+    <div class="form-group" data-required="true">
+      <%= f.check_box :is_recommended, class: "is_recommended" %>
+      <%= f.label :is_recommended, '推荐车型', class: 'control-label' %>
+    </div>
+
+    <div class="form-group recommended after-recommended" data-required="true">
+      <%= f.label :slogan, '推荐词', class: 'control-label' %>
+      <%= f.text_field :slogan, class:"form-control validate", required: '' %>
+    </div>
+
+    <div class="form-group recommended after-recommended" data-required="true">
+      <%= f.label :slogan, '标语', class: 'control-label' %>
+      <%= f.text_field :slogan, class:"form-control validate", required: '' %>
+    </div>
+
+
+    <div class="form-group">
+      <label for="E5rcADdEFdxT4EKSY" class="control-label">头像</label>
+      <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
+        <span class="btn btn-file btn-xs">
+          <%= file_field_tag :img_url,
+          class: 'form-control',
+          placeholder: '点击上传图片' %>
+          <%= f.hidden_field :img_url %>
+        </span>
+      </div>
+      <%= image_tag @product.img_url, id: 'product_logo', width: "180" %>
+    </div>
+
+
+    <div class="progress" id="progress" style="display: none;">
+      <div class="progress-bar"  role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+        请上传图片
+      </div>
+    </div>
+
+    <div class="buttons text-right">
+      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+    </div>
+<% end %>
+<script>
+
+
+$(function(){
+   $('#logo').change(function(e){
+     var fd = new FormData();
+      fd.append("upload_file", $("#logo").get(0).files[0]);
+      console.log(fd);
+      setProgress(progress, 0, "开始上传");
+      setProgress(progress, 50, "50%");
+      $.ajax({
+        url: "/admin/upload",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd,
+        success: function(data) {
+          console.log(data.file_path);
+          setProgress(progress, 100, "上传成功");
+              $('#brand_logo').val(data.file_path);
+              $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
+        }
+      });
+  })
+})
+
+ //设置进度条
+var progress = document.getElementById("progress");
+
+function setProgress(ele, percent, content) {
+  ele.style.display = "block";
+  if (!!percent) {
+    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+  }
+  ele.getElementsByClassName("progress-bar")[0].innerText = content;
+}
+
+ $('.is_recommended').change(function() {
+    if ($('.is_recommended').is(':checked')) {
+      $('.recommended').removeClass('after-recommended')
+    }
+    else{
+      $('.recommended').addClass('after-recommended')
+     };
+ });
+
+</script>

@@ -1,0 +1,18 @@
+<tr id="product_<%= product.id %>">
+  <td><%= product.name %></td>
+  <td><%= image_tag product.img_url, width: 50, height: 50 %></td>
+  <td><%= product.category_id %></td>
+  <td><%= product.is_hot %></td>
+  <td><%= product.is_recommended %></td>
+  <td><%= product.min_price %></td>
+  <td>
+  <%# link_to  '编辑', edit_admin_product_path(product), title: '品牌编辑', class: 'btn btn-success' %>
+  <%# link_to '查看品牌车型', admin_product_products_path(product), title: '查看该品牌下所有车型', class: 'btn btn-info' %>
+  <%# link_to  '删除',  admin_product_path(product),
+        method: "delete",
+        remote: true,
+        data: {:confirm => "确定删除？"},
+        title: '品牌删除'
+  %>
+  </td>
+</tr>
