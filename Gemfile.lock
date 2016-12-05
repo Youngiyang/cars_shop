@@ -70,6 +70,7 @@ GEM
       qiniu (~> 6.8, >= 6.8.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
@@ -156,6 +157,15 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     pg (0.19.0)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     public_suffix (2.0.4)
     qiniu (6.8.1)
       json (~> 1.8)
@@ -230,6 +240,7 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     simditor (2.3.6)
+    slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     sprockets (3.7.0)
@@ -296,6 +307,8 @@ DEPENDENCIES
   jquery-validation-rails
   launchy
   pg
+  pry-byebug
+  pry-rails
   rails
   rspec-rails
   sass-rails (~> 5.0)
@@ -309,4 +322,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

@@ -1,4 +1,4 @@
-<%= form_for admin_brand_products_path ,  html:{ class:"col s12 admin_form" } do |f| %>
+<%= form_for @product, url: admin_brand_products_path ,  html:{ class:"col s12 admin_form" } do |f| %>
    <%= render "admin/share/error_messages", target: @product %>
    <div class="form-group" data-required="true">
         <%= f.label :name, '车型', class: 'control-label' %>
@@ -7,8 +7,8 @@
 
    <div class="form-group" data-required="true">
         <%= f.label "分类", class: 'control-label' %>
-        <select name="category" class="form-control validate">
-           <%= options_from_collection_for_select(Category.all, :id, :name) %>
+        <select name="product[category_id]" class="form-control validate">
+           <%= options_from_collection_for_select(Category.all, 'id', 'name') %>
         </select>
    </div>
 
@@ -28,13 +28,18 @@
     </div>
 
     <div class="form-group recommended after-recommended" data-required="true">
-      <%= f.label :slogan, '推荐词', class: 'control-label' %>
-      <%= f.text_field :slogan, class:"form-control validate", required: '' %>
+      <%= f.label :recommended_sub_title, '推荐副标题', class: 'control-label' %>
+      <%= f.text_field :recommended_sub_title %>
+    </div>
+
+    <div class="form-group recommended after-recommended" data-required="true">
+      <%= f.label :recommended_words, '推荐词', class: 'control-label' %>
+      <%= f.text_field :recommended_words %>
     </div>
 
     <div class="form-group recommended after-recommended" data-required="true">
       <%= f.label :slogan, '标语', class: 'control-label' %>
-      <%= f.text_field :slogan, class:"form-control validate", required: '' %>
+      <%= f.text_field :slogan %>
     </div>
 
 
@@ -45,7 +50,7 @@
           <%= file_field_tag :img_url,
           class: 'form-control',
           placeholder: '点击上传图片' %>
-          <%= f.hidden_field :img_url %>
+          <%= f.hidden_field :img_url, id: "product_img_logo" %>
         </span>
       </div>
       <%= image_tag @product.img_url, id: 'product_logo', width: "180" %>
@@ -66,9 +71,9 @@
 
 
 $(function(){
-   $('#logo').change(function(e){
+   $('#img_url').change(function(e){
      var fd = new FormData();
-      fd.append("upload_file", $("#logo").get(0).files[0]);
+      fd.append("upload_file", $("#img_url").get(0).files[0]);
       console.log(fd);
       setProgress(progress, 0, "开始上传");
       setProgress(progress, 50, "50%");
@@ -81,7 +86,7 @@ $(function(){
         success: function(data) {
           console.log(data.file_path);
           setProgress(progress, 100, "上传成功");
-              $('#brand_logo').val(data.file_path);
+              $('#product_img_logo').val(data.file_path);
               $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
         }
       });
