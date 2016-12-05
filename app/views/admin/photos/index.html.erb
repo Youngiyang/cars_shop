@@ -7,9 +7,9 @@
     </h1>
     <hr>
     <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-      <div class="row">
+      <div class="row zy-ad-select">
         <button type="button" class="btn btn-default zy-select-all">全选</button>
-        <button type="button" class="btn btn-default">删除</button>
+        <button type="button" class="btn btn-default zy-select-delete">删除</button>
       </div>
       <br> 
       <div class="row zy-ck-box">
@@ -35,8 +35,17 @@
 </div>
 
 <script>
-  $('.zy-select-all').click(function(){
-    console.log(123);
-    // $('.zy-ck-box input[type=checkbox]').attr();
-  })
+$('.zy-ad-select').on('click','.zy-select-all',function(){
+   if($('.zy-select-all').text()==='全选'){
+       $('.zy-ck-box input[type=checkbox]').prop('checked',true);
+       $('.zy-select-all').html('取消');
+    }else {
+        $('.zy-ck-box input[type=checkbox]').prop('checked',false);
+        $('.zy-select-all').html('全选');
+    }
+})
+
+$('.zy-select-delete').click(function(){
+  
+})
 </script>
