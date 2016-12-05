@@ -1,6 +1,5 @@
 source 'https://ruby.taobao.org'
 gem 'jquery-validation-rails'
-gem 'jquery-ui-rails'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'simditor'
 gem 'bootstrap-sass'

@@ -10,7 +10,7 @@
     <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
        <div class="row">
        <% @albums.each do |a| %>
-          <%= link_to new_admin_album_photo_path(a) do %>
+          <%= link_to admin_album_photos_path(a) do %>
           <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
                 <%= image_tag "default.png", width: 300, height: 300 %>
