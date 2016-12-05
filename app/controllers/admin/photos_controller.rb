@@ -1,6 +1,6 @@
 class Admin::PhotosController < ApplicationController
 def index
-    @advertisements = Advertisement.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @photos = Photo.order(created_at: :desc).where(album_id: params[:album_id]).paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -46,8 +46,4 @@ def index
   end
 
 
-    private 
-      def photo_params(:img_url)
-        params.require(:photo).permit
-      end
 end

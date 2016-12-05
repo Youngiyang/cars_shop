@@ -4,12 +4,18 @@
 
 
 .thumbnail {
+  position: relative;
   img {
     margin-top: 20px;
     border: 1px solid #ccc;
      &:hover {
-      background: red;
+      background: #ccc;
      }
+  }
+  .img-ck {
+    position: absolute;
+    top: 21px;
+    left: 6px;
   }
   .caption {
     width: 76%;
