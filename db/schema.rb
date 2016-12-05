@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161128065044) do
+=======
+ActiveRecord::Schema.define(version: 20161201031710) do
+>>>>>>> ce349c4170dcb9fcc2049e6903397f1144c76cb3
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,18 +170,18 @@ ActiveRecord::Schema.define(version: 20161128065044) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",                                                       null: false
-    t.integer  "brand_id",                                                   null: false
-    t.integer  "category_id",                                                null: false
-    t.integer  "photo_id",                                                   null: false
-    t.string   "slogan",                                                     null: false
-    t.decimal  "min_price",         precision: 11, scale: 2
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.string   "name",                                                           null: false
+    t.integer  "brand_id",                                                       null: false
+    t.integer  "category_id",                                                    null: false
+    t.string   "slogan",                                                         null: false
+    t.decimal  "min_price",             precision: 11, scale: 2
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
     t.string   "img_url"
-    t.boolean  "is_hot",                                     default: false, null: false
-    t.boolean  "is_recommended",                             default: false, null: false
+    t.boolean  "is_hot",                                         default: false, null: false
+    t.boolean  "is_recommended",                                 default: false, null: false
     t.string   "recommended_words"
+    t.string   "recommended_sub_title"
     t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
 
@@ -195,12 +199,6 @@ ActiveRecord::Schema.define(version: 20161128065044) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["name"], name: "index_specs_on_name", unique: true, using: :btree
-  end
-
-  create_table "uploaders", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -28,13 +28,14 @@ namespace :test_datas do
                         name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
                         category_id: categories[rand(2)].id,
-                        photo_id: rand(1..50),
+                        img_url: Faker::Avatar.image,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,
                         min_price: rand(1000000))
         if product.is_recommended
           product.recommended_words = Faker::Lorem.sentence
+          product.recommended_sub_title = Faker::Lorem.word
           product.save!
         end
       end
@@ -66,7 +67,7 @@ namespace :test_datas do
       { spec_id: Spec.last.id, value: "红色" },
       { spec_id: Spec.last.id, value: "蓝色" },
       ])
-    
+
     # 规格选项ID的排列组合
     a = [1, 2]
     b = [3, 4, 5, 6]
