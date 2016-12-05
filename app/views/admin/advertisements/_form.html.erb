@@ -8,7 +8,7 @@
           <span class="btn btn-file btn-xs">
             <%= file_field_tag :img_url,
             class: 'form-control',
-            placeholder: '点击上传图片' %>
+            placeholder: '点击上传图片',multiple: true %>
             <%= f.hidden_field :img_url %>
           </span>
         </div>
@@ -83,7 +83,6 @@ $(function(){
    $('#img_url').change(function(e){
      var fd = new FormData();
       fd.append("upload_file", $("#img_url").get(0).files[0]);
-      console.log(fd);
       setProgress(progress, 0, "开始上传");
       setProgress(progress, 50, "50%");
       $.ajax({

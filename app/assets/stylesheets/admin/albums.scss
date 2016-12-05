@@ -1,3 +1,18 @@
 // Place all the styles related to the admin::albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.thumbnail {
+  img {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+     &:hover {
+      background: red;
+     }
+  }
+  .caption {
+    width: 76%;
+    margin: 0 auto;
+  }
+}

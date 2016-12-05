@@ -30,7 +30,7 @@ namespace :test_datas do
                         category_id: categories[rand(2)].id,
                         photo_id: rand(1..50),
                         is_hot: Faker::Boolean.boolean(0.2),
-                        is_recommended: Faker::Boolean.boolean(0.2)
+                        is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,
                         min_price: rand(1000000))
         if product.is_recommended
