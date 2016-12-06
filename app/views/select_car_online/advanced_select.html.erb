@@ -126,26 +126,7 @@
     if (category_id != "") {
       get_url = get_url + "category_id=" + category_id;
     }
-    $.get(get_url,function(data,status){
-      var content= "";
-      for(var i = 0; i < data.length; i++){
-        var price = String((data[i]['min_price']/10000).toFixed(2)) + '万起';
-        var slogan = data[i]['slogan'];
-        content +=  "<li>" +
-                    "<div>" +
-                    '<img src="'+data[i]['img_url']+'", size="331x178">' +
-                    "</div>" +
-                    '<div class="select-title">"'+data[i]['name']+'"' +
-                    "<div class='select-price'>" +
-                    price +
-                    "</div>" +
-                    "<div class='select-ad'>"+
-                    slogan +
-                    "</div>" +
-                    "</li>";
-      }
-      $(".select-car-list ul").html(content);
-    });
+    $.get(get_url);
   });
 </script>
 

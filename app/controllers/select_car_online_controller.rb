@@ -12,17 +12,20 @@ class SelectCarOnlineController < ApplicationController
     end
 
     def select
-      resources = Product.all.order(is_recommended: :desc, is_hot: :desc)
+      @products = Product.all.order(is_recommended: :desc, is_hot: :desc)
       if params[:brand_id]
-        resources = resources.where("brand_id = ?", params[:brand_id])
+        @products = @products.where("brand_id = ?", params[:brand_id])
       end
       if params[:max] && params[:min]
-        resources = resources.where("min_price <= :max AND min_price>= :min", { max: params[:max], min: params[:min] })
+        @products = @products.where("min_price <= :max AND min_price>= :min", { max: params[:max], min: params[:min] })
       end
       if params[:category_id]
-        resources = resources.where("category_id = ?", params[:category_id])
+        @products = @products.where("category_id = ?", params[:category_id])
       end
-      resources = resources.paginate(page: params[:page], per_page: 12)
-      
+      @products = @products.paginate(page: params[:page], per_page: 12)
+      respond_to do |format|
+        format.html
+        format.js { render js: @products}
+      end
     end
 end
