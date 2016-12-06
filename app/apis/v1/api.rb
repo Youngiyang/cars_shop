@@ -4,6 +4,7 @@ module V1
 
     helpers V1::Helpers
     mount V1::CarDetailsAPI
+    mount V1::CarListAPI
     mount V1::HomePageAPI
 
     route :any, '*path' do

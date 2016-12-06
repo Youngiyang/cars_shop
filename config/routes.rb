@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
-
+  get 'advanced_select/select' => 'select_car_online#select'
 
   namespace :admin do
     root 'users#guide'
