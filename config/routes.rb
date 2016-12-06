@@ -27,9 +27,9 @@ Rails.application.routes.draw do
     resources :advertisements
     resources :faqs
     resources :albums do
-      resources :photos 
+      resources :photos, shallow: true
     end
-    resources :photos
+    # resources :photos
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
     get 'order_search' => 'orders#order_search'

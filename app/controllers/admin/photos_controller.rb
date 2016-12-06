@@ -1,12 +1,14 @@
 class Admin::PhotosController < ApplicationController
 def index
     @photos = Photo.order(created_at: :desc).where(album_id: params[:album_id]).paginate(page: params[:page], per_page: 10)
-  end
-
-  def new
     @albums = Album.find(params[:album_id])
     @photo = @albums.photos.new
-    @photos = @albums.photos
+end
+
+  def new
+    # @albums = Album.find(params[:album_id])
+    # @photo = @albums.photos.new
+    # @photos = @albums.photos
   end
 
   def create
@@ -16,7 +18,7 @@ def index
       @photo.img_url = t
       @photo.save
     end
-    redirect_to new_admin_album_photo_path(params[:album_id])
+    redirect_to admin_album_photos_path(params[:album_id])
   end
 
 
@@ -39,10 +41,12 @@ def index
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy
-
-    redirect_to admin_advertisements_path
+    arr = params[:id].split(",")
+    if Photo.delete(arr)
+      render json: arr
+    else
+      render json: { :success=> false, :msg=>'失败' }
+    end
   end
 
 
