@@ -9,6 +9,10 @@ class SelectCarOnlineController < ApplicationController
       @products = Product.all.paginate(page: params[:page], per_page: 12)
                          .order(is_recommended: :desc, is_hot: :desc)
       @categories = Category.all
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
 
     def select
@@ -25,7 +29,7 @@ class SelectCarOnlineController < ApplicationController
       @products = @products.paginate(page: params[:page], per_page: 12)
       respond_to do |format|
         format.html
-        format.js { render js: @products}
+        format.js
       end
     end
 end
