@@ -1,0 +1,4 @@
+$(".select-car-list ul").html("<%= j render(partial: 'select_car_online/product', object: @products) %>");
+$(".pagination").html("<%= j will_paginate(@products) %>");
+$('.pagination a').attr('data-remote', 'true');
+$(".select-click").remove();
