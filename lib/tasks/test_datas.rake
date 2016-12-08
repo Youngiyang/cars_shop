@@ -128,5 +128,37 @@ namespace :test_datas do
         end
       end
     end
+
+      #用户表
+     users_order = User.create!([
+      {mobile: '13751124249',user_name: 'hikaru',password: '123456'},
+      {mobile: '13751424248',user_name: 'shindou',password: '123456'},
+      {mobile: '13751924247',user_name: 'hiro',password: '123456'},
+      ])
+  #订单测试数据
+   users_order.each do |o|
+    Good.all.limit(3).each do |g|
+      Order.create!(
+        user_id: o.id,
+        good_id: g.id,
+        name: o.user_name,
+        phone_num: o.mobile,
+        province_id: 1,
+        city_id: 1,
+        requirements: '',
+        status: 0
+        )
+    end
   end
+
+
+   
+
+
+  end
+
+ 
+
+
+
 end

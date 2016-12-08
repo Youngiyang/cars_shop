@@ -12,7 +12,7 @@
         <div class="s-icon clearfix">
           <i class="iconfont">&#xe608;</i>
           <input type="text" name="" id="" class="icon-code" placeholder="请输入验证码">
-          <button>获取验证码</button>
+          <button class="btn-code" type="button">获取验证码</button>
         </div>
        <div class="s-icon clearfix">
           <i class="iconfont">&#xe611;</i>
@@ -40,7 +40,7 @@
       <li class="active"><%= link_to "首页", root_path %></li>
       <li>在线选车</li>
       <li>关于我们</li>
-      <li class="active"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
     </ul>
   </div>
   <div class="sidebar">
@@ -285,4 +285,43 @@
     <section>
   <h3 class="zy-section-title">购车流程</h3>
 </section>
+
+
+<script>
+var t_startTime;
+  function startTime() {
+    var t = $('.btn-code').html();
+    if (t == "获取验证码") {
+      t = 0;
+    }
+    if (t == 60 ){
+      $('.btn-code').html('获取验证码');
+       $('.btn-code').attr('disabled',false);
+      return
+    }
+     t = t*1+1;
+      $('.btn-code').html(t);
+      $('.btn-code').attr('disabled',true);
+    t_startTime = setTimeout("startTime()",1000)
+  }
+
+  $('.btn-code').bind('click',function(){
+    startTime();
+  })
+
+  $('.login-btn').bind('click',function(){
+    $('.zy-window-login').show();
+      $('.zy-backdrop').show();
+  })
+
+  $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window-login').hide();
+      $('.zy-backdrop').hide();
+      clearTimeout(t_startTime);
+      $('.btn-code').attr('disabled',false);
+      $('.btn-code').html('获取验证码');
+    }
+  })
+</script>
 
