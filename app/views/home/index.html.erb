@@ -55,7 +55,7 @@
                 <% @brands.each do |brand| %>
                   <li>
                     <%= link_to '#' do %>
-                      <%= image_tag brand.logo %>
+                      <%= image_tag brand.logo, size: '50x50' %>
                       <div><%= brand.cn_name %></div>
                     <% end %>
                   </li>
