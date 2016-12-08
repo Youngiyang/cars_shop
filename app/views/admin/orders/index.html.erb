@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">订单列表
+      <%= link_to new_admin_faq_path, class: 'btn btn-default btn-xs', title: '添加服务' do%>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </h1>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                <th>订单号</th>
+                <th>用户</th>
+                <th>商品</th>
+                <th>订单状态</th>
+                <th>详情</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @orders %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @faqs %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

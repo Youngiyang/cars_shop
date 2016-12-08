@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'orders/index'
+  end
+
   mount V1::API => '/v1'
 
   get 'uploaders/index'

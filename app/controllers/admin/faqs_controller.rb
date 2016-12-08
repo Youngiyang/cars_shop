@@ -10,7 +10,7 @@ class Admin::FaqsController < ApplicationController
   def create
     @faq = Faq.new(faq_params)
     if @faq.save
-      redirect_to admin_faq_path(@faq)
+      redirect_to admin_faqs_path
     else
       render :new
     end
