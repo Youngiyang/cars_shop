@@ -27,7 +27,7 @@ namespace :test_datas do
         product = Product.create!(
                         name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
-                        category_id: categories[rand(2)].id,
+                        category_id: categories[rand(3)].id,
                         img_url: Faker::Avatar.image,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),

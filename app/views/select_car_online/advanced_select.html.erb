@@ -12,96 +12,118 @@
   <div class="brands">
     <div class="brands-title">品牌</div>
     <ul>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
-      <li><a href=""><%= image_tag "BM.png" %><div>宝马</div></a></li>
+      <% @brands.each do |brand| %>
+        <li class="select-option">
+          <%= link_to 'javascript:void(0)' do %>
+            <%= image_tag brand.logo, size: "38x38" %>
+            <div><%= brand.cn_name %></div>
+            <div hidden><%= brand.id %></div>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="price">
     <div class="price-title">价格</div>
     <ul>
-      <li><a href="">20万以下</a></li>
-      <li><a href="">20万-30万</a></li>
-      <li><a href="">30万-80万</a></li>
-      <li><a href="">80万-150万</a></li>
-      <li><a href="">150万以上</a></li>
+      <li class="select-option"><a href="javascript:void(0)">20万以下</a></li>
+      <li class="select-option"><a href="javascript:void(0)">20万-30万</a></li>
+      <li class="select-option"><a href="javascript:void(0)">30万-80万</a></li>
+      <li class="select-option"><a href="javascript:void(0)">80万-150万</a></li>
+      <li class="select-option"><a href="javascript:void(0)">150万以上</a></li>
     </ul>
   </div>
   <div class="style">
     <div class="style-title">车型</div>
     <ul>
-      <li><a href=""><%=image_tag "SUV1.png" %></a></li>
-      <li><a href=""><%=image_tag "jiaoche1.png" %></a></li>
-      <li><a href=""><%=image_tag "paoche1.png" %></a></li>
-      <li><a href=""><%=image_tag "MPV1.png" %></a></li>
-      <li class="bigger-img"><a href=""><%=image_tag "pika1.png" %></a></li>
-      <li><a href=""><%=image_tag "qingke1.png" %></a></li>
+      <% @categories.each do |category| %>
+        <% case category.name %>
+        <% when "SUV" %>
+          <li class="select-option">
+            <a href="javascript:void(0)"><%=image_tag "SUV1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% when "轿车" %>
+          <li class="select-option">
+            <a href="javascript:void(0)"><%=image_tag "jiaoche1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% when "跑车" %>
+          <li class="select-option">
+            <a href="javascript:void(0)"><%=image_tag "paoche1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% when "MPV" %>
+          <li class="select-option">
+            <a href="javascript:void(0)"><%=image_tag "MPV1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% when "皮卡" %>
+          <li class="bigger-img" class="select-option">
+            <a href="javascript:void(0)"><%=image_tag "pika1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% when "轻客" %>
+          <li class="select-option">
+            <a href="javascript:void(0)"><%= image_tag "qingke1.png" %></a>
+            <div hidden><%= category.id %></div>
+          </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 </div>
 <div class="select-car-list clearfix">
   <ul>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
-    <li>
-      <div><%=image_tag "Q4.png", size:"331x178" %></div>
-      <div class="select-title">宝马X3</div>
-      <div class="select-price">46.2万起</div>
-      <div class="select-ad">更适合年轻人的一款</div>
-    </li>
+    <%= render partial: 'select_car_online/product' %>
   </ul>
 </div>
 <div id="pagination">
-  <ul >
-    <li class="previous-off"><a href=""><</a></li>
-    <li class="active">1</li>
-    <li class="active">/</li>
-    <li class="active">100</li>
-    <li class="next"><a href="?page=8">></a></li>
-  </ul>
+  <%= will_paginate @products %>
 </div>
+<script>
+  $(document).ready(function(){
+    $(".pagination a").attr('data-remote', 'true');
+  });
+
+  $(".select-option").click(function(){
+    $(this).addClass("choosen");
+    $(this).nextAll().removeClass("choosen");
+    $(this).prevAll().removeClass("choosen");
+
+    var brand_id = $(".brands ul li.choosen a div[hidden]").text();
+    var price = $(".price ul li.choosen a").text();
+    var category_id = $(".style ul li.choosen div[hidden]").text();
+    var get_url = "advanced_select/select?";
+
+    if(brand_id != ""){
+      get_url = get_url + "brand_id=" + brand_id + "&";
+    }
+    if(price != "" ){
+      switch(price){
+        case "20万以下":
+          get_url = get_url + "max=200000&min=0&";
+          break;
+        case "20万-30万":
+          get_url = get_url + "max=300000&min=200000&";
+          break;
+        case "30万-80万":
+          get_url = get_url + "max=800000&min=300000&";
+          break;
+        case "80万-150万":
+          get_url = get_url + "max=1500000&min=800000&";
+          break;
+        case "150万以上":
+          get_url = get_url + "max=999999999&min=1500000&";
+          break;
+      }
+    }
+    if (category_id != "") {
+      get_url = get_url + "category_id=" + category_id;
+    }
+    var content = "<a hidden class='select-click' data-remote='true' href='"+get_url+"'><div>select-click</div></a>";
+    $(".brands").before(content);
+    $(".select-click div").trigger("click");
+  });
+</script>
+
