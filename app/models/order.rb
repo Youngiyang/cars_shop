@@ -10,8 +10,8 @@ class Order < ActiveRecord::Base
         nums = (0..9).to_a
         postfix = nums.sample(4).join
         code = prefix + postfix
-        unless Order.exists?(code: code)
-          self.code = code
+        unless Order.exists?(order_cn: code)
+          self.order_cn = code
           break
         end
       end

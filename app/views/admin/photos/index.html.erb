@@ -17,7 +17,7 @@
         <% @photos.each do |p| %>
         <div class="col-sm-6 col-md-4 photo_<%= p.id  %>">
           <div class="thumbnail">
-            <img src="<%=  p.img_url %>" width= "300" height="300">
+            <img src="<%=  p.img_url.to_s + image_size %>" width= "300" height="300">
             <input type="checkbox" name="ck[]" id="" class="img-ck" value="<%= p.id %>">
             <div class="caption">
               <h3><%= p.name %></h3>

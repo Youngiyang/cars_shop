@@ -18,7 +18,7 @@
                 <a href="/admin/albums/<%= @albums.id %>/photos/<%= p.id %>/edit">
                    <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                      <%= image_tag  p.img_url , width: 300, height: 300 %>
+                      <%= image_tag  p.img_url+image_size , width: 300, height: 300 %>
                       <div class="caption">
                         <h3><%= p.name  %></h3>
                       </div>
