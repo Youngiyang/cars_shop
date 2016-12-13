@@ -1,61 +1,29 @@
-<%= form_for [:admin, @orders],  html:{ class:"col s12 admin_form" } do |f| %>
+<%= form_for [:admin, @order],  html:{ class:"col s12 admin_form" } do |f| %>
    <%# render "admins/share/error_messages", target: @order %>
+    
+    <div class="form-group" data-required="true">
+      <%= f.label :order_cn, '订单号', class: 'control-label' %>
+      <%= f.text_field :order_cn, class:"form-control validate", required: '',disabled: "disabled" %>
+    </div>
 
-     <div class="city-group">
-        <div class="form-group" data-required="true">
-        <%= select_tag "province_id", options_for_select(ChinaCity.list,@shop.province_id)   , class: 'city-select form-control', prompt: "--省份--", name: 'shop[province_id]' %>
-
-       </div>
-       <div class="form-group" data-required="true">
-         <%= select_tag "city"    , options_for_select(ChinaCity.list(@shop.province_id.to_s),@shop.city_id.to_s)   , class: 'city-select form-control', prompt: "--城市--", name: 'shop[city_id]' %>
-            </div>
-
-
-       <div class="form-group" data-required="true">
-          <%= select_tag "region_id", options_for_select(ChinaCity.list(@shop.city_id.to_s),@shop.region_id.to_s)   , class: 'city-select form-control', name: 'shop[region_id]', prompt: "--地区--" %>
-
-       </div>
-     </div>
-   
-   <div class="form-group" data-required="true">
-      <%= f.label :name, '服务项目', class: 'control-label' %>
-      <div class="control-label">
-        <%  @shop_services.each_with_index do |s, index| %>
-        <label class="radio-inline">
-          <input type="radio" name="order_shop_services[shop_servce_id]" value="<%= s.id %>" <%= index == 0 ? 'checked':''  %>  class="select_service" ><%= s.name %>
-          / <span class="service_price"><%= s.price %></span>元       
-        </label>
-        <% end %>
-      </div>
-      
-   </div>
-
-   <div class="form-group" data-required="true">
-      <%= f.label :order_pay_type, '付款方式', class: 'control-label' %>
-      <div class="control-label">
-        <label class="radio-inline">
-          <input type="radio" name="order[pay_type]" id="order_pay_type_1" value="cash" checked="checked">现金支付
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="order[pay_type]" id="order_pay_type_2" value="wx_pay">微信支付
-        </label>
-      </div>
-   </div>
 
     <div class="form-group" data-required="true">
-      <%= f.label :name, '服务人员', class: 'control-label' %>
-      <div class="control-label">
-        <%  @barbers.each_with_index do |s, index| %>
-        <label class="radio-inline">
-          <input type="radio" name="order[barber_id]"  value="<%= s.id %>" <%= index == 0 ? 'checked':'' %> ><%= s.name %>
-        </label>
-        <% end %>
-        
-      </div>
-   </div>
+       <label for="user_id"></label>
+       <input type="text" value="<%= @order.user.user_name %>" id="user_id" class="form-control validate" disabled="disabled" name="order[user_id]">
+    </div>
+
+    <div class="form-group" data-required="true">
+       <label for="good_id"></label>
+       <input type="text" value="<%= @order.good.name %>" id="good_id" class="form-control validate" disabled="disabled" name="order[good_id]">
+    </div>
+
+    <div class="form-group"  data-required="true">
+      <%= f.select :status,options_for_select(@stauts),{},{:class => 'form-control validate'}%>
+    </div>
+     
 
     <div class="buttons text-right">
-      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">生成订单</button>
+      <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
 

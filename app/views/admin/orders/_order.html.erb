@@ -3,4 +3,7 @@
   <td><%= order.user.user_name %></td>
   <td><%= order.good.name %></td>
   <td><%= order.status %></td>
+  <td>
+    <%= link_to '修改', edit_admin_order_path(order) %>
+  </td>
 </tr>

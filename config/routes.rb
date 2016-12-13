@@ -27,7 +27,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'users#guide'
     resources :brands
-    resources :orders
+    resources :orders do 
+      collection do
+        post 'search'
+      end
+    end
     resources :advertisements
     resources :faqs
     resources :albums do
