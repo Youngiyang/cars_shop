@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :goods, only: [:index, :show]
   root 'home#index'
+  post 'login' => 'sessions#create'
   get 'detail' => 'details#index'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'

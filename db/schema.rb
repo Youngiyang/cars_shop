@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201031710) do
+ActiveRecord::Schema.define(version: 20161214055424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20161201031710) do
     t.string   "key",           null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "auth_codes", force: :cascade do |t|
+    t.string   "mobile",     null: false
+    t.string   "code",       null: false
+    t.boolean  "auth_state", null: false
+    t.datetime "sent_at"
+    t.datetime "expire_at",  null: false
+    t.index ["mobile"], name: "index_auth_codes_on_mobile", using: :btree
   end
 
   create_table "brands", force: :cascade do |t|
