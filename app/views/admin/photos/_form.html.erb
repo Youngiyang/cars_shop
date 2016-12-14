@@ -1,5 +1,5 @@
 <%= form_for @photo,  url: admin_album_photos_path,  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+   <%= render "admin/share/error_messages", target: @photo %>
 
     <div class="form-group">
         <label for="E5rcADdEFdxT4EKSY" class="control-label">banner图片</label>
@@ -32,6 +32,16 @@
     </div>
 <% end %>
 
+
+<script>
+  $(function(){
+    $('form').validate({
+      rules: {
+        "photo[name][]": "required",
+      }
+    });
+  })
+</script>
 
 
 

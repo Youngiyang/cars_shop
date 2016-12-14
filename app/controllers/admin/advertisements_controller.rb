@@ -29,7 +29,7 @@ class Admin::AdvertisementsController < ApplicationController
   def update
     @advertisement = Advertisement.find(params[:id])
     if @advertisement.update(advertisement_params)
-      redirect_to admin_advertisement_path(@advertisement)
+      redirect_to admin_advertisements_path
     else
       render :edit
     end
