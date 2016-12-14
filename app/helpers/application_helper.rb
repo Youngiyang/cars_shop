@@ -15,4 +15,9 @@ module ApplicationHelper
   def image_link
     link = "ohao5tmd8.bkt.clouddn.com/uploads/images/"
   end
+
+  def send_auth_code_sms number, code
+    content = "【铁皮网】验证码：#{code}"
+    puts content
+  end
 end
