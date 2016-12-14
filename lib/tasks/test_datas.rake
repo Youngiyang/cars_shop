@@ -136,7 +136,7 @@ namespace :test_datas do
       {mobile: '13751924247',user_name: 'hiro',password: '123456'},
       ])
   #订单测试数据
-   users_order.each do |o|
+   User.all.each do |o|
     Good.all.limit(3).each do |g|
       Order.create!(
         user_id: o.id,
@@ -145,7 +145,7 @@ namespace :test_datas do
         phone_num: o.mobile,
         province_id: 1,
         city_id: 1,
-        requirements: '',
+        requirements: '1',
         status: 0
         )
     end

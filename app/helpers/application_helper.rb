@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def image_size
-    size = "?imageView2/2/w/600"
+    size = "?imageView2/2/w/400/h/400"
   end
 
   def image_link

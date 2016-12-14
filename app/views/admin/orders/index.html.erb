@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">
     <h1 class="title">订单列表
-      <%= link_to new_admin_faq_path, class: 'btn btn-default btn-xs', title: '添加服务' do%>
-        <i class="fa fa-plus"></i>
-      <% end %>
     </h1>
     <hr>
     <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12 pull-right text-right">
+          <div id="posts_filter" class="dataTables_filter">
+            <label>
+            <%= form_tag search_admin_orders_path, remote: true do%>
+             <%= text_field_tag 'order_cn', nil, class: "form-control input-sm" %>
+              <button type="submit" class="btn btn-primary cyan">搜索订单</button>
+            <% end %>
+            </label>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="table-responsive">

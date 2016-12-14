@@ -7,6 +7,7 @@ gem 'font-awesome-rails'
 gem 'will_paginate'
 gem 'carrierwave-qiniu', '~> 1.0.0'
 gem 'carrierwave', '0.6.2'
+gem 'devise'
 
 gem 'rails'
 gem 'pg'
