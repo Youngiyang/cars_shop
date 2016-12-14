@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admin, :controllers => { :sessions => "admin/sessions", :passwords => "admin/passwords", :registrations => "admin/registrations" }
   namespace :admin do
     get 'orders/index'
   end
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   get 'advanced_select/select' => 'select_car_online#select'
 
   namespace :admin do
-    root 'users#guide'
+    root 'users#guide',as: :guide
     resources :brands
     resources :orders do 
       collection do
@@ -40,13 +41,6 @@ Rails.application.routes.draw do
     # resources :photos
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
-    get 'order_search' => 'orders#order_search'
-    post 'create_order_search' => 'orders#create_order_search'
-    get 'create_order_search' => 'orders#create_order_search'
-    get 'order_check/:order_id' => 'orders#order_check', as: 'order_check'
-    get 'order_check_list' => 'orders#order_check_list'
-    get 'assign_service/:order_id' => 'orders#assign_service', as: 'assign_service'
-    post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
