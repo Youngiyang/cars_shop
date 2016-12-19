@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">图片列表
+      <%= link_to '', class: 'btn btn-default btn-xs', title: '添加服务',data: {
+          toggle: "modal",target: "#myModal"}   do%>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </h1>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row zy-ad-select">
+        <button type="button" class="btn btn-default zy-select-all">全选</button>
+        <button type="button" class="btn btn-default zy-select-delete">删除</button>
+      </div>
+      <br> 
+      <div class="row zy-ck-box">
+        <% @photos.each do |p| %>
+        <div class="col-sm-6 col-md-4 photo_<%= p.id  %>">
+          <div class="thumbnail">
+            <img src="<%=  p.img_url.to_s + image_size %>" width= "300" height="300">
+            <input type="checkbox" name="ck[]" id="" class="img-ck" value="<%= p.id %>">
+            <div class="caption">
+              <h3><%= p.name %></h3>
+            </div>
+          </div>
+        </div>
+          <% end %>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @photos %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <%= render "form" %>
+      </div>
+      <div class="modal-footer">
+    </div>
+  </div>
+</div>
+
+
+<script>
+$('.zy-ad-select').on('click','.zy-select-all',function(){
+   if($('.zy-select-all').text()==='全选'){
+       $('.zy-ck-box input[type=checkbox]').prop('checked',true);
+       $('.zy-select-all').html('取消');
+    }else {
+        $('.zy-ck-box input[type=checkbox]').prop('checked',false);
+        $('.zy-select-all').html('全选');
+    }
+})
+
+$('.zy-select-delete').click(function(){
+  if(confirm("确定删除")){
+     var arr = [];
+    $('.zy-ck-box input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr.push($(this).val());
+      }
+    })
+   $.ajax({
+      url: "/admin/photos/"+arr,
+      type: 'DELETE',
+      data: arr,
+      success: function(result) {
+  
+         for(var i =0; i< result.length; i++ ){
+            $('.photo_'+result[i]).remove();
+         }
+      }
+   })
+  }else{
+  }
+})
+</script>

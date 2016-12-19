@@ -1,6 +1,5 @@
 source 'https://ruby.taobao.org'
 gem 'jquery-validation-rails'
-gem 'jquery-ui-rails'
 gem 'font-awesome-sass',  '~> 4.3'
 gem 'simditor'
 gem 'bootstrap-sass'
@@ -8,6 +7,7 @@ gem 'font-awesome-rails'
 gem 'will_paginate'
 gem 'carrierwave-qiniu', '~> 1.0.0'
 gem 'carrierwave', '0.6.2'
+gem 'devise'
 
 gem 'rails'
 gem 'pg'
@@ -44,6 +44,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :test do

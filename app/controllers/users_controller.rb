@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   layout "frontend"
   def personal
   end

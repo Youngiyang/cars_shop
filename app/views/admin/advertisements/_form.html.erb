@@ -1,5 +1,5 @@
 <%= form_for [:admin, @advertisement],  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+   <%= render "admin/share/error_messages", target: @advertisement %>
 
      
     <div class="form-group">
@@ -8,7 +8,7 @@
           <span class="btn btn-file btn-xs">
             <%= file_field_tag :img_url,
             class: 'form-control',
-            placeholder: '点击上传图片' %>
+            placeholder: '点击上传图片',multiple: true %>
             <%= f.hidden_field :img_url %>
           </span>
         </div>
@@ -66,6 +66,19 @@
 
  
 $(function(){
+  $('form').validate({
+    rules: {
+      "advertisement[img_url]": {
+        required: true,
+        number: true
+      },
+      "advertisement[link]": "required",
+      "advertisement[description]": "required",
+    }
+  });
+
+
+
   var editor = new Simditor({
     textarea: $('textarea'),
     toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', '|', 'hr', 'indent', 'outdent', 'alignment'],
@@ -83,7 +96,6 @@ $(function(){
    $('#img_url').change(function(e){
      var fd = new FormData();
       fd.append("upload_file", $("#img_url").get(0).files[0]);
-      console.log(fd);
       setProgress(progress, 0, "开始上传");
       setProgress(progress, 50, "50%");
       $.ajax({

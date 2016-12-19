@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admin, :controllers => { :sessions => "admin/sessions", :passwords => "admin/passwords", :registrations => "admin/registrations" }
+  namespace :admin do
+    get 'orders/index'
+  end
+
   mount V1::API => '/v1'
 
   get 'uploaders/index'
@@ -13,33 +18,35 @@ Rails.application.routes.draw do
 
   resources :goods, only: [:index, :show]
   root 'home#index'
+  post 'login' => 'sessions#create'
   get 'detail' => 'details#index'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
-
+  get 'advanced_select/select' => 'select_car_online#select'
 
   namespace :admin do
-    root 'users#guide'
+    root 'users#guide',as: :guide
     resources :brands do
       resources :products do
         resources :goods
       end
     end
-    resources :orders
+    resources :orders do
+      collection do
+        post 'search'
+      end
+    end
     resources :advertisements
     resources :faqs
     resources :attrs
+    resources :albums do
+      resources :photos, shallow: true
+    end
+    # resources :photos
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
-    get 'order_search' => 'orders#order_search'
-    post 'create_order_search' => 'orders#create_order_search'
-    get 'create_order_search' => 'orders#create_order_search'
-    get 'order_check/:order_id' => 'orders#order_check', as: 'order_check'
-    get 'order_check_list' => 'orders#order_check_list'
-    get 'assign_service/:order_id' => 'orders#assign_service', as: 'assign_service'
-    post 'create_assign_service/:order_id' => 'orders#create_assign_service', as: 'create_assign_service'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

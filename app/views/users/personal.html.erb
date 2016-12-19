@@ -74,7 +74,7 @@
     </div>
 
     <div class="zy-window-content">
-     
+           
         <ul>
          <li>问:什么时候联系我?</li>
          <li>在提交联系方式后看心情<span class="window-show" style="display:none;">更多<i class="iconfont" >&#xe616;</i></span></li>
@@ -202,39 +202,9 @@
 </div>
 
 <script>
-<<<<<<< HEAD
 basecar.openWindow('.order-detail-btn','.zy-window','.zy-backdrop')
 basecar.openWindow('.order-contact-btn','.zy-windows','.zy-backdrop')
 basecar.closeMask('.zy-backdrop','.zy-window','.zy-windows');
 basecar.Shink('.window-hide','.window-show','.window-question');
 basecar.Shink('.window-show','.window-question','.window-show');
-=======
-  $('.order-detail-btn').click(function(){
-   $('.zy-window').show();
-   $('.zy-backdrop').show();
-  })
-
-  $('.order-contact-btn').click(function(){
-     $('.zy-windows').show();
-   $('.zy-backdrop').show();
-  })
-//关闭弹窗
- $(document).click(function(e){
-    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
-      $('.zy-window').hide();
-      $('.zy-windows').hide();
-      $('.zy-backdrop').hide();
-    }
-  })
-
- $('.window-hide').click(function(){
-  $('.window-question').hide(500);
-  $('.window-show').show();
- })
-
- $('.window-show').click(function(){
-  $('.window-question').show(500);
-  $('.window-show').hide();
- })
->>>>>>> 6fa2d3108bd2859b71f3f5d92ce8af24681c99ab
 </script>

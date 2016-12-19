@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="admin-content">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <h1 class="title">修改密码
+            <%= link_to admin_guide_path, class: 'btn btn-default btn-xs', title: '取消' do%>
+              <i class="fa fa-mail-reply"></i>
+            <% end %>
+          </h1>
+          <hr>
+          <div class="well">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="form-group" data-required="true">
+                <%= f.label :email, '邮箱', class: 'control-label' %>
+                <%= f.text_field :email, class:"form-control validate", autofocus: true %>
+              </div>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+              <div class="form-group" data-required="true">
+                <%= f.label :current_password, '当前密码', class: 'control-label' %>
+                <%= f.text_field :current_password, class:"form-control validate" %>
+              </div>
+
+              <div class="form-group" data-required="true">
+                <%= f.label :password, '新密码', class: 'control-label' %>
+                <%= f.text_field :password, class:"form-control validate" %>
+              </div>
+
+              <div class="form-group" data-required="true">
+                <%= f.label :password_confirmation, '确认新密码', class: 'control-label' %>
+                <%= f.text_field :password_confirmation, class:"form-control validate" %>
+              </div>
+
+              <br>
+              <div class="buttons text-right">
+                <%= link_to "取消", admin_guide_path, class: 'btn btn-default', title:'取消' %>
+                <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

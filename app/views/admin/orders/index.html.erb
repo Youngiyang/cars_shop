@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">订单列表
+    </h1>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row">
+        <div class="col-xs-12 pull-right text-right">
+          <div id="posts_filter" class="dataTables_filter">
+            <label>
+            <%= form_tag search_admin_orders_path, remote: true do%>
+             <%= text_field_tag 'order_cn', nil, class: "form-control input-sm" %>
+              <button type="submit" class="btn btn-primary cyan">搜索订单</button>
+            <% end %>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                <th>订单号</th>
+                <th>用户</th>
+                <th>商品</th>
+                <th>订单状态</th>
+                <th>详情</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @orders %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @faqs %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

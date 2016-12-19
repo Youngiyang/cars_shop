@@ -1,5 +1,5 @@
 <%= form_for [:admin, @faq],  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+   <%= render "admin/share/error_messages", target: @faq %>
 
    
 
@@ -41,9 +41,18 @@ $(function(){
     }
   });
 
+
+   $('form').validate({
+      rules: {
+        "faq[question]": "required",
+        "faq[answer]": "required",
+      }
+    });
+
   
    
 })
+
 
  
 

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 forget">
+    <div class="at-form">
+      <div class="at-title">
+        <h3 class="text-center">忘记密码？</h3>
+      </div>
+      <%= form_for(resource, 
+          as: resource_name, 
+          url: password_path(resource_name), 
+          html: { method: :post }) do |f| %>
+
+        <div class="at-pwd-form">
+          <form role="form" id="at-pwd-form" novalidate action="#" method="POST">
+            <fieldset>
+              <div class="at-input form-group">
+
+                <%= f.label :email, '邮箱', class: "control-label" %>
+                <%= f.email_field :email,
+                    autofocus: true,
+                    autocomplete: 'off',
+                    autocorrect: 'off', 
+                    autocapitalize: 'none', 
+                    class: 'form-control',
+                    placeholder: '邮箱' %>
+                <span class="help-block hide"></span>
+
+              </div>
+
+              <button type="submit" title="Send me reset password instructions" class="at-btn submit btn btn-lg btn-block btn-primary cyan" id="at-btn" data-disable-with="请稍等...">发送重置邮件</button>
+            </fieldset>
+          </form>
+        </div>
+        <div class="at-signup-link">
+          <p>
+            <br>
+            <%= link_to "前往官网", '#', class: "pull-left", "data-skip-pjax":""  %>
+
+            <%= link_to "返回登录", new_admin_session_path, class: "pull-right", "data-skip-pjax":""  %>
+            <br>
+          </p>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

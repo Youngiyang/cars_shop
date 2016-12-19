@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">相册列表
+      <%= link_to '', class: 'btn btn-default btn-xs', title: '添加服务',data: {
+        toggle: "modal",target: "#myModal"}  do%>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </h1>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+       <div class="row">
+       <% @albums.each do |a| %>
+         
+          <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+               <%= link_to admin_album_photos_path(a) do %>
+                <%= image_tag "default.png", width: 300, height: 300 %>
+                 <% end %>
+                <%= link_to '删除', admin_album_path(a),
+              method: "delete",
+              remote: true,
+              data: {:confirm => "确定删除？"}, class: "btn btn-danger bt-de-albums"%>
+                <div class="caption">
+                  <h3><%= a.name %></h3>
+                  <p><%= raw a.description %></p>
+                </div>
+              </div>
+            </div>
+           
+       <% end %>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%# will_paginate @services %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for [:admin, @album],  html:{ class:"col s12 admin_form" } do |f| %>
+        <%# render "admins/share/error_messages", target: @order %>
+
+
+
+        <div class="form-group" data-required="true">
+          <%= f.label :name, '相册名', class: 'control-label' %>
+          <%= f.text_field :name, class:"form-control validate", required: '' %>
+        </div>
+
+        <div class="form-group" data-required="true">
+          <%= f.label :description, '描述', class: 'control-label' %>
+          <%= f.text_area :description , class: "form-control", rows: "3", length: "120", required:'' %>
+        </div>
+
+
+
+
+
+
+       <div class="buttons text-right">
+        <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+      </div>
+      <% end %>
+
+
+
+      </div>
+      <div class="modal-footer">
+    </div>
+  </div>
+</div>
+
+
+<script>
+ 
+</script>

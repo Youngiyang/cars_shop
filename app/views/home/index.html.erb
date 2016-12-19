@@ -3,27 +3,23 @@
 
 <div class="zy-window-login">
   <div class="zy-window-wraps">
-     <form action="">
-        <h1>注册</h1>
-        <div class="s-icon">
-          <i class="iconfont">&#xe602;</i>
-         <input type="text" name="" id="" placeholder="请输入手机号">
-        </div>
-        <div class="s-icon clearfix">
-          <i class="iconfont">&#xe608;</i>
-          <input type="text" name="" id="" class="icon-code" placeholder="请输入验证码">
-          <button>获取验证码</button>
-        </div>
-       <div class="s-icon clearfix">
-          <i class="iconfont">&#xe611;</i>
-          <input type="password" name="" id="" placeholder="请输入至少6位的密码">
-        </div>
-       <div class="s-submit">
-           <input type="submit" value="注册">
-           <input type="checkbox" name="" id="" class="s-check">
-           <p>我已阅读并同意<span>《xx用户注册协议》</span></p>
-       </div>
-    </form>
+    <%= form_for :session, url: login_path do |f| %>
+      <h1>手机快捷登录</h1>
+      <div class="s-icon">
+        <i class="iconfont">&#xe602;</i>
+        <%= f.text_field :mobile, placeholder: "请输入手机号" %>
+      </div>
+      <div class="s-icon clearfix">
+        <i class="iconfont">&#xe608;</i>
+        <%= f.text_field :auth_code, class: "icon-code", placeholder: "请输入验证码" %>
+        <button class="btn-code" type="button">获取验证码</button>
+      </div>
+      <div class="s-submit">
+        <%= f.submit "登录" %>
+        <%= f.check_box :checkbox, class: "s-check" %>
+        <p>我已阅读并同意<span>《xx用户注册协议》</span></p>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -38,9 +34,9 @@
   <div class="header">
     <ul class="header-nav">
       <li class="active"><%= link_to "首页", root_path %></li>
-      <li>在线选车</li>
+      <li><%= link_to "在线选车", advanced_select_path %></li>
       <li>关于我们</li>
-      <li class="active"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
     </ul>
   </div>
   <div class="sidebar">
@@ -55,7 +51,7 @@
                 <% @brands.each do |brand| %>
                   <li>
                     <%= link_to '#' do %>
-                      <%= image_tag brand.logo %>
+                      <%= image_tag brand.logo, size: '50x50' %>
                       <div><%= brand.cn_name %></div>
                     <% end %>
                   </li>
@@ -285,4 +281,43 @@
     <section>
   <h3 class="zy-section-title">购车流程</h3>
 </section>
+
+
+<script>
+var t_startTime;
+  function startTime() {
+    var t = $('.btn-code').html();
+    if (t == "获取验证码") {
+      t = 0;
+    }
+    if (t == 60 ){
+      $('.btn-code').html('获取验证码');
+       $('.btn-code').attr('disabled',false);
+      return
+    }
+     t = t*1+1;
+      $('.btn-code').html(t);
+      $('.btn-code').attr('disabled',true);
+    t_startTime = setTimeout("startTime()",1000)
+  }
+
+  $('.btn-code').bind('click',function(){
+    startTime();
+  })
+
+  $('.login-btn').bind('click',function(){
+    $('.zy-window-login').show();
+      $('.zy-backdrop').show();
+  })
+
+  $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window-login').hide();
+      $('.zy-backdrop').hide();
+      clearTimeout(t_startTime);
+      $('.btn-code').attr('disabled',false);
+      $('.btn-code').html('获取验证码');
+    }
+  })
+</script>
 
