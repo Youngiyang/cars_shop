@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219062910) do
+ActiveRecord::Schema.define(version: 20161216065735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,12 +49,6 @@ ActiveRecord::Schema.define(version: 20161219062910) do
     t.index ["name"], name: "index_albums_on_name", unique: true, using: :btree
   end
 
-  create_table "attr_groups", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "attr_options", force: :cascade do |t|
     t.integer  "attr_id",    null: false
     t.string   "value",      null: false
@@ -63,10 +57,11 @@ ActiveRecord::Schema.define(version: 20161219062910) do
   end
 
   create_table "attrs", force: :cascade do |t|
-    t.integer  "attr_group_id", null: false
-    t.string   "key",           null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "key",                        null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "group_num",                  null: false
+    t.boolean  "is_default", default: false, null: false
   end
 
   create_table "auth_codes", force: :cascade do |t|
