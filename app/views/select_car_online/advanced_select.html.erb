@@ -1,8 +1,8 @@
 
 <div class="header">
   <ul class="header-nav">
-    <li class="active">首页</li>
-    <li>在线选车</li>
+    <li class="active"><%= link_to "首页", root_path %></li>
+    <li><%= link_to "在线选车", advanced_select_path %></li>
     <li>关于我们</li>
     <li class="active">登陆</li>
   </ul>
@@ -13,24 +13,54 @@
     <div class="brands-title">品牌</div>
     <ul>
       <% @brands.each do |brand| %>
-        <li class="select-option">
-          <%= link_to 'javascript:void(0)' do %>
-            <%= image_tag brand.logo, size: "38x38" %>
-            <div><%= brand.cn_name %></div>
-            <div hidden><%= brand.id %></div>
-          <% end %>
-        </li>
+        <% if brand.id == @params[:brand_id].to_i %>
+          <li class="select-option choosen">
+            <%= link_to 'javascript:void(0)' do %>
+              <%= image_tag brand.logo, size: "38x38" %>
+              <div><%= brand.cn_name %></div>
+              <div hidden><%= brand.id %></div>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="select-option">
+            <%= link_to 'javascript:void(0)' do %>
+              <%= image_tag brand.logo, size: "38x38" %>
+              <div><%= brand.cn_name %></div>
+              <div hidden><%= brand.id %></div>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
   <div class="price">
     <div class="price-title">价格</div>
     <ul>
-      <li class="select-option"><a href="javascript:void(0)">20万以下</a></li>
-      <li class="select-option"><a href="javascript:void(0)">20万-30万</a></li>
-      <li class="select-option"><a href="javascript:void(0)">30万-80万</a></li>
-      <li class="select-option"><a href="javascript:void(0)">80万-150万</a></li>
-      <li class="select-option"><a href="javascript:void(0)">150万以上</a></li>
+      <% if @params[:max].to_i == 200000 %>
+        <li class="select-option choosen"><a href="javascript:void(0)">20万以下</a></li>
+      <% else %>
+        <li class="select-option"><a href="javascript:void(0)">20万以下</a></li>
+      <% end %>
+      <% if @params[:max].to_i == 300000 %>
+        <li class="select-option choosen"><a href="javascript:void(0)">20万-30万</a></li>
+      <% else %>
+        <li class="select-option"><a href="javascript:void(0)">20万-30万</a></li>
+      <% end %>
+      <% if @params[:max].to_i == 800000 %>
+        <li class="select-option choosen"><a href="javascript:void(0)">30万-80万</a></li>
+      <% else %>
+        <li class="select-option"><a href="javascript:void(0)">30万-80万</a></li>
+      <% end %>
+      <% if @params[:max].to_i == 1500000 %>
+        <li class="select-option choosen"><a href="javascript:void(0)">80万-150万</a></li>
+      <% else %>
+        <li class="select-option"><a href="javascript:void(0)">80万-150万</a></li>
+      <% end %>
+      <% if @params[:min].to_i == 1500000 %>
+        <li class="select-option choosen"><a href="javascript:void(0)">150万以上</a></li>
+      <% else %>
+        <li class="select-option"><a href="javascript:void(0)">150万以上</a></li>
+      <% end %>
     </ul>
   </div>
   <div class="style">
@@ -39,35 +69,81 @@
       <% @categories.each do |category| %>
         <% case category.name %>
         <% when "SUV" %>
-          <li class="select-option">
-            <a href="javascript:void(0)"><%=image_tag "SUV1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="select-option choosen">
+              <a href="javascript:void(0)"><%=image_tag "SUV1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="select-option">
+              <a href="javascript:void(0)"><%=image_tag "SUV1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
+          
         <% when "轿车" %>
-          <li class="select-option">
-            <a href="javascript:void(0)"><%=image_tag "jiaoche1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="select-option choosen">
+              <a href="javascript:void(0)"><%=image_tag "jiaoche1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="select-option">
+              <a href="javascript:void(0)"><%=image_tag "jiaoche1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
         <% when "跑车" %>
-          <li class="select-option">
-            <a href="javascript:void(0)"><%=image_tag "paoche1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="select-option choosen">
+              <a href="javascript:void(0)"><%=image_tag "paoche1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="select-option">
+              <a href="javascript:void(0)"><%=image_tag "paoche1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
         <% when "MPV" %>
-          <li class="select-option">
-            <a href="javascript:void(0)"><%=image_tag "MPV1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="select-option choosen">
+              <a href="javascript:void(0)"><%=image_tag "MPV1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="select-option">
+              <a href="javascript:void(0)"><%=image_tag "MPV1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
+          
         <% when "皮卡" %>
-          <li class="bigger-img" class="select-option">
-            <a href="javascript:void(0)"><%=image_tag "pika1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="bigger-img" class="select-option choosen">
+              <a href="javascript:void(0)"><%=image_tag "pika1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="bigger-img" class="select-option">
+              <a href="javascript:void(0)"><%=image_tag "pika1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
+          
         <% when "轻客" %>
-          <li class="select-option">
-            <a href="javascript:void(0)"><%= image_tag "qingke1.png" %></a>
-            <div hidden><%= category.id %></div>
-          </li>
+          <% if category.id == @params[:category_id].to_i %>
+            <li class="select-option choosen">
+              <a href="javascript:void(0)"><%= image_tag "qingke1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% else %>
+            <li class="select-option">
+              <a href="javascript:void(0)"><%= image_tag "qingke1.png" %></a>
+              <div hidden><%= category.id %></div>
+            </li>
+          <% end %>
+          
         <% end %>
       <% end %>
     </ul>
