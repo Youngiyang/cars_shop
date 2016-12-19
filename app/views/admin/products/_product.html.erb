@@ -7,7 +7,7 @@
   <td><%= product.min_price %></td>
   <td>
   <%= link_to  '编辑', edit_admin_brand_product_path(@brand,product), title: '品牌编辑', class: 'btn btn-success' %>
-  <%= link_to '查看所有车辆', "#", title: '查看该品牌下所有车型', class: 'btn btn-info' %>
+  <%= link_to '查看所有车辆', admin_brand_product_goods_path(@brand,product), title: '查看该品牌下所有车型', class: 'btn btn-info' %>
   <%# link_to  '删除',  admin_product_path(product),
         method: "delete",
         remote: true,

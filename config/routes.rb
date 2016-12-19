@@ -23,11 +23,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'users#guide'
     resources :brands do
-      resources :products
+      resources :products do
+        resources :goods
+      end
     end
     resources :orders
     resources :advertisements
     resources :faqs
+    resources :attrs
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
     get 'order_search' => 'orders#order_search'

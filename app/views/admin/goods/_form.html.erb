@@ -1,0 +1,349 @@
+<%= form_for @good, url: new_admin_brand_product_good_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
+   <%= render "admin/share/error_messages", target: @good %>
+  <div class="row">
+    <div class="car-specs">
+       <h3>车辆规格</h3>
+       <hr>
+       <div class="form-group  col-md-8" data-required="true">
+          <%= f.label :name, '车辆名', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '', placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色" %>
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '支付方式', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '燃油', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '排量', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '颜色', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group  col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图</label>
+          <input id="input-fa" name="inputfa[]" type="file" multiple class="file-loading">
+          <%= f.hidden_field :photo_ids %>
+        </div>
+    </div>
+    <div class="basic-pramater">
+        <div class="col-md-12">
+          <h3>基本参数</h3>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加更多基本参数</button>
+        </div>
+        <hr>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增基本参数选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <a href="" class="btn btn-primary add-basic-pramater">保存修改</a>
+    <!--             <button type="button" class="btn btn-primary add-basic-pramater">保存修改</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '级别', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '发动机', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '变速箱', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '长宽高', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '车身结构', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '最高车速', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '官方0-100km/h加速(s)', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+        </div>
+    </div>
+    <div class="car-body">
+        <h3 class="col-md-12">车身<hr></h3>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '长度(mm)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+           <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '宽度(mm)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '高度(mm)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '轴距(mm)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '车门数(个)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+           <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '座位数(个)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+    </div>
+    <div class="car-engine">
+      <h3 class="col-md-12">发动机<hr></h3>
+
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '发动机型号', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+          <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '排量(L)', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '进气形式', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '气缸排列形式', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '气缸数(个)', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '每缸气门数(个)', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '压缩比', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '配气结构', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '最大马力', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '最大功率', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '最大功率转速', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '最大扭矩', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '最大扭矩转速', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '燃油形式', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '燃油标号', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '供油方式', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '缸盖材料', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '缸体材料', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+       <h3 class="col-md-12">变速箱<hr></h3>
+
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '档位个数', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+        <%= f.label :name, '变数箱类型', class: 'control-label' %>
+        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+      </div>
+    </div>
+    <div class="car-bottom">
+        <h3 class="col-md-12">底盘转向<hr></h3>
+
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '驱动方式', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '四驱形式', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '中央变速器结构', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '前悬架类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '后悬架类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '助力类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '车体结构', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+    </div>
+    <div class="car-brake">
+        <h3 class="col-md-12">车轮制动<hr></h3>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '前制动器类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '后制动器类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '驻车制动类型', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '轮毂尺寸(英寸)', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+       <div class="form-group col-md-8" data-required="true">
+         <%= f.label :name, '备胎', class: 'control-label' %>
+         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+       </div>
+    </div>
+  </div>
+<% end %>
+<script>
+
+
+$(function(){
+  //初始化图片上传插件
+    $("#input-fa").fileinput({
+        language: 'zh', //设置语言
+        theme: "fa",
+        uploadUrl: "/admin/upload"
+    });
+
+   $('#img_url').change(function(e){
+     var fd = new FormData();
+      fd.append("upload_file", $("#img_url").get(0).files[0]);
+      console.log(fd);
+      setProgress(progress, 0, "开始上传");
+      setProgress(progress, 50, "50%");
+      $.ajax({
+        url: "/admin/upload",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd,
+        success: function(data) {
+          console.log(data.file_path);
+          setProgress(progress, 100, "上传成功");
+              $('#product_img_logo').val(data.file_path);
+              $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
+        }
+      });
+  })
+
+})
+
+ //设置进度条
+var progress = document.getElementById("progress");
+
+function setProgress(ele, percent, content) {
+  ele.style.display = "block";
+  if (!!percent) {
+    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+  }
+  ele.getElementsByClassName("progress-bar")[0].innerText = content;
+}
+
+  if ($('.is_recommended').is(':checked')) {
+      $('.recommended').removeClass('after-recommended')
+    }
+    else{
+      $('.recommended').addClass('after-recommended')
+    };
+ $('.is_recommended').change(function() {
+    if ($('.is_recommended').is(':checked')) {
+      $('.recommended').removeClass('after-recommended')
+    }
+    else{
+      $('.recommended').addClass('after-recommended')
+     };
+ });
+
+//   //新增条目JS
+// $(".add-basic-pramater").click(function() {
+//   var ele_modal = $(this).parents("#myModal");
+//   var ele_input1 = ele_modal.find('input').get(0);
+//   var ele_input1_value = ele_input1.value;
+//   console.log(ele_input1_value);
+//   console.log(ele_input2_value);
+//   ele_modal.modal('hide');
+//   var new_item = '<div class="form-group   col-md-8 new-item">' +
+//   '            <label class="control-label" for="good_name">' + ele_input1_value + '</label>' +
+//   '          <div class="col-md-12">' +
+//   '            <input class="form-control" style="width:none" type="text" name="good[name]" id="good_name"  value="'+ele_input2_value+'">' +
+//   '            <button class="btn btn-sm btn-danger delete">删除</button>' +
+//   '          </div>' +
+//   '        </div>';
+
+//   $('.basic-pramater').append(new_item);
+//   ele_input1_value.
+
+// });
+// $('.delete').click(function() {
+//   $(this).parents(".new-item").remove();
+// });
+
+
+
+</script>

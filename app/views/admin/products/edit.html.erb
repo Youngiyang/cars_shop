@@ -38,17 +38,17 @@
 
                 <div class="form-group recommended after-recommended" data-required="true">
                   <%= f.label :recommended_sub_title, '推荐副标题', class: 'control-label' %>
-                  <%= f.text_field :recommended_sub_title %>
+                  <%= f.text_field :recommended_sub_title, class: "form-control" %>
                 </div>
 
                 <div class="form-group recommended after-recommended" data-required="true">
                   <%= f.label :recommended_words, '推荐词', class: 'control-label' %>
-                  <%= f.text_field :recommended_words %>
+                  <%= f.text_field :recommended_words, class: "form-control" %>
                 </div>
 
                 <div class="form-group recommended after-recommended" data-required="true">
                   <%= f.label :slogan, '标语', class: 'control-label' %>
-                  <%= f.text_field :slogan %>
+                  <%= f.text_field :slogan, class: "form-control" %>
                 </div>
 
 
@@ -120,6 +120,14 @@ function setProgress(ele, percent, content) {
   ele.getElementsByClassName("progress-bar")[0].innerText = content;
 }
 
+
+if ($('.is_recommended').is(':checked')) {
+    $('.recommended').removeClass('after-recommended')
+  }
+  else{
+    $('.recommended').addClass('after-recommended')
+  };
+
  $('.is_recommended').change(function() {
     if ($('.is_recommended').is(':checked')) {
       $('.recommended').removeClass('after-recommended')
@@ -128,6 +136,8 @@ function setProgress(ele, percent, content) {
       $('.recommended').addClass('after-recommended')
      };
  });
+
+
 
 </script>
 
