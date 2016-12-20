@@ -7,22 +7,11 @@
     <li class="">
       <a role="button" data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse">统计 <i class="fa fa-chevron-down pull-right"></i></a>
       <div class="collapse in" id="collapse1">
-<<<<<<< HEAD
          <ul class="orion-links sub">
-            <li><%= link_to '店铺统计', '' %></li>
-         </ul>
+          <li><%= link_to '店铺统计', '' %></li>
+        </ul>
       </div>
     </li>
-=======
-       <ul class="orion-links sub">
-
-        <li><%= link_to '店铺统计', '' %></li>
-
-
-      </ul>
-    </div>
-  </li>
->>>>>>> 0b3c3c9b90fdc8c1149ed875700c9b07a12b2ef6
 
   <li class="">
     <a role="button" data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse">运营 <i class="fa fa-chevron-down pull-right"></i></a>
@@ -34,26 +23,6 @@
     </div>
   </li>
 
-<<<<<<< HEAD
-    <li class="">
-      <a role="button" data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapse">车辆 <i class="fa fa-chevron-down pull-right"></i></a>
-      <div class="collapse in" id="collapse3">
-         <ul class="orion-links sub">
-              <li>
-                <%= link_to '品牌管理',  '' %></li>
-              <li>
-                <%= link_to '车型管理', '' %></li>
-              <li>
-              <%= link_to '商品管理', '' %></li>
-              <li>
-         </ul>
-      </div>
-    </li>
-    <li class="">
-      <a role="button" data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse">订单 <i class="fa fa-chevron-down pull-right"></i></a>
-      <div class="collapse in" id="collapse4">
-         <ul class="orion-links sub">
-=======
   <li class="">
     <a role="button" data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapse">车辆 <i class="fa fa-chevron-down pull-right"></i></a>
     <div class="collapse in" id="collapse3">
@@ -64,7 +33,6 @@
           <%= link_to '货品管理', '' %></li>
           <li>
             <%= link_to '商品管理', '' %></li>
->>>>>>> 0b3c3c9b90fdc8c1149ed875700c9b07a12b2ef6
             <li>
             </ul>
           </div>
@@ -82,16 +50,16 @@
 
 
 
-    <li class="">
-      <a role="button" data-toggle="collapse" href="#collapse6" aria-expanded="true" aria-controls="collapse">用户 <i class="fa fa-chevron-down pull-right"></i></a>
-      <div class="collapse in" id="collapse6">
-       <ul class="orion-links sub">
-        <li class="">
-          <%= link_to '查看所有用户',  admin_users_path %>
-        </li>
-      </ul>
-    </div>
-  </li>
+      <li class="">
+        <a role="button" data-toggle="collapse" href="#collapse6" aria-expanded="true" aria-controls="collapse">用户 <i class="fa fa-chevron-down pull-right"></i></a>
+        <div class="collapse in" id="collapse6">
+         <ul class="orion-links sub">
+          <li class="">
+            <%= link_to '查看所有用户',  admin_users_path %>
+          </li>
+        </ul>
+      </div>
+    </li>
 
     <li class="">
       <a role="button" data-toggle="collapse" href="#collapse7" aria-expanded="true" aria-controls="collapse">广告管理 <i class="fa fa-chevron-down pull-right"></i></a>
@@ -104,26 +72,28 @@
     </div>
   </li>
 
+  <li class="">
+    <a role="button" data-toggle="collapse" href="#collapse8" aria-expanded="true" aria-controls="collapse">问答管理 <i class="fa fa-chevron-down pull-right"></i></a>
+    <div class="collapse in" id="collapse8">
+     <ul class="orion-links sub">
+      <li class="">
+        <%= link_to '问答列表',  admin_faqs_path %>
+      </li>
+    </ul>
+  </div>
+</li>
+<li class="">
+  <a role="button" data-toggle="collapse" href="#collapse9" aria-expanded="true" aria-controls="collapse">相册管理 <i class="fa fa-chevron-down pull-right"></i></a>
+  <div class="collapse in" id="collapse9">
+   <ul class="orion-links sub">
     <li class="">
-      <a role="button" data-toggle="collapse" href="#collapse8" aria-expanded="true" aria-controls="collapse">问答管理 <i class="fa fa-chevron-down pull-right"></i></a>
-      <div class="collapse in" id="collapse8">
-       <ul class="orion-links sub">
-        <li class="">
-          <%= link_to '问答列表',  admin_faqs_path %>
-        </li>
-      </ul>
-    </div>
-  </li>
-    <li class="">
-      <a role="button" data-toggle="collapse" href="#collapse9" aria-expanded="true" aria-controls="collapse">相册管理 <i class="fa fa-chevron-down pull-right"></i></a>
-      <div class="collapse in" id="collapse9">
-       <ul class="orion-links sub">
-        <li class="">
-          <%= link_to '相册列表',  admin_albums_path %>
-        </li>
-      </ul>
-    </div>
-  </li>
+      <%= link_to '相册列表',  admin_albums_path %>
+    </li>
+  </ul>
+</div>
+</li>
 </ul>
 </div>
+
+
 

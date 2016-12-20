@@ -1,30 +1,48 @@
-<%= form_for @good, url: new_admin_brand_product_good_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
+<%= form_for @good, url: admin_brand_product_goods_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
    <%= render "admin/share/error_messages", target: @good %>
   <div class="row">
     <div class="car-specs">
-       <h3>车辆规格</h3>
-       <hr>
-       <div class="form-group  col-md-8" data-required="true">
+      <h3>车辆规格</h3>
+      <hr>
+      <div class="form-group  col-md-8" data-required="true">
           <%= f.label :name, '车辆名', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '', placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色" %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true, placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色" %>
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+          <%= f.label :source_from, '产地', class: 'control-label' %>
+          <%= f.text_field :source_from, class: "form-control validate", autofocus: true %>
        </div>
         <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '支付方式', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <%= f.label :current_price, '现价', class: 'control-label' %>
+          <%= f.text_field :current_price, class: "form-control validate", autofocus: true %>
        </div>
         <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '燃油', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <%= f.label :market_price, '市场价', class: 'control-label' %>
+          <%= f.text_field :market_price, class: "form-control validate", autofocus: true %>
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :registered_info, '上牌五证', class: 'control-label' %>
+          <%= f.text_field :registered_info, class: "form-control validate", autofocus: true %>
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+              <%= f.check_box :in_stock %>
+              <%= f.label :in_stock, '现货', class: 'control-label' %>
+        </div>
+
+
+      <div class="form-group col-md-8" data-required="true">
+          <%= f.label :name, '排量', class: 'control-label' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
        </div>
 
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :name, '排量', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
        </div>
 
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :name, '颜色', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
         </div>
         <div class="form-group  col-md-12">
           <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图</label>
@@ -33,12 +51,12 @@
         </div>
     </div>
     <div class="basic-pramater">
-        <div class="col-md-12">
-          <h3>基本参数</h3>
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加更多基本参数</button>
+      <div class="col-md-12">
+        <h3>基本参数<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加更多基本参数</button>
         </div>
-        <hr>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -48,216 +66,249 @@
               <div class="modal-body">
                  <div class="form-group">
                     <label for="item-name">参数名称</label>
-                    <input type="text" class="form-control" id="item-name">
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="0">
                   </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <a href="" class="btn btn-primary add-basic-pramater">保存修改</a>
-    <!--             <button type="button" class="btn btn-primary add-basic-pramater">保存修改</button> -->
+                <button type="button" class="btn btn-primary add-pramater" data-dismiss="modal">保存修改</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <% @attrs_one.each do |t| %>
         <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '级别', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '发动机', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '变速箱', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '长宽高', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '车身结构', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '最高车速', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-        </div>
 
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '官方0-100km/h加速(s)', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
         </div>
+      <% end %>
+<!--       <div class="form-group   col-md-12 new-item">
+        <label class="control-label col-md-12" for="good_name">dadad</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control col-md-6" id="">
+          <input type="hidden" class="" value="0">
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-sm btn-danger delete">删除</button>
+        </div>
+      </div> -->
     </div>
     <div class="car-body">
-        <h3 class="col-md-12">车身<hr></h3>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '长度(mm)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-           <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '宽度(mm)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '高度(mm)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '轴距(mm)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '车门数(个)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-           <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '座位数(个)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
+      <div class="col-md-12">
+        <h3>车身<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">添加更多车身参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增车身选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="1">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater1" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_two.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
     </div>
     <div class="car-engine">
-      <h3 class="col-md-12">发动机<hr></h3>
+      <div class="col-md-12">
+        <h3>发动机<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">添加更多发动机参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增发动机选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="2">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater2" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_three.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
 
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '发动机型号', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="speed-change">
+      <div class="col-md-12">
+        <h3>变速箱<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">添加更多变速箱参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增变速箱选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="3">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater3" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-          <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '排量(L)', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '进气形式', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '气缸排列形式', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '气缸数(个)', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '每缸气门数(个)', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '压缩比', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '配气结构', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '最大马力', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '最大功率', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '最大功率转速', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '最大扭矩', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '最大扭矩转速', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '燃油形式', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '燃油标号', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '供油方式', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '缸盖材料', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '缸体材料', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-       <h3 class="col-md-12">变速箱<hr></h3>
+      <% @attrs_four.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
 
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '档位个数', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
-      <div class="form-group col-md-8" data-required="true">
-        <%= f.label :name, '变数箱类型', class: 'control-label' %>
-        <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-      </div>
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
     </div>
     <div class="car-bottom">
-        <h3 class="col-md-12">底盘转向<hr></h3>
+      <div class="col-md-12">
+        <h3>底盘转向<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal4">添加更多底盘转向参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增底盘转向选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="4">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater4" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_five.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
 
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '驱动方式', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '四驱形式', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '中央变速器结构', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '前悬架类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '后悬架类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '助力类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '车体结构', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
     </div>
     <div class="car-brake">
-        <h3 class="col-md-12">车轮制动<hr></h3>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '前制动器类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '后制动器类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '驻车制动类型', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '轮毂尺寸(英寸)', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
-       <div class="form-group col-md-8" data-required="true">
-         <%= f.label :name, '备胎', class: 'control-label' %>
-         <%= f.text_field :name, class: "form-control validate", autofocus: true, required: '' %>
-       </div>
+        <div class="col-md-12">
+        <h3>车轮制动<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">添加更多车轮制动参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增车轮制动选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="5">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater5" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_six.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
     </div>
+    <div class="car-important">
+      <h3 class="col-md-12">重要配置<hr></h3>
+      <% @attrs_seven.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-other">
+      <h3 class="col-md-12">更多配置<hr></h3>
+      <% @attrs_eight.each do |t| %>
+        <div class="form-group col-md-8" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+
   </div>
+
+    <div class="buttons text-right">
+    <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+    </div>
 <% end %>
 <script>
 
@@ -290,7 +341,6 @@ $(function(){
         }
       });
   })
-
 })
 
  //设置进度条
@@ -320,30 +370,82 @@ function setProgress(ele, percent, content) {
      };
  });
 
-//   //新增条目JS
-// $(".add-basic-pramater").click(function() {
-//   var ele_modal = $(this).parents("#myModal");
+
+
+//   $(".add-pramater").click(function(){
+//   var ele_modal = $(this).parents(".myModal").last();
 //   var ele_input1 = ele_modal.find('input').get(0);
+//   var ele_input2 = ele_modal.find('input').get(1);
 //   var ele_input1_value = ele_input1.value;
-//   console.log(ele_input1_value);
-//   console.log(ele_input2_value);
-//   ele_modal.modal('hide');
-//   var new_item = '<div class="form-group   col-md-8 new-item">' +
-//   '            <label class="control-label" for="good_name">' + ele_input1_value + '</label>' +
-//   '          <div class="col-md-12">' +
-//   '            <input class="form-control" style="width:none" type="text" name="good[name]" id="good_name"  value="'+ele_input2_value+'">' +
-//   '            <button class="btn btn-sm btn-danger delete">删除</button>' +
-//   '          </div>' +
-//   '        </div>';
-
-//   $('.basic-pramater').append(new_item);
-//   ele_input1_value.
-
+//   var ele_input2_value = ele_input2.value;
+//   $.post("/admin/attrs",
+//   {
+//     "attr[key]": ele_input1_value,
+//     "attr[group_num]": ele_input2_value
+//   },
+//   function(data,status){
+//     console.log(data);
+//     var new_item = '<div class="form-group   col-md-8 new-item">' +
+//     '            <label class="control-label" for="good_name">' + data.key + '</label>' +
+//     '          <div class="col-md-12">' +
+//     '            <input class="form-control" style="width:none" type="text" name="good[name]" id="good_name">' +
+//     '            <button type="button" class="btn btn-sm btn-danger delete">删除</button>' +
+//     '          </div>' +
+//     '        </div>';
+//     $('#item-name').val("");
+//     $('.basic-pramater').append(new_item);
+//   });
 // });
-// $('.delete').click(function() {
-//   $(this).parents(".new-item").remove();
-// });
+  $(".add-pramater").click(function(){
+    add_new_item($(this),$(".basic-pramater"))
+  });
+  $(".add-pramater1").click(function(){
+    add_new_item($(this),$(".car-body"))
+  });
+  $(".add-pramater2").click(function(){
+    add_new_item($(this),$(".car-engine"))
+  });
+  $(".add-pramater3").click(function(){
+    add_new_item($(this),$(".speed-change"))
+  });
+  $(".add-pramater4").click(function(){
+    add_new_item($(this),$(".car-bottom"))
+  });
+  $(".add-pramater5").click(function(){
+    add_new_item($(this),$(".car-brake"))
+  });
+
+function add_new_item (model_button, parent_dom) {
+  var ele_modal = model_button.parents(".myModal").last();
+  var ele_input1 = ele_modal.find('input').get(0);
+  var ele_input2 = ele_modal.find('input').get(1);
+  var ele_input1_value = ele_input1.value;
+  var ele_input2_value = ele_input2.value;
+  $.post("/admin/attrs",
+  {
+    "attr[key]": ele_input1_value,
+    "attr[group_num]": ele_input2_value
+  },
+  function(data,status){
+    console.log(data);
+    var new_item = '<div class="form-group   col-md-12 new-item">' +
+    '  <label class="control-label col-md-12" for="good_name">'  + data.key + '</label>' +
+    '  <div class="col-md-8">' +
+    '    <input type="text" class="form-control col-md-6" id=' + 'attr_value_' + data.id + '>' +
+    '    <input type="hidden" class=' + 'attr_' + data.id + " " +
+    '    value='  + data.id + '>'  +
+    '  </div>' +
+    '  <div class="col-md-2">' +
+    '    <button type="button" class="btn btn-sm btn-danger delete">删除</button>' +
+    '  </div>' +
+    '</div>';
+    $('#item-name').val("");
+    parent_dom.append(new_item);
+  });
+}
 
 
-
+  $('.admin_form').on('click', '.delete', function() {
+    $(this).parents(".new-item").remove();
+  });
 </script>
