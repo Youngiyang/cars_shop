@@ -19,12 +19,14 @@ Rails.application.routes.draw do
   resources :goods, only: [:index, :show]
   root 'home#index'
   post 'login' => 'sessions#create'
+  get 'send_msg' => 'auth_code#send_msg'
   get 'detail' => 'details#index'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
   get 'advanced_select/select' => 'select_car_online#select'
+
 
   namespace :admin do
     root 'users#guide',as: :guide

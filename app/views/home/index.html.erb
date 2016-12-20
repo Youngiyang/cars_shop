@@ -287,22 +287,30 @@
 var t_startTime;
   function startTime() {
     var t = $('.btn-code').html();
-    if (t == "获取验证码") {
-      t = 0;
+    if (t == "获取验证码" || "重新发送") {
+      t = 60;
     }
-    if (t == 60 ){
-      $('.btn-code').html('获取验证码');
+    if (t == 0 ){
+      $('.btn-code').html('重新发送');
        $('.btn-code').attr('disabled',false);
       return
     }
-     t = t*1+1;
+     t = t*1-1;
       $('.btn-code').html(t);
       $('.btn-code').attr('disabled',true);
     t_startTime = setTimeout("startTime()",1000)
   }
 
   $('.btn-code').bind('click',function(){
-    startTime();
+    mobile = $("#session_mobile").val();
+    url = "/send_msg?mobile=" + mobile;
+    $.get(url, function(data, status) {
+      if (data.message == "success" ) {
+        startTime();
+      } else {
+        $('.btn-code').html('重新发送');
+      }
+    });
   })
 
   $('.login-btn').bind('click',function(){
