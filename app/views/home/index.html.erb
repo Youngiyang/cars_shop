@@ -50,7 +50,7 @@
               <ul>
                 <% @brands.each do |brand| %>
                   <li>
-                    <%= link_to '#' do %>
+                    <%= link_to advanced_select_path(brand_id: brand.id) do %>
                       <%= image_tag brand.logo, size: '50x50' %>
                       <div><%= brand.cn_name %></div>
                     <% end %>
@@ -61,11 +61,11 @@
             <div class="price">
               <h4>价格</h4>
               <ul>
-                <li><a href="">20万以下</a></li>
-                <li><a href="">20-30万</a></li>
-                <li><a href="">30-80万</a></li>
-                <li><a href="">80-150万</a></li>
-                <li><a href="">150万以上</a></li>
+                <li><%= link_to "20万以下", advanced_select_path(min: 0, max: 200000) %></li>
+                <li><%= link_to "20-30万", advanced_select_path(min: 200000, max: 300000) %></li>
+                <li><%= link_to "30-80万", advanced_select_path(min: 300000, max: 800000) %></li>
+                <li><%= link_to "80-150万", advanced_select_path(min: 800000, max:1500000) %></li>
+                <li><%= link_to "150万以上", advanced_select_path(min: 1500000, max: 999999999) %></li>
               </ul>
             </div>
             <div class="style">
