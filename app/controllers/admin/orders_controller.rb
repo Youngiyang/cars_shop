@@ -1,11 +1,12 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @orders = Order.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def edit
     @order = Order.find(params[:id])
-    @stauts = [['1', '1'], ['2', '2']]
+    @stauts = [['线上预约','1',], ['客服1对1对接','2' ],['线下看车','3'],['意向洽谈','4'],['车款支付','5'],['提车','6'],['拍照办理','7'],['订单完成','8']]
   end
 
   def update
