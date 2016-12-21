@@ -1,11 +1,14 @@
 class Admin::AttrsController < ApplicationController
   def create
-    attr = Attr.new(attr_params)
+    attr = Attr.find_by(key: params[:attr][:key])
+    if attr
+       render json: attr
+    else
+      attr = Attr.new(attr_params)
       if attr.save
         render json: attr
-      else
-
       end
+    end
   end
 
   private

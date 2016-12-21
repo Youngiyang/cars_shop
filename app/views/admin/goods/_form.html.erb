@@ -29,26 +29,20 @@
               <%= f.label :in_stock, '现货', class: 'control-label' %>
         </div>
 
+        <% @specs.each do |t| %>
+          <div class="form-group col-md-8 spec-item" data-required="true">
+            <label class="control-label" for="good_name"><%= t.name %></label>
+            <input class="form-control validate spec_value" autofocus="autofocus" type="text">
+            <input type="hidden" class="spec_id" value= "<%=t.id %>">
+          </div>
+        <% end %>
 
-      <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '排量', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
-       </div>
-
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '排量', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
-       </div>
-
-        <div class="form-group col-md-8" data-required="true">
-          <%= f.label :name, '颜色', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true %>
-        </div>
         <div class="form-group  col-md-12">
           <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图</label>
           <input id="input-fa" name="inputfa[]" type="file" multiple class="file-loading">
           <%= f.hidden_field :photo_ids %>
         </div>
+
     </div>
     <div class="basic-pramater">
       <div class="col-md-12">
@@ -79,23 +73,13 @@
         </div>
       </div>
       <% @attrs_one.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
           <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
         </div>
       <% end %>
-<!--       <div class="form-group   col-md-12 new-item">
-        <label class="control-label col-md-12" for="good_name">dadad</label>
-        <div class="col-md-8">
-          <input type="text" class="form-control col-md-6" id="">
-          <input type="hidden" class="" value="0">
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-sm btn-danger delete">删除</button>
-        </div>
-      </div> -->
     </div>
     <div class="car-body">
       <div class="col-md-12">
@@ -126,7 +110,7 @@
         </div>
       </div>
       <% @attrs_two.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -163,7 +147,7 @@
         </div>
       </div>
       <% @attrs_three.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -200,7 +184,7 @@
         </div>
       </div>
       <% @attrs_four.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -237,7 +221,7 @@
         </div>
       </div>
       <% @attrs_five.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -274,7 +258,7 @@
         </div>
       </div>
       <% @attrs_six.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
           <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
@@ -284,7 +268,7 @@
     <div class="car-important">
       <h3 class="col-md-12">重要配置<hr></h3>
       <% @attrs_seven.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -295,7 +279,7 @@
     <div class="car-other">
       <h3 class="col-md-12">更多配置<hr></h3>
       <% @attrs_eight.each do |t| %>
-        <div class="form-group col-md-8" data-required="true">
+        <div class="form-group col-md-8 attr-item" data-required="true">
 
           <label class="control-label" for="good_name"><%= t.key %></label>
           <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
@@ -370,32 +354,6 @@ function setProgress(ele, percent, content) {
      };
  });
 
-
-
-//   $(".add-pramater").click(function(){
-//   var ele_modal = $(this).parents(".myModal").last();
-//   var ele_input1 = ele_modal.find('input').get(0);
-//   var ele_input2 = ele_modal.find('input').get(1);
-//   var ele_input1_value = ele_input1.value;
-//   var ele_input2_value = ele_input2.value;
-//   $.post("/admin/attrs",
-//   {
-//     "attr[key]": ele_input1_value,
-//     "attr[group_num]": ele_input2_value
-//   },
-//   function(data,status){
-//     console.log(data);
-//     var new_item = '<div class="form-group   col-md-8 new-item">' +
-//     '            <label class="control-label" for="good_name">' + data.key + '</label>' +
-//     '          <div class="col-md-12">' +
-//     '            <input class="form-control" style="width:none" type="text" name="good[name]" id="good_name">' +
-//     '            <button type="button" class="btn btn-sm btn-danger delete">删除</button>' +
-//     '          </div>' +
-//     '        </div>';
-//     $('#item-name').val("");
-//     $('.basic-pramater').append(new_item);
-//   });
-// });
   $(".add-pramater").click(function(){
     add_new_item($(this),$(".basic-pramater"))
   });
@@ -428,7 +386,7 @@ function add_new_item (model_button, parent_dom) {
   },
   function(data,status){
     console.log(data);
-    var new_item = '<div class="form-group   col-md-12 new-item">' +
+    var new_item = '<div class="form-group   col-md-12 new-item attr-item">' +
     '  <label class="control-label col-md-12" for="good_name">'  + data.key + '</label>' +
     '  <div class="col-md-8">' +
     '    <input type="text" class="form-control col-md-6" id=' + 'attr_value_' + data.id + '>' +
@@ -448,4 +406,29 @@ function add_new_item (model_button, parent_dom) {
   $('.admin_form').on('click', '.delete', function() {
     $(this).parents(".new-item").remove();
   });
+
+function get_spec_options (){
+  var ele = $('.spec-item');
+  var arr2 = [];
+  for(var i = 0; i < ele.length; i++ ) {
+    var spec = $(ele[i]).find(':input:eq(1)').val();
+    var spec_value = $(ele[i]).find('input:eq(0)').val();
+    var arr1 = [spec,spec_value];
+    arr2.push(arr1);
+  }
+  return arr2;
+}
+
+function get_attr_options () {
+  var ele = $('.attr-item');
+  var arr2 = [];
+  for(var i = 0; i < ele.length; i++ ) {
+    var spec = $(ele[i]).find(':input:eq(1)').val();
+    var spec_value = $(ele[i]).find('input:eq(0)').val();
+    var arr1 = [spec,spec_value];
+    arr2.push(arr1);
+  }
+  return arr2;
+}
+
 </script>

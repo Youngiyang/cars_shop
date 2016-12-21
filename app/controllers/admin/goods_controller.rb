@@ -25,6 +25,7 @@ class Admin::GoodsController < ApplicationController
     @attrs_seven = Attr.get_gruop_attr(6).where(is_default: true)
     #更多配置
     @attrs_eight = Attr.get_gruop_attr(7).where(is_default: true)
+    @specs = Spec.all
   end
 
   def create
