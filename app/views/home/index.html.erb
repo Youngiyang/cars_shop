@@ -1,9 +1,8 @@
 <div class="zy-backdrop"></div>
 
-
 <div class="zy-window-login">
   <div class="zy-window-wraps">
-    <%= form_for :session, url: login_path do |f| %>
+    <%= form_for :session, url: login_path, remote: true do |f| %>
       <h1>手机快捷登录</h1>
       <div class="s-icon">
         <i class="iconfont">&#xe602;</i>
@@ -22,7 +21,6 @@
     <% end %>
   </div>
 </div>
-
 
 <div class="wechat-contact">
   <ul>
@@ -284,21 +282,22 @@
 
 
 <script>
-var t_startTime;
-  function startTime() {
-    var t = $('.btn-code').html();
-    if (t == "获取验证码" || "重新发送") {
-      t = 60;
-    }
-    if (t == 0 ){
-      $('.btn-code').html('重新发送');
-       $('.btn-code').attr('disabled',false);
-      return
-    }
-     t = t*1-1;
-      $('.btn-code').html(t);
-      $('.btn-code').attr('disabled',true);
-    t_startTime = setTimeout("startTime()",1000)
+  var countdown=60; 
+  
+  function settime() { 
+    e = $('.btn-code');
+    if (countdown == 0) { 
+      e.removeAttr("disabled"); 
+      e.html("获取验证码"); 
+      countdown = 60; 
+    } else { 
+      e.attr("disabled", true); 
+      e.html("重新发送(" + countdown + ")"); 
+      countdown--;
+      setTimeout(function() { 
+      settime(); 
+      },1000);
+    } 
   }
 
   $('.btn-code').bind('click',function(){
@@ -306,9 +305,9 @@ var t_startTime;
     url = "/send_msg?mobile=" + mobile;
     $.get(url, function(data, status) {
       if (data.message == "success" ) {
-        startTime();
+        settime();
       } else {
-        $('.btn-code').html('重新发送');
+        alert("请重试");
       }
     });
   })

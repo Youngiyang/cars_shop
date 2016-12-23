@@ -1,0 +1,4 @@
+$(".zy-car-list ul").html("<%= j render(partial: 'goods/good', object: @goods) %>");
+$(".pagination").html("<%= j will_paginate(@goods) %>");
+$('.pagination a').attr('data-remote', 'true');
+$('.select-click').remove();
