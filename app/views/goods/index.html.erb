@@ -1,0 +1,65 @@
+  <div class="header">
+    <ul class="header-nav">
+    <li class="active"><%= link_to "首页", root_path %></li>
+    <li><%= link_to "在线选车", advanced_select_path %></li>
+    <li>关于我们</li>
+    <li class="active">登陆</li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+  <nav>
+    <div class="nav-title">
+      <%= image_tag @product.brand.logo, class:"nav-logo" %>
+      <div class="nav-cate">
+        <%= @product.brand.cn_name %>
+      </div>
+      <ul class="nav-type clearfix">
+        <li class="nav-way">
+          <%= @product.name %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="zy-advanced-filter clearfix">
+    <div class="filter clearfix">
+      <dl class="rank">
+        <dt>排序：</dt>
+        <dd class="select-option active">价格</dd>
+        <dd class="select-option">时间</dd>
+      </dl>
+      <dl class="supply">
+        <dt>货源：</dt>
+        <dd class="select-option active">全部</dd>
+        <dd class="select-option">现货</dd>
+        <dd class="select-option">期货</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="zy-car-list clearfix">
+    <ul class="zy-car-all clearfix">
+      <%= render partial: 'goods/good' %>
+    </ul>
+  </div>
+  <div id="pagination">
+      <%= will_paginate @goods %>
+  </div>
+<script>
+  $(document).ready(function(){
+    $(".pagination a").attr('data-remote', 'true');
+  });
+
+  $(".select-option").click(function(){
+    $(this).addClass("active");
+    $(this).nextAll().removeClass("active");
+    $(this).prevAll().removeClass("active");
+
+    var rank = $(".rank dd.active").text();
+    var supply = $(".supply dd.active").text();
+    var get_url = window.location.href + "?rank=" + rank + "&supply=" + supply;
+    
+    var content = "<a hidden class='select-click' data-remote='true' href='"+get_url+"'><div>select-click</div></a>";
+
+    $(".rank").before(content);
+    $(".select-click div").trigger("click");
+  });
+</script>
