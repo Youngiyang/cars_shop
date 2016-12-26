@@ -1,19 +1,21 @@
 class SessionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :create
   def create
     if params[:session][:checkbox] == 1
       mobile = params[:session][:mobile]
       code = params[:session][:auth_code]
-      user = User.find_by(mobile: mobile)
-      if user 
-        if AuthCode.valid_auth_code(mobile, code)
-          log_in user
-        else
-          
+      binding.pry
+      @user = User.find_by(mobile: mobile)
+      @user = User.create!(mobile: mobile) if !@user
+      if AuthCode.valid_auth_code?(mobile, code) 
+        log_in @user
+        respond_to do |format|
+          format.html
+          format.js
         end
-        
+      else
+
       end
-    else
-      redirect_to :back
     end
   end
 

@@ -1,10 +1,14 @@
 <% @products.each do |product| %>
-<li>
-  <div><%= image_tag product.img_url, size: "331x178" %></div>
-  <div class="select-title"><%= product.name %></div>
-  <div class="select-price">
-    <%= BigDecimal(product.min_price/10000).round(2).to_s + "万起" %>
-  </div>
-  <div class="select-ad"><%= product.slogan %></div>
-</li>
+  <li>
+  <%= link_to goods_path(product) do %>
+    
+    <div><%= image_tag product.img_url, size: "331x178" %></div>
+    <div class="select-title"><%= product.name %></div>
+    <div class="select-price">
+      <%= BigDecimal(product.min_price/10000).round(2).to_s + "万起" %>
+    </div>
+    <div class="select-ad"><%= product.slogan %></div>
+    
+  <% end %>
+  </li>
 <% end %>

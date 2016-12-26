@@ -8,11 +8,11 @@ namespace :test_datas do
     puts ">>>>>>>创建分类完成<<<<<<<<"
 
     brands = Brand.create!([
-      { cn_name: "宝马", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 1, is_show: true },
-      { cn_name: "奔驰", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 2, is_show: true },
-      { cn_name: "玛莎拉蒂", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 3, is_show: true },
-      { cn_name: "保时捷", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 4, is_show: false },
-      { cn_name: "路虎", logo: Faker::Avatar.image('logo','50x50','jpg'), sort_order: 5, is_show: false }])
+      { cn_name: "宝马", logo: Faker::Avatar.image('logo1','50x50','jpg'), sort_order: 1, is_show: true },
+      { cn_name: "奔驰", logo: Faker::Avatar.image('logo2','50x50','jpg'), sort_order: 2, is_show: true },
+      { cn_name: "玛莎拉蒂", logo: Faker::Avatar.image('logo3','50x50','jpg'), sort_order: 3, is_show: true },
+      { cn_name: "保时捷", logo: Faker::Avatar.image('logo4','50x50','jpg'), sort_order: 4, is_show: false },
+      { cn_name: "路虎", logo: Faker::Avatar.image('logo5','50x50','jpg'), sort_order: 5, is_show: false }])
     puts ">>>>>>>创建品牌完成<<<<<<<<"
 
     #默认相册
@@ -20,7 +20,7 @@ namespace :test_datas do
     50.times do |i|
       Photo.create!(album_id: album.id,
                     name: 'img'+ i.to_s,
-                    img_url: Faker::Avatar.image('car','200x200','jpg'))
+                    img_url: Faker::Avatar.image('car'+ i.to_s, '200x200', 'jpg'))
     end
     puts ">>>>>>>创建相册完成<<<<<<<<"
 
@@ -189,7 +189,7 @@ namespace :test_datas do
     # 为每个货品创建商品，包括所有的规格组合
     results_index = (0..results.length-1).to_a
     products.each do |product|
-      5.times do
+      10.times do
         good = product.goods.create!(
         name: product.name + Faker::Lorem.word,
         photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,

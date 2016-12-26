@@ -16,15 +16,15 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :goods, only: [:index, :show]
   root 'home#index'
   post 'login' => 'sessions#create'
   get 'detail/:id' => 'details#index'
+  get 'send_msg' => 'auth_code#send_msg'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
-  get 'advanced_select/select' => 'select_car_online#select'
+  get 'products/:id/goods' => 'goods#index', as: :goods
 
   namespace :admin do
     root 'users#guide',as: :guide
