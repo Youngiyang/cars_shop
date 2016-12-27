@@ -26,6 +26,13 @@ class Admin::GoodsController < ApplicationController
     #更多配置
     @attrs_eight = Attr.get_gruop_attr(7).where(is_default: true)
     @specs = Spec.all
+    @albums = Album.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @photos = Photo.order(created_at: :desc).where(album_id: 1)
+  end
+
+  def get_photos
+    @photos = Photo.order(created_at: :desc).where(album_id: params[:album_id])
+    render :partial => "photo", :object => @photos
   end
 
   def create

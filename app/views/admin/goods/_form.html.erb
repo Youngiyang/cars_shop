@@ -6,23 +6,23 @@
       <hr>
       <div class="form-group  col-md-8" data-required="true">
           <%= f.label :name, '车辆名', class: 'control-label' %>
-          <%= f.text_field :name, class: "form-control validate", autofocus: true, placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色" %>
+          <input class="form-control validate name " autofocus="autofocus" type="text",placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色">
       </div>
       <div class="form-group col-md-8" data-required="true">
           <%= f.label :source_from, '产地', class: 'control-label' %>
-          <%= f.text_field :source_from, class: "form-control validate", autofocus: true %>
+          <input class="form-control validate source-from " autofocus="autofocus" type="text">
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :current_price, '现价', class: 'control-label' %>
-          <%= f.text_field :current_price, class: "form-control validate", autofocus: true %>
+          <input class="form-control validate current-price" autofocus="autofocus" type="text">
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :market_price, '市场价', class: 'control-label' %>
-          <%= f.text_field :market_price, class: "form-control validate", autofocus: true %>
+          <input class="form-control validate market-price" autofocus="autofocus" type="text">
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :registered_info, '上牌五证', class: 'control-label' %>
-          <%= f.text_field :registered_info, class: "form-control validate", autofocus: true %>
+          <input class="form-control validate registered-info" autofocus="autofocus" type="text">
        </div>
         <div class="form-group col-md-8" data-required="true">
               <%= f.check_box :in_stock %>
@@ -37,12 +37,80 @@
           </div>
         <% end %>
 
-        <div class="form-group  col-md-12">
-          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图</label>
+        <div class="form-group  main-images col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(手动上传)</label>
           <input id="input-fa" name="inputfa[]" type="file" multiple class="file-loading">
-          <%= f.hidden_field :photo_ids %>
+          <input type="hidden" class="images-id" value= "">
+        </div>
+        <div class="form-group  col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(从相册选择)</label>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal99">从相册选择图片</button>
+          <div class="modal fade myModal" id="myModal99" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                  <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" data-required="true">
+                    <%= f.label "选择相册", class: 'control-label' %>
+                    <select  class="form-control validate get-photos">
+                       <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                       <input type="hidden" class="albums-images-id" value= "">
+                    </select>
+                  </div>
+                  <div class="photos row">
+
+                    <%= render :partial => 'photo', :object => @photos %>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn btn-primary albums-photos" data-dismiss="modal">保存修改</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div class="form-group   details-images col-md-12">
+          <label for="E5rcADdEFxT4EKSY" class="control-label">车辆详情图(手动上传)</label>
+          <input id="input-fb" name="inputfb[]" type="file" multiple class="file-loading">
+          <input type="hidden" class="details-images-id" value= "">
+        </div>
+        <div class="form-group  col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆详情图(从相册选择)</label>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal199">从相册选择图片</button>
+          <div class="modal fade myModal" id="myModal199" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                  <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" data-required="true">
+                    <%= f.label "选择相册", class: 'control-label' %>
+                    <select  class="form-control validate get-details-photos">
+                       <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                       <input type="hidden" class="albums-details-images-id" value= "">
+                    </select>
+                  </div>
+                  <div class="details-photos row">
+                     <%= render :partial => 'photo', :object => @photos %>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn btn-primary albums-details-photos" data-dismiss="modal">保存修改</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <div class="basic-pramater">
       <div class="col-md-12">
@@ -291,7 +359,7 @@
   </div>
 
     <div class="buttons text-right">
-    <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
+    <button type="submit" title="提交" class="btn btn-primary cyan create-btn commit-all-params" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
 <script>
@@ -299,10 +367,45 @@
 
 $(function(){
   //初始化图片上传插件
+    var images = [];
+    var details_images = [];
     $("#input-fa").fileinput({
         language: 'zh', //设置语言
         theme: "fa",
-        uploadUrl: "/admin/upload"
+        allowedFileTypes: ['image'],
+        uploadUrl: "/admin/multi_upload"
+    }).on("fileuploaded", function(event, data) {
+        if(data.response)
+        {
+          images.push(data.response.img.id);
+          console.log(images);
+          $('.images-id').val(images);
+        }
+    });
+    $('.main-images .fileinput-remove').click(function() {
+
+      $('.images-id').val("");
+      images = [];
+      console.log("清空数组成功1");
+    });
+
+    $("#input-fb").fileinput({
+        language: 'zh', //设置语言
+        theme: "fa",
+        allowedFileTypes: ['image'],
+        uploadUrl: "/admin/multi_upload"
+    }).on("fileuploaded", function(event, data) {
+        if(data.response)
+        {
+          details_images.push(data.response.img.id);
+          console.log(details_images);
+          $('.details-images-id').val(details_images);
+        }
+    });
+    $('.details-images .fileinput-remove').click(function(event) {
+      $('.details-images-id').val("");
+      details_images = [];
+      console.log("清空数组成功2");
     });
 
    $('#img_url').change(function(e){
@@ -339,12 +442,12 @@ function setProgress(ele, percent, content) {
   ele.getElementsByClassName("progress-bar")[0].innerText = content;
 }
 
-  if ($('.is_recommended').is(':checked')) {
-      $('.recommended').removeClass('after-recommended')
-    }
-    else{
-      $('.recommended').addClass('after-recommended')
-    };
+if ($('.is_recommended').is(':checked')) {
+    $('.recommended').removeClass('after-recommended')
+  }
+  else{
+    $('.recommended').addClass('after-recommended')
+  };
  $('.is_recommended').change(function() {
     if ($('.is_recommended').is(':checked')) {
       $('.recommended').removeClass('after-recommended')
@@ -402,10 +505,10 @@ function add_new_item (model_button, parent_dom) {
   });
 }
 
-
   $('.admin_form').on('click', '.delete', function() {
     $(this).parents(".new-item").remove();
   });
+
 
 function get_spec_options (){
   var ele = $('.spec-item');
@@ -423,12 +526,109 @@ function get_attr_options () {
   var ele = $('.attr-item');
   var arr2 = [];
   for(var i = 0; i < ele.length; i++ ) {
-    var spec = $(ele[i]).find(':input:eq(1)').val();
-    var spec_value = $(ele[i]).find('input:eq(0)').val();
-    var arr1 = [spec,spec_value];
+    var attr = $(ele[i]).find(':input:eq(1)').val();
+    var attr_value = $(ele[i]).find('input:eq(0)').val();
+    var arr1 = [attr,attr_value];
     arr2.push(arr1);
   }
   return arr2;
 }
+$('.get-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".photos").html(data);
+    }
+  })
+});
+$('.get-details-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".details-photos").html(data);
+    }
+  })
+});
 
+$('.albums-photos').click(function(event) {
+  var arr = []
+    $('.photos input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr.push($(this).val());
+      }
+    })
+  $('.albums-images-id').val(arr);
+  console.log(arr);
+});
+
+$('.albums-details-photos').click(function(event) {
+  var arr2 = []
+    $('.details-photos input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr2.push($(this).val());
+      }
+    })
+  $('.albums-details-images-id').val(arr2);
+  console.log(arr2);
+});
+
+
+function get_images_id () {
+  var upload_by_self = $(".images-id").val().split(",");
+  var select_from_ablums = $(".albums-images-id").val().split(",");
+  console.log(upload_by_self);
+  console.log(select_from_ablums);
+  var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  return result;
+}
+function get_details_images_id () {
+  var upload_by_self = $('.details-images-id').val().split(",");
+  var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  console.log(upload_by_self);
+  console.log(select_from_ablums);
+  var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  return result;
+}
+$('.commit-all-params').click(function() {
+  var name = $(".name").val();
+  var source_from = $(".source-from").val();
+  var current_price = $(".current-price").val();
+  var market_price = $(".market-price").val();
+  var registered_info = $(".registered-info").val();
+  var name = $(".name").val();
+  var name = $(".name").val();
+  var name = $(".name").val();
+  var name = $(".name").val();
+  var name = $(".name").val();
+
+
+  $.ajax({
+    url: '/path/to/file',
+    type: 'POST',
+    data: {"name": 'value1',
+          "source_from": "",
+          "current_price": "",
+          "market_price": "",
+          "registered_info":"",
+          "photo_ids": get_images_id (),
+          "content_photo_ids": get_details_images_id (),
+          "in_stock": "",
+          "all_spec" get_spec_options (),
+
+    },
+    success: function  () {
+
+    }
+  })
+});
 </script>
