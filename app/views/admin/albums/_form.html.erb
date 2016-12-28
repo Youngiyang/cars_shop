@@ -1,5 +1,5 @@
-<%= form_for [:admin, @faq],  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+<%= form_for [:admin, @album],  html:{ class:"col s12 admin_form" } do |f| %>
+   <%= render "admin/share/error_messages", target: @album %>
 
    
 
@@ -27,6 +27,12 @@
 
  
 $(function(){
+   $('form').validate({
+      rules: {
+        "album[name]": "required",
+      }
+    });
+
   var editor = new Simditor({
     textarea: $('textarea'),
     toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', '|', 'hr', 'indent', 'outdent', 'alignment'],

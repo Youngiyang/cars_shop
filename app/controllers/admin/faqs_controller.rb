@@ -29,7 +29,7 @@ class Admin::FaqsController < ApplicationController
   def update
     @faq = Faq.find(params[:id])
     if @faq.update(faq_params)
-      redirect_to admin_faq_path(@faq)
+      redirect_to admin_faqs_path
     else
       render :edit
     end

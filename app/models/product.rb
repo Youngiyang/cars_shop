@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   validates :min_price, numericality: true, allow_nil: true
 
   def entity
-    { id: id, name: name, brand_id: brand_id, 
+    { id: id, name: name, brand_id: brand_id,
       img_url: img_url, category_id: category_id, is_hot: is_hot,
       is_recommended: is_recommended, recommended_words: recommended_words,
       slogan: slogan, min_price: min_price }

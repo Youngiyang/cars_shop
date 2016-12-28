@@ -12,7 +12,7 @@
         <button type="button" class="btn btn-default zy-select-all">全选</button>
         <button type="button" class="btn btn-default zy-select-delete">删除</button>
       </div>
-      <br> 
+      <br>
       <div class="row zy-ck-box">
         <% @photos.each do |p| %>
         <div class="col-sm-6 col-md-4 photo_<%= p.id  %>">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-          <% end %>
+        <% end %>
       </div>
       <div class="row">
         <div class="col-xs-6 pull-right text-right">
@@ -41,7 +41,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
         <%= render "form" %>
@@ -76,7 +76,7 @@ $('.zy-select-delete').click(function(){
       type: 'DELETE',
       data: arr,
       success: function(result) {
-  
+
          for(var i =0; i< result.length; i++ ){
             $('.photo_'+result[i]).remove();
          }

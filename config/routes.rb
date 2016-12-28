@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
   post 'login' => 'sessions#create'
+  get 'detail/:id' => 'details#index'
   get 'send_msg' => 'auth_code#send_msg'
-  get 'detail' => 'details#index'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
@@ -31,20 +31,27 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'users#guide',as: :guide
-    resources :brands
-    resources :orders do 
+    resources :brands do
+      resources :products do
+        resources :goods
+      end
+    end
+    resources :orders do
       collection do
         post 'search'
       end
     end
     resources :advertisements
     resources :faqs
+    resources :attrs
     resources :albums do
       resources :photos, shallow: true
     end
     # resources :photos
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
+    post 'multi_upload' => 'image_uploads#multi_upload'
+    get 'get_photos' => 'goods#get_photos'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

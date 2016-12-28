@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   before_create :ensure_code
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :good
 
   validates :name, presence: true, length: 2..16

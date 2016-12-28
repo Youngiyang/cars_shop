@@ -8,4 +8,13 @@ class Admin::ImageUploadsController < ApplicationController
       render json: { :success=> false }
     end
   end
+
+  def multi_upload
+    @image = ImageUpload.new
+    if @image.save
+      render json: { :img => @image, :info=> true, :msg=>'上传多图成功' }
+    else
+      render json: {:info=> false }
+    end
+  end
 end

@@ -1,17 +1,17 @@
 <%= form_for @photo,  url: admin_album_photos_path,  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+   <%= render "admin/share/error_messages", target: @photo %>
 
     <div class="form-group">
         <label for="E5rcADdEFdxT4EKSY" class="control-label">banner图片</label>
         <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
-          <span class="btn btn-file btn-xs">
+          <span class="btn btn-xs">
             <%= f.file_field :name,
             class: 'form-control',
             placeholder: '点击上传图片',multiple: true,id: 'image_upload' %>
           </span>
         </div>
 
-       
+
       </div>
 
       <div class="progress" id="progress" style="display: none;">
@@ -21,10 +21,10 @@
       </div>
 
 
-    
 
 
-     
+
+
 
 
     <div class="buttons text-right">
@@ -32,6 +32,16 @@
     </div>
 <% end %>
 
+
+<script>
+  $(function(){
+    $('form').validate({
+      rules: {
+        "photo[name][]": "required",
+      }
+    });
+  })
+</script>
 
 
 

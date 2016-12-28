@@ -1,5 +1,5 @@
 <%= form_for [:admin, @advertisement],  html:{ class:"col s12 admin_form" } do |f| %>
-   <%# render "admins/share/error_messages", target: @order %>
+   <%= render "admin/share/error_messages", target: @advertisement %>
 
      
     <div class="form-group">
@@ -33,17 +33,17 @@
          <option value="">请选择位置</option>
           <% case @advertisement.position %>
           <% when 1 %>
-           <option value="1" selected>1</option>
-           <option value="2">2</option>
-           <option value="3">3</option>
+           <option value="1" selected>广告1</option>
+           <option value="2">广告2</option>
+           <option value="3">广告3</option>
           <% when 2 %>  
-           <option value="1">1</option>
-           <option value="2" selected>2</option>
-           <option value="3">3</option>
+           <option value="1">广告1</option>
+           <option value="2" selected>广告2</option>
+           <option value="3">广告3</option>
            <% else %>
-             <option value="1">1</option>
-             <option value="2">2</option>
-             <option value="3" selected>3</option>
+             <option value="1">广告1</option>
+             <option value="2">广告2</option>
+             <option value="3" selected>广告3</option>
            <% end %>
        </select>
      </div>
@@ -66,6 +66,19 @@
 
  
 $(function(){
+  $('form').validate({
+    rules: {
+      "advertisement[img_url]": {
+        required: true,
+        number: true
+      },
+      "advertisement[link]": "required",
+      "advertisement[description]": "required",
+    }
+  });
+
+
+
   var editor = new Simditor({
     textarea: $('textarea'),
     toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', '|', 'hr', 'indent', 'outdent', 'alignment'],
