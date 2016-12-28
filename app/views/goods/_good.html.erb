@@ -1,0 +1,21 @@
+<% @goods.each do |good| %>
+  <li class="car-item-feed clearfix">
+    <%= link_to '#' do %>
+      <div class="car-item-feed-img">
+        <%= image_tag good.photos(good.photo_ids)[0], height:"153" %>
+
+        <span class="color-item">
+          <span class="outer-color">外<i class="icon "></i></span>
+          <span class="inner-color">内<i class="icon"></i></span>
+        </span>
+      </div>
+      <div class="car-item-feed-title">
+        <p><%= good.name %></p>
+      </div>
+      <div class="clearfix price-item">
+        <p class="price"><%= BigDecimal(good.current_price/10000).round(2).to_s + "万" %></p>
+        <p class="supply"><%= good.source_from + "/" + (good.in_stock ? "现货" : "期货") %></p>
+      </div>
+    <% end %>
+  </li>
+<% end %>

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :attr_group do
+  factory :auth_code do
     
   end
 end

@@ -18,11 +18,11 @@
         <li><a href="#" class="grey-text text-darken-4">更新资料</a></li> -->
         <li>
        <!--    <a href="#" class="grey-text text-darken-4">更改密码</a> -->
-       <%= link_to "更改密码", '', class: 'grey-text text-darken-4'%>
+       <%= link_to "更改密码", edit_registration_path(current_admin), class: 'grey-text text-darken-4'%>
         </li>
         <li role="separator" class="divider"></li>
         <li>
-          <%= link_to '', data: {:confirm => "确定退出？"} do  %>
+          <%= link_to destroy_admin_session_path, method: :delete, data: {:confirm => "确定退出？"} do  %>
             <i class="fa fa-sign-out"></i> 登出</a>
           <% end %>
         </li>
