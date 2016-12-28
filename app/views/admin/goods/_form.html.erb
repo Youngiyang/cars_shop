@@ -25,8 +25,8 @@
           <input class="form-control validate registered-info" autofocus="autofocus" type="text">
        </div>
         <div class="form-group col-md-8" data-required="true">
-              <%= f.check_box :in_stock %>
-              <%= f.label :in_stock, '现货', class: 'control-label' %>
+            <%= f.label :in_stock, '现货', class: 'control-label' %>
+            <input type="checkbox" class="is-stock">
         </div>
 
         <% @specs.each do |t| %>
@@ -346,14 +346,9 @@
     </div>
     <div class="car-other">
       <h3 class="col-md-12">更多配置<hr></h3>
-      <% @attrs_eight.each do |t| %>
-        <div class="form-group col-md-8 attr-item" data-required="true">
-
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
-        </div>
-      <% end %>
+      <div class="form-group col-md-8" data-required="true">
+        <input class="form-control validate more-config" autofocus="autofocus" type="text">
+      </div>
     </div>
 
   </div>
@@ -605,29 +600,27 @@ $('.commit-all-params').click(function() {
   var current_price = $(".current-price").val();
   var market_price = $(".market-price").val();
   var registered_info = $(".registered-info").val();
-  var name = $(".name").val();
-  var name = $(".name").val();
-  var name = $(".name").val();
-  var name = $(".name").val();
-  var name = $(".name").val();
-
-
+  var is_stock = $(".is-stock").is(':checked');
+  var more_config = $('.more-config').val();
   $.ajax({
-    url: '/path/to/file',
+    url: '<%= admin_brand_product_goods_path(@brand,@product) %>',
     type: 'POST',
-    data: {"name": 'value1',
-          "source_from": "",
-          "current_price": "",
-          "market_price": "",
-          "registered_info":"",
+    data: { good:
+          {name: name,
+          "source_from": source_from,
+          "current_price": current_price,
+          "market_price": market_price,
+          "registered_info": registered_info,
           "photo_ids": get_images_id (),
           "content_photo_ids": get_details_images_id (),
-          "in_stock": "",
-          "all_spec" get_spec_options (),
+          "in_stock": is_stock,
+          "more_config": more_config,
+          "all_specs":get_spec_options (),
+          "all_attrs": get_attr_options ()}
 
     },
-    success: function  () {
-
+    success: function () {
+      console.log("创建商品成功")
     }
   })
 });

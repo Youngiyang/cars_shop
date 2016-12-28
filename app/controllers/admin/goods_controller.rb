@@ -36,13 +36,11 @@ class Admin::GoodsController < ApplicationController
   end
 
   def create
-    good = Good.new(good_pramas)
+    good = Good.new
+    binding.pry
     if good.save
     end
   end
 
-  private
-  def good_pramas
-    params.require(:good).permit(:name, :source_from,:current_price, :market_price,:registered_info,:in_stock,:status)
-  end
+
 end
