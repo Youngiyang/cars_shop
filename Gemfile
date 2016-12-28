@@ -8,7 +8,7 @@ gem 'will_paginate'
 gem 'carrierwave-qiniu', '~> 1.0.0'
 gem 'carrierwave', '0.6.2'
 gem 'devise'
-
+gem 'china_city'
 gem 'rails'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'

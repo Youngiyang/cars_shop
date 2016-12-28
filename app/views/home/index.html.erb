@@ -1,9 +1,8 @@
 <div class="zy-backdrop"></div>
 
-
 <div class="zy-window-login">
   <div class="zy-window-wraps">
-    <%= form_for :session, url: login_path do |f| %>
+    <%= form_for :session, url: login_path, remote: true do |f| %>
       <h1>手机快捷登录</h1>
       <div class="s-icon">
         <i class="iconfont">&#xe602;</i>
@@ -22,7 +21,6 @@
     <% end %>
   </div>
 </div>
-
 
 <div class="wechat-contact">
   <ul>
@@ -50,7 +48,7 @@
               <ul>
                 <% @brands.each do |brand| %>
                   <li>
-                    <%= link_to '#' do %>
+                    <%= link_to advanced_select_path(brand_id: brand.id) do %>
                       <%= image_tag brand.logo, size: '50x50' %>
                       <div><%= brand.cn_name %></div>
                     <% end %>
@@ -61,11 +59,11 @@
             <div class="price">
               <h4>价格</h4>
               <ul>
-                <li><a href="">20万以下</a></li>
-                <li><a href="">20-30万</a></li>
-                <li><a href="">30-80万</a></li>
-                <li><a href="">80-150万</a></li>
-                <li><a href="">150万以上</a></li>
+                <li><%= link_to "20万以下", advanced_select_path(min: 0, max: 200000) %></li>
+                <li><%= link_to "20-30万", advanced_select_path(min: 200000, max: 300000) %></li>
+                <li><%= link_to "30-80万", advanced_select_path(min: 300000, max: 800000) %></li>
+                <li><%= link_to "80-150万", advanced_select_path(min: 800000, max:1500000) %></li>
+                <li><%= link_to "150万以上", advanced_select_path(min: 1500000, max: 999999999) %></li>
               </ul>
             </div>
             <div class="style">
@@ -284,25 +282,34 @@
 
 
 <script>
-var t_startTime;
-  function startTime() {
-    var t = $('.btn-code').html();
-    if (t == "获取验证码") {
-      t = 0;
-    }
-    if (t == 60 ){
-      $('.btn-code').html('获取验证码');
-       $('.btn-code').attr('disabled',false);
-      return
-    }
-     t = t*1+1;
-      $('.btn-code').html(t);
-      $('.btn-code').attr('disabled',true);
-    t_startTime = setTimeout("startTime()",1000)
+  var countdown=60; 
+  
+  function settime() { 
+    e = $('.btn-code');
+    if (countdown == 0) { 
+      e.removeAttr("disabled"); 
+      e.html("获取验证码"); 
+      countdown = 60; 
+    } else { 
+      e.attr("disabled", true); 
+      e.html("重新发送(" + countdown + ")"); 
+      countdown--;
+      setTimeout(function() { 
+      settime(); 
+      },1000);
+    } 
   }
 
   $('.btn-code').bind('click',function(){
-    startTime();
+    mobile = $("#session_mobile").val();
+    url = "/send_msg?mobile=" + mobile;
+    $.get(url, function(data, status) {
+      if (data.message == "success" ) {
+        settime();
+      } else {
+        alert("请重试");
+      }
+    });
   })
 
   $('.login-btn').bind('click',function(){

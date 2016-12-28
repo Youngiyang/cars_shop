@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   mount V1::API => '/v1'
+  mount ChinaCity::Engine => '/china_city'
 
   get 'uploaders/index'
 
@@ -16,15 +17,17 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :goods, only: [:index, :show]
   root 'home#index'
   post 'login' => 'sessions#create'
-  get 'detail' => 'details#index'
+  get 'detail/:id' => 'details#index'
+  get 'send_msg' => 'auth_code#send_msg'
   get 'appointment' => 'users#appointment'
   get 'personal' => 'users#personal'
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
-  get 'advanced_select/select' => 'select_car_online#select'
+  get 'products/:id/goods' => 'goods#index', as: :goods
+  get 'goods/:good_id/orders/new' => 'orders#new', as: :new_orders
+  post 'goods/:good_id/orders' => 'orders#create', as: :orders
 
   namespace :admin do
     root 'users#guide',as: :guide
