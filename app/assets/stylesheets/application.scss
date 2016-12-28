@@ -15,8 +15,11 @@
  */
 
 @import "bootstrap";
+@import "admin/products";
 @import "qcut";
+@import "fileinput";
 @import "admin/albums";
+@import "admin/attrs";
 
 .simditor {
   margin-top: 50px;

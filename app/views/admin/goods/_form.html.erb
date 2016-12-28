@@ -1,0 +1,627 @@
+<%= form_for @good, url: admin_brand_product_goods_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
+   <%= render "admin/share/error_messages", target: @good %>
+  <div class="row">
+    <div class="car-specs">
+      <h3>车辆规格</h3>
+      <hr>
+      <div class="form-group  col-md-8" data-required="true">
+          <%= f.label :name, '车辆名', class: 'control-label' %>
+          <input class="form-control validate name " autofocus="autofocus" type="text",placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色">
+      </div>
+      <div class="form-group col-md-8" data-required="true">
+          <%= f.label :source_from, '产地', class: 'control-label' %>
+          <input class="form-control validate source-from " autofocus="autofocus" type="text">
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :current_price, '现价', class: 'control-label' %>
+          <input class="form-control validate current-price" autofocus="autofocus" type="text">
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :market_price, '市场价', class: 'control-label' %>
+          <input class="form-control validate market-price" autofocus="autofocus" type="text">
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+          <%= f.label :registered_info, '上牌五证', class: 'control-label' %>
+          <input class="form-control validate registered-info" autofocus="autofocus" type="text">
+       </div>
+        <div class="form-group col-md-8" data-required="true">
+            <%= f.label :in_stock, '现货', class: 'control-label' %>
+            <input type="checkbox" class="is-stock">
+        </div>
+
+        <% @specs.each do |t| %>
+          <div class="form-group col-md-8 spec-item" data-required="true">
+            <label class="control-label" for="good_name"><%= t.name %></label>
+            <input class="form-control validate spec_value" autofocus="autofocus" type="text">
+            <input type="hidden" class="spec_id" value= "<%=t.id %>">
+          </div>
+        <% end %>
+
+        <div class="form-group  main-images col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(手动上传)</label>
+          <input id="input-fa" name="inputfa[]" type="file" multiple class="file-loading">
+          <input type="hidden" class="images-id" value= "">
+        </div>
+        <div class="form-group  col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(从相册选择)</label>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal99">从相册选择图片</button>
+          <div class="modal fade myModal" id="myModal99" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                  <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" data-required="true">
+                    <%= f.label "选择相册", class: 'control-label' %>
+                    <select  class="form-control validate get-photos">
+                       <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                       <input type="hidden" class="albums-images-id" value= "">
+                    </select>
+                  </div>
+                  <div class="photos row">
+
+                    <%= render :partial => 'photo', :object => @photos %>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn btn-primary albums-photos" data-dismiss="modal">保存修改</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group   details-images col-md-12">
+          <label for="E5rcADdEFxT4EKSY" class="control-label">车辆详情图(手动上传)</label>
+          <input id="input-fb" name="inputfb[]" type="file" multiple class="file-loading">
+          <input type="hidden" class="details-images-id" value= "">
+        </div>
+        <div class="form-group  col-md-12">
+          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆详情图(从相册选择)</label>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal199">从相册选择图片</button>
+          <div class="modal fade myModal" id="myModal199" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                  <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" data-required="true">
+                    <%= f.label "选择相册", class: 'control-label' %>
+                    <select  class="form-control validate get-details-photos">
+                       <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                       <input type="hidden" class="albums-details-images-id" value= "">
+                    </select>
+                  </div>
+                  <div class="details-photos row">
+                     <%= render :partial => 'photo', :object => @photos %>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn btn-primary albums-details-photos" data-dismiss="modal">保存修改</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="basic-pramater">
+      <div class="col-md-12">
+        <h3>基本参数<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加更多基本参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增基本参数选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="0">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_one.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-body">
+      <div class="col-md-12">
+        <h3>车身<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">添加更多车身参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增车身选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="1">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater1" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_two.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-engine">
+      <div class="col-md-12">
+        <h3>发动机<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">添加更多发动机参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增发动机选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="2">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater2" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_three.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="speed-change">
+      <div class="col-md-12">
+        <h3>变速箱<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">添加更多变速箱参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增变速箱选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="3">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater3" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_four.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-bottom">
+      <div class="col-md-12">
+        <h3>底盘转向<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal4">添加更多底盘转向参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增底盘转向选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="4">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater4" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_five.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-brake">
+        <div class="col-md-12">
+        <h3>车轮制动<hr></h3>
+        <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">添加更多车轮制动参数</button>
+        </div>
+        <div class="modal fade myModal" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增车轮制动选项</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    <label for="item-name">参数名称</label>
+                    <input type="text" class="form-control" id="item-name" name="attr[key]">
+                    <input type="hidden" name="attr[group_num]" value="5">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary add-pramater5" data-dismiss="modal">保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @attrs_six.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-important">
+      <h3 class="col-md-12">重要配置<hr></h3>
+      <% @attrs_seven.each do |t| %>
+        <div class="form-group col-md-8 attr-item" data-required="true">
+
+          <label class="control-label" for="good_name"><%= t.key %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
+          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+        </div>
+      <% end %>
+    </div>
+    <div class="car-other">
+      <h3 class="col-md-12">更多配置<hr></h3>
+      <div class="form-group col-md-8" data-required="true">
+        <input class="form-control validate more-config" autofocus="autofocus" type="text">
+      </div>
+    </div>
+
+  </div>
+
+    <div class="buttons text-right">
+    <button type="submit" title="提交" class="btn btn-primary cyan create-btn commit-all-params" data-disable-with="请稍等...">提交</button>
+    </div>
+<% end %>
+<script>
+
+
+$(function(){
+  //初始化图片上传插件
+    var images = [];
+    var details_images = [];
+    $("#input-fa").fileinput({
+        language: 'zh', //设置语言
+        theme: "fa",
+        allowedFileTypes: ['image'],
+        uploadUrl: "/admin/multi_upload"
+    }).on("fileuploaded", function(event, data) {
+        if(data.response)
+        {
+          images.push(data.response.img.id);
+          console.log(images);
+          $('.images-id').val(images);
+        }
+    });
+    $('.main-images .fileinput-remove').click(function() {
+
+      $('.images-id').val("");
+      images = [];
+      console.log("清空数组成功1");
+    });
+
+    $("#input-fb").fileinput({
+        language: 'zh', //设置语言
+        theme: "fa",
+        allowedFileTypes: ['image'],
+        uploadUrl: "/admin/multi_upload"
+    }).on("fileuploaded", function(event, data) {
+        if(data.response)
+        {
+          details_images.push(data.response.img.id);
+          console.log(details_images);
+          $('.details-images-id').val(details_images);
+        }
+    });
+    $('.details-images .fileinput-remove').click(function(event) {
+      $('.details-images-id').val("");
+      details_images = [];
+      console.log("清空数组成功2");
+    });
+
+   $('#img_url').change(function(e){
+     var fd = new FormData();
+      fd.append("upload_file", $("#img_url").get(0).files[0]);
+      console.log(fd);
+      setProgress(progress, 0, "开始上传");
+      setProgress(progress, 50, "50%");
+      $.ajax({
+        url: "/admin/upload",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd,
+        success: function(data) {
+          console.log(data.file_path);
+          setProgress(progress, 100, "上传成功");
+              $('#product_img_logo').val(data.file_path);
+              $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
+        }
+      });
+  })
+})
+
+ //设置进度条
+var progress = document.getElementById("progress");
+
+function setProgress(ele, percent, content) {
+  ele.style.display = "block";
+  if (!!percent) {
+    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+  }
+  ele.getElementsByClassName("progress-bar")[0].innerText = content;
+}
+
+if ($('.is_recommended').is(':checked')) {
+    $('.recommended').removeClass('after-recommended')
+  }
+  else{
+    $('.recommended').addClass('after-recommended')
+  };
+ $('.is_recommended').change(function() {
+    if ($('.is_recommended').is(':checked')) {
+      $('.recommended').removeClass('after-recommended')
+    }
+    else{
+      $('.recommended').addClass('after-recommended')
+     };
+ });
+
+  $(".add-pramater").click(function(){
+    add_new_item($(this),$(".basic-pramater"))
+  });
+  $(".add-pramater1").click(function(){
+    add_new_item($(this),$(".car-body"))
+  });
+  $(".add-pramater2").click(function(){
+    add_new_item($(this),$(".car-engine"))
+  });
+  $(".add-pramater3").click(function(){
+    add_new_item($(this),$(".speed-change"))
+  });
+  $(".add-pramater4").click(function(){
+    add_new_item($(this),$(".car-bottom"))
+  });
+  $(".add-pramater5").click(function(){
+    add_new_item($(this),$(".car-brake"))
+  });
+
+function add_new_item (model_button, parent_dom) {
+  var ele_modal = model_button.parents(".myModal").last();
+  var ele_input1 = ele_modal.find('input').get(0);
+  var ele_input2 = ele_modal.find('input').get(1);
+  var ele_input1_value = ele_input1.value;
+  var ele_input2_value = ele_input2.value;
+  $.post("/admin/attrs",
+  {
+    "attr[key]": ele_input1_value,
+    "attr[group_num]": ele_input2_value
+  },
+  function(data,status){
+    console.log(data);
+    var new_item = '<div class="form-group   col-md-12 new-item attr-item">' +
+    '  <label class="control-label col-md-12" for="good_name">'  + data.key + '</label>' +
+    '  <div class="col-md-8">' +
+    '    <input type="text" class="form-control col-md-6" id=' + 'attr_value_' + data.id + '>' +
+    '    <input type="hidden" class=' + 'attr_' + data.id + " " +
+    '    value='  + data.id + '>'  +
+    '  </div>' +
+    '  <div class="col-md-2">' +
+    '    <button type="button" class="btn btn-sm btn-danger delete">删除</button>' +
+    '  </div>' +
+    '</div>';
+    $('#item-name').val("");
+    parent_dom.append(new_item);
+  });
+}
+
+  $('.admin_form').on('click', '.delete', function() {
+    $(this).parents(".new-item").remove();
+  });
+
+
+function get_spec_options (){
+  var ele = $('.spec-item');
+  var arr2 = [];
+  for(var i = 0; i < ele.length; i++ ) {
+    var spec = $(ele[i]).find(':input:eq(1)').val();
+    var spec_value = $(ele[i]).find('input:eq(0)').val();
+    var arr1 = [spec,spec_value];
+    arr2.push(arr1);
+  }
+  return arr2;
+}
+
+function get_attr_options () {
+  var ele = $('.attr-item');
+  var arr2 = [];
+  for(var i = 0; i < ele.length; i++ ) {
+    var attr = $(ele[i]).find(':input:eq(1)').val();
+    var attr_value = $(ele[i]).find('input:eq(0)').val();
+    var arr1 = [attr,attr_value];
+    arr2.push(arr1);
+  }
+  return arr2;
+}
+$('.get-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".photos").html(data);
+    }
+  })
+});
+$('.get-details-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".details-photos").html(data);
+    }
+  })
+});
+
+$('.albums-photos').click(function(event) {
+  var arr = []
+    $('.photos input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr.push($(this).val());
+      }
+    })
+  $('.albums-images-id').val(arr);
+  console.log(arr);
+});
+
+$('.albums-details-photos').click(function(event) {
+  var arr2 = []
+    $('.details-photos input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr2.push($(this).val());
+      }
+    })
+  $('.albums-details-images-id').val(arr2);
+  console.log(arr2);
+});
+
+
+function get_images_id () {
+  var upload_by_self = $(".images-id").val().split(",");
+  var select_from_ablums = $(".albums-images-id").val().split(",");
+  console.log(upload_by_self);
+  console.log(select_from_ablums);
+  var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  return result;
+}
+function get_details_images_id () {
+  var upload_by_self = $('.details-images-id').val().split(",");
+  var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  console.log(upload_by_self);
+  console.log(select_from_ablums);
+  var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  return result;
+}
+$('.commit-all-params').click(function() {
+  var name = $(".name").val();
+  var source_from = $(".source-from").val();
+  var current_price = $(".current-price").val();
+  var market_price = $(".market-price").val();
+  var registered_info = $(".registered-info").val();
+  var is_stock = $(".is-stock").is(':checked');
+  var more_config = $('.more-config').val();
+  $.ajax({
+    url: '<%= admin_brand_product_goods_path(@brand,@product) %>',
+    type: 'POST',
+    data: { good:
+          {name: name,
+          "source_from": source_from,
+          "current_price": current_price,
+          "market_price": market_price,
+          "registered_info": registered_info,
+          "photo_ids": get_images_id (),
+          "content_photo_ids": get_details_images_id (),
+          "in_stock": is_stock,
+          "more_config": more_config,
+          "all_specs":get_spec_options (),
+          "all_attrs": get_attr_options ()}
+
+    },
+    success: function () {
+      console.log("创建商品成功")
+    }
+  })
+});
+</script>

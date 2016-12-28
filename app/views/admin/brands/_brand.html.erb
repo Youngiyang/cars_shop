@@ -1,13 +1,15 @@
 <tr id="brand_<%= brand.id %>">
   <td><%= brand.cn_name %></td>
   <td><%= brand.en_name %></td>
-  <td><%= image_tag brand.logo, width: 100, height: 100 %></td>
+  <td><%= image_tag brand.logo, width: 50, height: 50 %></td>
   <td><%= brand.nationality %></td>
+  <td>10</td>
   <td><%= brand.sort_order %></td>
   <td><%= is_display?(brand.is_show) %></td>
   <td>
-  <%= link_to  '编辑', edit_admin_brand_path(brand), title: '品牌编辑' %>
-  <%= link_to  '删除',  admin_brand_path(brand),
+  <%= link_to  '编辑', edit_admin_brand_path(brand), title: '品牌编辑', class: 'btn btn-success' %>
+  <%= link_to '查看品牌车型', admin_brand_products_path(brand), title: '查看该品牌下所有车型', class: 'btn btn-info' %>
+  <%# link_to  '删除',  admin_brand_path(brand),
         method: "delete",
         remote: true,
         data: {:confirm => "确定删除？"},
