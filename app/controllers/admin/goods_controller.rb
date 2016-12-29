@@ -36,10 +36,44 @@ class Admin::GoodsController < ApplicationController
   end
 
   def create
-    good = Good.new
-    binding.pry
-    if good.save
-    end
+    begin
+      ActiveRecord::Base.transaction do
+        @good = Good.create!(
+          product_id: params[:product_id].to_i,
+          name: params[:good][:name],
+          photo_ids: params[:good][:photo_ids].join(","),
+          content_photo_ids: params[:good][:content_photo_ids].join(","),
+          source_from: params[:good][:source_from],
+          current_price: params[:good][:current_price],
+          market_price: params[:good][:market_price],
+          registered_info: params[:good][:registered_info],
+          in_stock: params[:good][:in_stock]
+          )
+        all_specs = params[:good][:all_specs]
+        all_specs.each_value do |spec|
+          spec_option = SpecOption.where(spec_id: spec[0], value: spec[1]).first
+          if spec_option.nil?
+            spec_option = SpecOption.create!(spec_id: spec[0], value: spec[1])
+          end
+          GoodSpecOption.create!(good_id: @good.id, spec_option_id: spec_option.id)
+        end
+        attrs = params[:good][:all_attrs]
+        attrs.each_value do |attr|
+          attr_option = AttrOption.where(attr_id: attr[0], value: attr[1]).first
+          if attr_option.nil?
+            attr_option = AttrOption.create!(attr_id: attr[0], value: attr[1])
+          end
+          GoodAttrOption.create!(good_id: @good.id, attr_option_id: attr_option.id)
+        end
+        product = Product.find(params[:product_id])
+        if product.min_price > @good.current_price
+          product.update_attributes!(min_price: @good.current_price)
+        end
+        redirect_to admin_brand_product_goods_path(brand_id: params[:brand_id], product_id: params[:product_id])
+      end
+    rescue Exception => e
+      error = e.to_s
+      render js: "alert(#{error})"
   end
 
 
