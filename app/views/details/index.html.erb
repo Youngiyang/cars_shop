@@ -300,7 +300,16 @@
   </div>
   
   <div class="zy-body">  
+  
    <div class="zy-base-config-list">
+      <% @return_hash["goods"].each do |g| %>
+        <% g[:attrs][0].each do |a| %>
+          <%= debug(a)%>
+        <% end %>
+
+
+      <% end %>
+
       <table width="100%" id="" style="" configtable="基本参数">
        <thead>
          <tr>
@@ -583,6 +592,21 @@
 </div>
 
 <script>
+
+  $.get("/v1/details/<%= @id %>",function(data){
+    // console.log(data.goods.length);
+    var str = "";
+    for(var i = 0; i < data.goods.length;i++){
+      console.log(data.goods[i].photos.length)
+      for(var j=0;j<data.goods[i].photos.length;j++){
+        
+         console.log(data.goods[i].photos[j])
+      }
+    }
+  })
+  
+
+
   $('.zy-config-params li').click(function(){
       var index = $(this).index();
       $('.zy-config-params li').removeClass('active');
