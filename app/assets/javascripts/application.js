@@ -22,7 +22,9 @@
 //= require slideBox/lovelygallery
 //= require slideBox/html5zoo
 //= require turbolinks
-
+//= require fileInput/fileinput.min.js
+//= require fileInput/theme
+//= require 'china_city/jquery.china_city'
 
 
 

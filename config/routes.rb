@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   mount V1::API => '/v1'
+  mount ChinaCity::Engine => '/china_city'
 
   get 'uploaders/index'
 
@@ -25,23 +26,32 @@ Rails.application.routes.draw do
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
   get 'products/:id/goods' => 'goods#index', as: :goods
+  get 'goods/:good_id/orders/new' => 'orders#new', as: :new_orders
+  post 'goods/:good_id/orders' => 'orders#create', as: :orders
 
   namespace :admin do
     root 'users#guide',as: :guide
-    resources :brands
-    resources :orders do 
+    resources :brands do
+      resources :products do
+        resources :goods
+      end
+    end
+    resources :orders do
       collection do
         post 'search'
       end
     end
     resources :advertisements
     resources :faqs
+    resources :attrs
     resources :albums do
       resources :photos, shallow: true
     end
     # resources :photos
     resources :users, only: [:index]
     post 'upload' => 'image_uploads#upload'
+    post 'multi_upload' => 'image_uploads#multi_upload'
+    get 'get_photos' => 'goods#get_photos'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">
+      <%= @brand.cn_name %>
+    </h1>
+    <%= link_to "新增车型", new_admin_brand_product_path, class: "btn btn-primary" %>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                  <th>车型</th>
+                  <th>分类</th>
+                  <th>图片</th>
+                  <th>是否热门</th>
+                  <th>是否推荐</th>
+                  <th>最低价</th>
+                  <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @products %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @products %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

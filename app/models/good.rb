@@ -8,12 +8,23 @@ class Good < ActiveRecord::Base
 
   def entity
     { 
-      id: id, product_id: product_id, name: name, photos: photos(photo_ids), 
-      content_photos: photos(content_photo_ids), source_from: source_from, 
+      id: id, product_id: product_id, name: name, photos: Good.photos(photo_ids), 
+      content_photos: Good.photos(content_photo_ids), source_from: source_from, 
       current_price: current_price, market_price: market_price, 
       registered_info: registered_info, in_stock: in_stock, status: status,
       specs: specs, attrs: attrs
     }
+  end
+
+  def highlight_configrations
+    arr = []
+    good_attr_options.each do |good_attr_option|
+    attr = good_attr_option.attr_option.attr
+      if attr.group_num == 7
+        arr << attr.key
+      end
+    end
+    arr
   end
 
   def attrs
@@ -35,7 +46,7 @@ class Good < ActiveRecord::Base
     return_hash
   end
 
-  def photos ids
+  def self.photos ids
     if ids
       photos_a = ids.split(",")
       photos = Photo.find(photos_a)

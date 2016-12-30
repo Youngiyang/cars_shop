@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1 class="title">
+      <%= @product.name %>
+    </h1>
+    <%= link_to "新增车辆", new_admin_brand_product_good_path(@product,@brand), class: "btn btn-primary" %>
+    <hr>
+    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+              <tr role="row">
+                  <th>车名</th>
+                  <th>产地</th>
+                  <th>现价</th>
+                  <th>市场价</th>
+                  <th>是否现货</th>
+                  <th>状态</th>
+                  <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render @goods %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-right text-right">
+          <%= will_paginate @goods %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

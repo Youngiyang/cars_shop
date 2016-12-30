@@ -16,7 +16,7 @@ end
       @photo = Photo.new
       @photo.album_id = params[:album_id]
       @photo.img_url = t
-      @photo.save
+      @photo.save!
     end
     redirect_to admin_album_photos_path(params[:album_id])
   end
