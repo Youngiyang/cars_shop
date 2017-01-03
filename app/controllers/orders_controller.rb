@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def new
     @good = Good.includes(good_attr_options: { attr_option: :attr }).find(params[:good_id])
-    @configrations = @good.highlight_configrations
+    @extra_configration = @good.extra_configration.split(",")
     @image = Good.photos(@good.photo_ids)[0]
   end
 

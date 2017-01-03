@@ -4,5 +4,5 @@ class SpecOption < ActiveRecord::Base
   has_many :goods, through: :good_spec_options
 
   validates_presence_of :spec_id, :value
-  validates_length_of :value, in: 2..16
+  validates_length_of :value, in: 1..16
 end

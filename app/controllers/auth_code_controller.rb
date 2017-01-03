@@ -2,7 +2,6 @@ class AuthCodeController < ApplicationController
   include AuthCodeHelper
 
   def send_msg
-    # binding.pry
     mobile = params[:mobile]
     auth_code = AuthCode.new(
       mobile: mobile,

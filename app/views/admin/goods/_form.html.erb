@@ -354,7 +354,7 @@
   </div>
 
     <div class="buttons text-right">
-    <button type="submit" title="提交" class="btn btn-primary cyan create-btn commit-all-params" data-disable-with="请稍等...">提交</button>
+    <button type="button" title="提交" class="btn btn-primary cyan create-btn commit-all-params" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
 <script>
@@ -606,7 +606,7 @@ $('.commit-all-params').click(function() {
     url: '<%= admin_brand_product_goods_path(@brand,@product) %>',
     type: 'POST',
     data: { good:
-          {name: name,
+          {"name": name,
           "source_from": source_from,
           "current_price": current_price,
           "market_price": market_price,
