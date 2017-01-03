@@ -303,9 +303,36 @@
   
    <div class="zy-base-config-list">
       <% @return_hash["goods"].each do |g| %>
-        <% g[:attrs][0].each do |a| %>
-          <%= debug(a)%>
-        <% end %>
+       <% if g[:id] == 1 %>
+       <table>
+        <tr>
+          <td><%= g[:attrs][0] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][1] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][2] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][3] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][4] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][5] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][6] %></td>
+        </tr>
+        <tr>
+          <td><%= g[:attrs][7] %></td>
+        </tr>
+       </table>
+         
+       <% end %>
+      <%# g[:attrs][0][0] %>
 
 
       <% end %>
