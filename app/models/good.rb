@@ -16,11 +16,11 @@ class Good < ActiveRecord::Base
     }
   end
 
-  def highlight_configrations
+  def configrations group_num
     arr = []
     good_attr_options.each do |good_attr_option|
     attr = good_attr_option.attr_option.attr
-      if attr.group_num == 7
+      if attr.group_num == group_num
         arr << attr.key
       end
     end
@@ -32,7 +32,7 @@ class Good < ActiveRecord::Base
     self.good_attr_options.each do |good_attr_option|
       attr = good_attr_option.attr_option.attr
       return_hash[attr.group_num] = [] unless return_hash[attr.group_num]
-      return_hash[attr.group_num] << { attr.key => good_attr_option.attr_option.value }
+      return_hash[attr.group_num] << { key: attr.key, value: good_attr_option.attr_option.value }
     end
     return_hash
   end

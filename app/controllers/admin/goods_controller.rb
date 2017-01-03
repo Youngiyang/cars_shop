@@ -46,6 +46,7 @@ class Admin::GoodsController < ApplicationController
           source_from: params[:good][:source_from],
           current_price: params[:good][:current_price],
           market_price: params[:good][:market_price],
+          extra_configration: params[:good][:more_config],
           registered_info: params[:good][:registered_info],
           in_stock: params[:good][:in_stock]
           )
@@ -73,8 +74,7 @@ class Admin::GoodsController < ApplicationController
       end
     rescue Exception => e
       error = e.to_s
-      render js: "alert(#{error})"
+      render js: "alert('error!')"
+    end
   end
-
-
 end
