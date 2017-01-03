@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219062910) do
+ActiveRecord::Schema.define(version: 20170103031303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,18 +127,19 @@ ActiveRecord::Schema.define(version: 20161219062910) do
   end
 
   create_table "goods", force: :cascade do |t|
-    t.integer  "product_id",                                                 null: false
-    t.string   "name",                                                       null: false
+    t.integer  "product_id",                                                  null: false
+    t.string   "name",                                                        null: false
     t.string   "photo_ids"
     t.string   "content_photo_ids"
-    t.string   "source_from",                                                null: false
-    t.decimal  "current_price",     precision: 11, scale: 2
-    t.decimal  "market_price",      precision: 11, scale: 2
-    t.string   "registered_info",                                            null: false
-    t.boolean  "in_stock",                                   default: false, null: false
-    t.integer  "status",                                     default: 0,     null: false
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.string   "source_from",                                                 null: false
+    t.decimal  "current_price",      precision: 11, scale: 2
+    t.decimal  "market_price",       precision: 11, scale: 2
+    t.string   "registered_info",                                             null: false
+    t.boolean  "in_stock",                                    default: false, null: false
+    t.integer  "status",                                      default: 0,     null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.string   "extra_configration",                                          null: false
   end
 
   create_table "image_uploads", force: :cascade do |t|
