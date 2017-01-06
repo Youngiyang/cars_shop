@@ -32,16 +32,16 @@ class Good < ActiveRecord::Base
     self.good_attr_options.each do |good_attr_option|
       attr = good_attr_option.attr_option.attr
       return_hash[attr.group_num] = [] unless return_hash[attr.group_num]
-      return_hash[attr.group_num] << { key: attr.key, value: good_attr_option.attr_option.value }
+      return_hash[attr.group_num] << { id: attr.id, key: attr.key, value: good_attr_option.attr_option.value }
     end
     return_hash
   end
 
   def specs
-    return_hash = {}
+    return_hash = []
     self.good_spec_options.each do |good_spec_option|
       spec_option = good_spec_option.spec_option
-      return_hash[spec_option.spec.name] = spec_option.value
+      return_hash << { id: spec_option.spec_id ,key: spec_option.spec.name, value: spec_option.value }
     end
     return_hash
   end
