@@ -2,7 +2,6 @@ class AuthCode < ApplicationRecord
   VALID_MOBILE_REGEX = /\A(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}\z/
   validates :mobile, presence: true, format: { with: VALID_MOBILE_REGEX }
   validates :code, presence: true
-  validates :auth_state, presence: true
 
   def self.generate_code
     ((0...9).to_a.sample(3) + (0...9).to_a.sample(3)).join()

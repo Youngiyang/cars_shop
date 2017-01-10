@@ -22,6 +22,8 @@ class Admin::ProductsController < ApplicationController
   def edit
     @brand = Brand.find(params[:brand_id])
     @product = Product.find(params[:id])
+    @content_photos = Good.photos(@product.content_photo_ids)
+    @photos = Photo.order(created_at: :desc).where(album_id: 1)
   end
 
   def update
