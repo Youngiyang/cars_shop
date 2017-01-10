@@ -1,4 +1,17 @@
-<%= form_for @good, url: admin_brand_product_goods_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="admin-content">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <h1 class="title">
+          编辑车辆
+            <%= link_to admin_brand_product_goods_path(@brand, @product), class: 'btn btn-default btn-xs', title: '取消' do%>
+            <i class="fa fa-mail-reply"></i>
+            <% end %>
+          </h1>
+          <hr>
+          <div class="well">
+            <%= form_for @good, url: admin_brand_product_goods_path(@brand,@product) ,  html:{ class:"col s12 admin_form" } do |f| %>
    <%= render "admin/share/error_messages", target: @good %>
   <div class="row">
     <div class="car-specs">
@@ -6,34 +19,34 @@
       <hr>
       <div class="form-group  col-md-8" data-required="true">
           <%= f.label :name, '车辆名', class: 'control-label' %>
-          <input class="form-control validate name " autofocus="autofocus" type="text",placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色">
+          <input class="form-control validate name " autofocus="autofocus" type="text",placeholder: "例如:2016款宝马X3 xDrive 28i中东版 2.0T 四驱 汽油版 5座 黑色/棕色" value=<%= @good.name %>>
       </div>
       <div class="form-group col-md-8" data-required="true">
           <%= f.label :source_from, '产地', class: 'control-label' %>
-          <input class="form-control validate source-from " autofocus="autofocus" type="text">
+          <input class="form-control validate source-from " autofocus="autofocus" type="text" value=<%= @good.source_from %>>
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :current_price, '现价', class: 'control-label' %>
-          <input class="form-control validate current-price" autofocus="autofocus" type="text">
+          <input class="form-control validate current-price" autofocus="autofocus" type="text" value=<%= @good.current_price %>>
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :market_price, '市场价', class: 'control-label' %>
-          <input class="form-control validate market-price" autofocus="autofocus" type="text">
+          <input class="form-control validate market-price" autofocus="autofocus" type="text" value=<%= @good.market_price %>>
        </div>
         <div class="form-group col-md-8" data-required="true">
           <%= f.label :registered_info, '上牌五证', class: 'control-label' %>
-          <input class="form-control validate registered-info" autofocus="autofocus" type="text">
+          <input class="form-control validate registered-info" autofocus="autofocus" type="text" value=<%= @good.registered_info %>>
        </div>
         <div class="form-group col-md-8" data-required="true">
             <%= f.label :in_stock, '现货', class: 'control-label' %>
-            <input type="checkbox" class="is-stock">
+            <input type="checkbox" class="is-stock" value=<%= @good.in_stock %>>
         </div>
 
-        <% @specs.each do |t| %>
+        <% @good.specs.each do |t| %>
           <div class="form-group col-md-8 spec-item" data-required="true">
-            <label class="control-label" for="good_name"><%= t.name %></label>
-            <input class="form-control validate spec_value" autofocus="autofocus" type="text">
-            <input type="hidden" class="spec_id" value= "<%=t.id %>">
+            <label class="control-label" for="good_name"><%= t[:key] %></label>
+            <input class="form-control validate spec_value" autofocus="autofocus" type="text" value=<%= t[:value] %>>
+            <input type="hidden" class="spec_id" value= "<%= t[:id] %>">
           </div>
         <% end %>
 
@@ -140,12 +153,12 @@
           </div>
         </div>
       </div>
-      <% @attrs_one.each do |t| %>
+      <% @good.attrs[0].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
@@ -177,12 +190,12 @@
           </div>
         </div>
       </div>
-      <% @attrs_two.each do |t| %>
+      <% @good.attrs[1].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
@@ -214,12 +227,12 @@
           </div>
         </div>
       </div>
-      <% @attrs_three.each do |t| %>
+      <% @good.attrs[2].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
@@ -251,12 +264,12 @@
           </div>
         </div>
       </div>
-      <% @attrs_four.each do |t| %>
+      <% @good.attrs[3].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
@@ -288,12 +301,12 @@
           </div>
         </div>
       </div>
-      <% @attrs_five.each do |t| %>
+      <% @good.attrs[4].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:key] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
@@ -325,29 +338,29 @@
           </div>
         </div>
       </div>
-      <% @attrs_six.each do |t| %>
+      <% @good.attrs[5].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
     <div class="car-important">
       <h3 class="col-md-12">重要配置<hr></h3>
-      <% @attrs_seven.each do |t| %>
+      <% @good.attrs[6].each do |t| %>
         <div class="form-group col-md-8 attr-item" data-required="true">
 
-          <label class="control-label" for="good_name"><%= t.key %></label>
-          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t.id %>">
-          <input type="hidden" class="attr_<%= t.id %>" value= "<%=t.id %>">
+          <label class="control-label" for="good_name"><%= t[:key] %></label>
+          <input class="form-control validate" autofocus="autofocus" type="text"  id="attr_value_<%= t[:id] %>" value=<%= t[:value] %>>
+          <input type="hidden" class="attr_<%= t[:id] %>" value= "<%=t[:id] %>">
         </div>
       <% end %>
     </div>
     <div class="car-other">
       <h3 class="col-md-12">更多配置<hr></h3>
       <div class="form-group col-md-8" data-required="true">
-        <input class="form-control validate more-config" autofocus="autofocus" type="text">
+        <input class="form-control validate more-config" autofocus="autofocus" type="text" value=<%= @good.extra_configration %>>
       </div>
     </div>
 
@@ -357,6 +370,13 @@
     <button type="button" title="提交" class="btn btn-primary cyan create-btn commit-all-params" data-disable-with="请稍等...">提交</button>
     </div>
 <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
 
@@ -566,6 +586,17 @@ $('.albums-photos').click(function(event) {
   console.log(arr);
 });
 
+$('.albums-details-photos').click(function(event) {
+  var arr2 = []
+    $('.details-photos input[type=checkbox]').each(function(){
+      if ($(this).prop('checked')== true){
+        arr2.push($(this).val());
+      }
+    })
+  $('.albums-details-images-id').val(arr2);
+  console.log(arr2);
+});
+
 
 function get_images_id () {
   var upload_by_self = $(".images-id").val().split(",");
@@ -575,7 +606,14 @@ function get_images_id () {
   var result = $.unique($.merge(upload_by_self, select_from_ablums))
   return result;
 }
-
+function get_details_images_id () {
+  var upload_by_self = $('.details-images-id').val().split(",");
+  var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  console.log(upload_by_self);
+  console.log(select_from_ablums);
+  var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  return result;
+}
 $('.commit-all-params').click(function() {
   var name = $(".name").val();
   var source_from = $(".source-from").val();
@@ -585,8 +623,8 @@ $('.commit-all-params').click(function() {
   var is_stock = $(".is-stock").is(':checked');
   var more_config = $('.more-config').val();
   $.ajax({
-    url: '<%= admin_brand_product_goods_path(@brand,@product) %>',
-    type: 'POST',
+    url: '<%= admin_brand_product_good_path(@brand,@product,@good) %>',
+    type: 'PATCH',
     data: { good:
           {"name": name,
           "source_from": source_from,
@@ -594,6 +632,7 @@ $('.commit-all-params').click(function() {
           "market_price": market_price,
           "registered_info": registered_info,
           "photo_ids": get_images_id (),
+          "content_photo_ids": get_details_images_id (),
           "in_stock": is_stock,
           "more_config": more_config,
           "all_specs":get_spec_options (),

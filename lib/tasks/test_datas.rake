@@ -27,11 +27,12 @@ namespace :test_datas do
     #为每个品牌创建5个货品
     brands.each do |brand|
       5.times do |i|
-        product = Product.create!(
+        product = Product.new(
                         name: brand.cn_name + ("A".."Z").to_a[rand(25)] + (i + 1).to_s,
                         brand_id: brand.id,
                         category_id: categories[rand(3)].id,
                         img_url: Faker::Avatar.image,
+                        content_photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,
@@ -39,8 +40,8 @@ namespace :test_datas do
         if product.is_recommended
           product.recommended_words = Faker::Lorem.sentence
           product.recommended_sub_title = Faker::Lorem.word
-          product.save!
         end
+        product.save!
       end
     end
     puts ">>>>>>>创建products完成<<<<<<<<"
@@ -170,11 +171,7 @@ namespace :test_datas do
       { key: "前大灯随动转向功能", group_num: 6, is_default: true },
       { key: "大灯清洗", group_num: 6, is_default: true },
       { key: "后视镜加热", group_num: 6, is_default: true },
-      { key: "车身稳定控制", group_num: 6, is_default: true },
-      { key: "电动尾门", group_num: 7, is_default: true },
-      { key: "倒车影像", group_num: 7, is_default: true },
-      { key: "全景天窗", group_num: 7, is_default: true },
-      { key: "电动尾门", group_num: 7, is_default: true },
+      { key: "车身稳定控制", group_num: 6, is_default: true }
       ])
     puts ">>>>>>>创建属性完成<<<<<<<<"
 
@@ -185,7 +182,7 @@ namespace :test_datas do
       end
     end
     puts ">>>>>>>创建属性选项完成<<<<<<<<"
-
+    puts ">>>>>>>正在创建商品信息<<<<<<<<"
     # 为每个货品创建商品，包括所有的规格组合
     results_index = (0..results.length-1).to_a
     products.each do |product|
@@ -196,6 +193,7 @@ namespace :test_datas do
         source_from: Faker::Address.country,
         current_price: rand(1000000),
         market_price: rand(1000000),
+        extra_configration: Faker::Lorem.word + "," + Faker::Lorem.word + "," + Faker::Lorem.word,
         registered_info: "a,b,c,d,e",
         in_stock: Faker::Boolean.boolean,
         )
@@ -211,27 +209,6 @@ namespace :test_datas do
             )
         end
       end
-      # results.each do |result|
-      #   good = product.goods.create!(
-      #     name: product.name + Faker::Lorem.word,
-      #     photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,
-      #     source_from: Faker::Address.country,
-      #     current_price: rand(1000000),
-      #     market_price: rand(1000000),
-      #     registered_info: "a,b,c,d,e",
-      #     in_stock: Faker::Boolean.boolean,
-      #     )
-      #   result.each do |id|
-      #     GoodSpecOption.create!(good_id: good.id, spec_option_id: id)
-      #   end
-      #   #为商品关联具体属性
-      #   attrs.each do |attr|
-      #     GoodAttrOption.create!(
-      #       good_id: good.id,
-      #       attr_option_id: attr.attr_options[rand(3)].id
-      #       )
-      #   end
-      # end
     end
 
     #用户表
