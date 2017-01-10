@@ -32,6 +32,7 @@ namespace :test_datas do
                         brand_id: brand.id,
                         category_id: categories[rand(3)].id,
                         img_url: Faker::Avatar.image,
+                        content_photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,
@@ -212,9 +213,9 @@ namespace :test_datas do
 
     #用户表
     User.create!([
-      {mobile: '13751124249',user_name: 'hikaru',password: '123456'},
-      {mobile: '13751424248',user_name: 'shindou',password: '123456'},
-      {mobile: '13751924247',user_name: 'hiro',password: '123456'},
+      {mobile: '13751124249',user_name: 'hikaru'},
+      {mobile: '13751424248',user_name: 'shindou'},
+      {mobile: '13751924247',user_name: 'hiro'},
       ])
     puts ">>>>>>>创建用户完成<<<<<<<<"
     #订单测试数据
