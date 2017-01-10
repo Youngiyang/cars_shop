@@ -10,7 +10,7 @@ class Admin::AdvertisementsController < ApplicationController
   def create
     @advertisement = Advertisement.new(advertisement_params)
     if @advertisement.save
-      redirect_to admin_advertisements_path
+      redirect_to root_path
     else
       render :new
     end

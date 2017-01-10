@@ -229,23 +229,26 @@
 
   <div class="car-config clearfix">
     <div class="car-config-left">
-      <%= image_tag "x5.png", class: "car-config-img" %>
+      <%= image_tag  @photo_url, class: "car-config-img" %>
        <div class="d-img-list">
           <div class="icon-left"><i class="iconfont">&#xe618;</i></div>
-          <div class="d-list-wrap">
-            <%= image_tag "car2.jpeg" %>
-            <%= image_tag "car3.jpeg" %>
-            <%= image_tag "car4.jpeg" %>
-            <%= image_tag "car2.jpeg" %>
-            <%= image_tag "car1.jpeg" %>
-          </div>
+          <% @return_hash["goods"].each do |g| %>
+           <% if g[:id] == g[:id] %>
+             
+              <div class="d-list-wrap goods_<%= g[:id] %>">
+               <% g[:photos].each do |p| %>
+                  <%= image_tag  p %>
+                <% end %>
+              </div>
+          <% end %>
+          <% end %>
           <div class="icon-right"><i class="iconfont">&#xe619;</i></div>
         </div>
     </div>
     <div class="car-config-right">
-      <h1 class="car-config-title">2016款宝马X5 xDrive 35i中东版 3.0T 四驱 汽油版 5座外黑内棕</h1>
-      <div class="car-fonfig-price">
-        平行车价: <strong>￥75.4万</strong>
+      <h1 class="car-config-title"><%= @good.name %></h1>
+      <div class="car-config-price">
+        平行车价: <strong><%= @good.current_price %>万</strong>
       </div>
       <dl class="car-config-way clearfix">
         <dt>支付方式</dt>
@@ -303,292 +306,95 @@
   
    <div class="zy-base-config-list">
       <% @return_hash["goods"].each do |g| %>
-       <% if g[:id] == 1 %>
-       <table>
-        <tr>
-          <td><%= g[:attrs][0] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][1] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][2] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][3] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][4] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][5] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][6] %></td>
-        </tr>
-        <tr>
-          <td><%= g[:attrs][7] %></td>
-        </tr>
-       </table>
-         
+       <% if g[:id] == g[:id] %>
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2"  class="config_cate">基本参数</td>
+              </tr>
+            <% g[:attrs][0].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">车身</td>
+              </tr>
+            <% g[:attrs][1].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">发动机</td>
+              </tr>
+            <% g[:attrs][2].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">变速箱</td>
+              </tr>
+            <% g[:attrs][3].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">底盘转向</td>
+              </tr>
+            <% g[:attrs][4].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">车轮制动</td>
+              </tr>
+            <% g[:attrs][5].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+
+           <table class="goods_<%= g[:id] %>">
+              <tr>
+                <td colspan="2" class="config_cate">重要配置</td>
+              </tr>
+            <% g[:attrs][6].each do |a| %>
+              <tr>
+                <td><%= a[:key] %></td>
+                <td><%= a[:value] %></td>
+              </tr>
+            <% end %>
+           </table>
+       
        <% end %>
-      <%# g[:attrs][0][0] %>
-
-
       <% end %>
 
-      <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
-     <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
-     <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
-     <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
-     <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
-     <table width="100%" id="" style="" configtable="基本参数">
-       <thead>
-         <tr>
-           <td class="config_cate" colspan="2">基本参数</td>
-         </tr>
-       </thead>
-     
-       <tbody class="config_body">
-         <tr class="even">
-           <td class="td1">级别</td>
-           <td class="td2">中大型SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">发动机</td>
-           <td class="td2">4.6L 310马力 V8</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">变速箱</td>
-           <td class="td2">6挡手自一体</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">长*宽*高（mm）</td>
-           <td class="td2">4950*1980*1890</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">车身结构</td>
-           <td class="td2">5门8座SUV</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">最高车速（km/h）</td>
-           <td class="td2">190</td>
-         </tr>
-         <tr class="even">
-           <td class="td1">官方0-100km/h加速（s）</td>
-           <td class="td2">-</td>
-         </tr>
-         <tr class="odd">
-           <td class="td1">参考油耗（L/100km）</td>
-           <td class="td2">16.6</td>
-         </tr>
-       </tbody>
-     </table>
    </div>
  
   </div>
@@ -599,18 +405,9 @@
         <div class="zy-body clearfix">
           <h1  class="zy-title-list">更多配置</h1>
           <ul class="clearfix">
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
-            <li>全部天窗</li>
+          <% @return_hash["goods"][0][:extra_configration].split(',').each do |t| %>
+            <li><%= t %></li>
+          <% end %>
           </ul>
         </div>
       </div>
@@ -619,18 +416,8 @@
 </div>
 
 <script>
+  $(".goods_"+<%= @id %>).show();
 
-  $.get("/v1/details/<%= @id %>",function(data){
-    // console.log(data.goods.length);
-    var str = "";
-    for(var i = 0; i < data.goods.length;i++){
-      console.log(data.goods[i].photos.length)
-      for(var j=0;j<data.goods[i].photos.length;j++){
-        
-         console.log(data.goods[i].photos[j])
-      }
-    }
-  })
   
 
 
@@ -669,6 +456,7 @@ $('.icon-left').click(function(){
 })
 
 //图片预览
+
 $('.d-img-list img').mouseover(function(){
   var url = $(this).attr('src');
   $('.car-config-img').attr('src',url);

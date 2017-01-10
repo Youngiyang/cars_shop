@@ -7,7 +7,9 @@ class DetailsController < ApplicationController
     # @product = Good.find(params[:id]).product
     # # goods
     # @goods = product.goods
-
+    @id = params[:id]
+    @photo_url = Photo.find( Good.find(params[:id]).photo_ids.split(',').first).img_url
+    @good = Good.find(params[:id])
 
     good = Good.includes(product: { goods: [{ good_spec_options: { spec_option: :spec } }, { good_attr_options: { attr_option: :attr } }] }).find(params[:id])
         product = good.product

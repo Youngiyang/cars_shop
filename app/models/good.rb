@@ -10,7 +10,7 @@ class Good < ActiveRecord::Base
     { 
       id: id, product_id: product_id, name: name, photos: Good.photos(photo_ids), 
       content_photos: Good.photos(content_photo_ids), source_from: source_from, 
-      current_price: current_price, market_price: market_price, 
+      current_price: current_price, market_price: market_price, extra_configration: extra_configration,
       registered_info: registered_info, in_stock: in_stock, status: status,
       specs: specs, attrs: attrs
     }
