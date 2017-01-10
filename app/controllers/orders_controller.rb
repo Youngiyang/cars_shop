@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new(
-      user_id: 1,
+      user_id: current_user,
       good_id: params[:good_id],
       name: params[:order][:name],
       phone_num: params[:order][:phone_num],

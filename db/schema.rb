@@ -219,12 +219,11 @@ ActiveRecord::Schema.define(version: 20161219062910) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "mobile",                      null: false
-    t.string   "password_digest",             null: false
+    t.string   "mobile",                   null: false
     t.string   "user_name"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "orders_count",    default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "orders_count", default: 0
     t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
   end
 

@@ -566,17 +566,6 @@ $('.albums-photos').click(function(event) {
   console.log(arr);
 });
 
-$('.albums-details-photos').click(function(event) {
-  var arr2 = []
-    $('.details-photos input[type=checkbox]').each(function(){
-      if ($(this).prop('checked')== true){
-        arr2.push($(this).val());
-      }
-    })
-  $('.albums-details-images-id').val(arr2);
-  console.log(arr2);
-});
-
 
 function get_images_id () {
   var upload_by_self = $(".images-id").val().split(",");
@@ -586,14 +575,7 @@ function get_images_id () {
   var result = $.unique($.merge(upload_by_self, select_from_ablums))
   return result;
 }
-function get_details_images_id () {
-  var upload_by_self = $('.details-images-id').val().split(",");
-  var select_from_ablums = $(".albums-details-images-id").val().split(",");
-  console.log(upload_by_self);
-  console.log(select_from_ablums);
-  var result = $.unique($.merge(upload_by_self, select_from_ablums))
-  return result;
-}
+
 $('.commit-all-params').click(function() {
   var name = $(".name").val();
   var source_from = $(".source-from").val();
@@ -612,7 +594,6 @@ $('.commit-all-params').click(function() {
           "market_price": market_price,
           "registered_info": registered_info,
           "photo_ids": get_images_id (),
-          "content_photo_ids": get_details_images_id (),
           "in_stock": is_stock,
           "more_config": more_config,
           "all_specs":get_spec_options (),

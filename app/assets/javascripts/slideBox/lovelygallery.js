@@ -65,7 +65,7 @@ jQuery(document).ready(function(){
         navswitchonmouseover:false,
 //      navarrowimage:"../../images3/bg/navarrows-28-28-0.png",
         arrowtop:50,
-        textstyle:"static",
+        textstyle:"none",
         playvideoimageheight:64,
         navfonthighlightcolor:"#666666",
         showbackgroundimage:false,
