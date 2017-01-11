@@ -11,16 +11,17 @@ class Admin::GoodsController < ApplicationController
     @good = Good.includes([good_spec_options: { spec_option: :spec }, good_attr_options: { attr_option: :attr }]).find(params[:id])
     @albums = Album.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @photos = Photo.order(created_at: :desc).where(album_id: 1)
+    @content_photos = Good.photos(@good.photo_ids)
   end
 
   def update
+    @good = Good.includes([good_spec_options: { spec_option: :spec }, good_attr_options: { attr_option: :attr }]).find(params[:id])
     begin
       ActiveRecord::Base.transaction do
         @good.update!(
           product_id: params[:product_id].to_i,
           name: params[:good][:name],
-          photo_ids: params[:good][:photo_ids].join(","),
-          content_photo_ids: params[:good][:content_photo_ids].join(","),
+          photo_ids: params[:good][:photo_ids],
           source_from: params[:good][:source_from],
           current_price: params[:good][:current_price],
           market_price: params[:good][:market_price],
@@ -94,8 +95,7 @@ class Admin::GoodsController < ApplicationController
         @good = Good.create!(
           product_id: params[:product_id].to_i,
           name: params[:good][:name],
-          photo_ids: params[:good][:photo_ids].join(","),
-          content_photo_ids: params[:good][:content_photo_ids].join(","),
+          photo_ids: params[:good][:photo_ids],
           source_from: params[:good][:source_from],
           current_price: params[:good][:current_price],
           market_price: params[:good][:market_price],

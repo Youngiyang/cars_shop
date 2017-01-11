@@ -51,6 +51,50 @@
                   <%= f.text_field :slogan, class: "form-control" %>
                 </div>
 
+                <%= f.hidden_field :content_photo_ids, class: "content_photo_ids" %>
+
+    <div class="form-group">
+      <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆详情图(从相册选择)</label>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal199">从相册选择图片</button>
+      <div class="modal fade myModal" id="myModal199" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+              <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group" data-required="true">
+                <%= f.label "选择相册", class: 'control-label' %>
+                <select  class="form-control validate get-details-photos">
+                   <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                  <!--  <input type="hidden" class="albums-details-images-id" value= ""> -->
+                </select>
+              </div>
+              <div class="details-photos row">
+                 <%= render :partial => 'photo', :object => [@photos, @product] %>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary albums-details-photos" data-dismiss="modal">保存修改</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="">图片预览</label>
+      <div class="image_preview">
+        <% if @content_photos %>
+          <% @content_photos.each do |content_photo| %>
+            <%= image_tag content_photo, class: "img-thumbnail" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
                 <div class="form-group">
                   <label for="E5rcADdEFdxT4EKSY" class="control-label">头像</label>
@@ -137,7 +181,25 @@ if ($('.is_recommended').is(':checked')) {
      };
  });
 
+$('.albums-details-photos').click(function(event) {
+    var arr2 = []
+    var arr3 = []
+      $('.details-photos input[type=checkbox]').each(function(){
+        if ($(this).prop('checked')== true){
+          arr2.push($(this).val());
+          arr3.push($(this).prev().attr("src"));
+          console.log(arr3)
+        }
+      })
+    $('.content_photo_ids').val(arr2.join());
+    var content = "";
+    $.each(arr3, function (arr,value) {
+      content += "<image src=" + value  + " " + "class='img-thumbnail'" + ">"
+    })
+    console.log(content);
+    $(".image_preview").html(content);
 
+  });
 
 </script>
 

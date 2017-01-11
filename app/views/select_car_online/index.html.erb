@@ -394,4 +394,55 @@
     }
   });
 });
+
+  var countdown=60;
+
+  function settime() {
+    e = $('.btn-code');
+    if (countdown == 0) {
+      e.removeAttr("disabled");
+      e.addClass('active-botton');
+      e.html("获取验证码");
+      countdown = 60;
+    } else {
+      e.attr("disabled", true);
+      e.removeClass('active-botton');
+      e.html("重新发送(" + countdown + ")");
+      countdown--;
+      setTimeout(function() {
+      settime();
+      },1000);
+    }
+  }
+  $('.btn-code').click(function(event) {
+    mobile = $("#session_mobile").val();
+    url = "/send_msg?mobile=" + mobile;
+    if (mobile==0) {
+      alert("手机号不能为空");
+    } else{
+      $.get(url, function(data, status) {
+        if (data.message == "success" ) {
+          settime();
+        } else {
+          alert("请重试");
+        }
+      });
+    };
+  });
+
+  $('.login-btn').bind('click',function(){
+    $('.zy-window-login').show();
+      $('.zy-backdrop').show();
+  })
+
+  $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window-login').hide();
+      $('.zy-backdrop').hide();
+      clearTimeout(t_startTime);
+      $('.btn-code').attr('disabled',false);
+      $('.btn-code').html('获取验证码');
+    }
+  })
+
 </script>
