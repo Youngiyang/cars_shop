@@ -1,11 +1,21 @@
 
 <div class="header">
-  <ul class="header-nav">
-    <li class="active"><%= link_to "首页", root_path %></li>
-    <li><%= link_to "在线选车", advanced_select_path %></li>
-    <li>关于我们</li>
-    <li class="active">登陆</li>
-  </ul>
+    <ul class="header-nav">
+      <li class="active"><%= link_to "首页", root_path %></li>
+      <li><%= link_to "在线选车", advanced_select_path %></li>
+      <li>关于我们</li>
+      <% if current_user %>
+        <li class="active login-order">
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% end  %>
+    </ul>
 </div>
 <div class="clearfix"></div>
 <div class="select-car-online clearfix">
@@ -80,7 +90,7 @@
               <div hidden><%= category.id %></div>
             </li>
           <% end %>
-          
+
         <% when "轿车" %>
           <% if category.id == @params[:category_id].to_i %>
             <li class="select-option choosen">
@@ -117,7 +127,7 @@
               <div hidden><%= category.id %></div>
             </li>
           <% end %>
-          
+
         <% when "皮卡" %>
           <% if category.id == @params[:category_id].to_i %>
             <li class="bigger-img" class="select-option choosen">
@@ -130,7 +140,7 @@
               <div hidden><%= category.id %></div>
             </li>
           <% end %>
-          
+
         <% when "轻客" %>
           <% if category.id == @params[:category_id].to_i %>
             <li class="select-option choosen">
@@ -143,7 +153,7 @@
               <div hidden><%= category.id %></div>
             </li>
           <% end %>
-          
+
         <% end %>
       <% end %>
     </ul>

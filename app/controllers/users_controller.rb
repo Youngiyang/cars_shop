@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   layout "frontend"
   def personal
+    @orders = current_user.orders
   end
 
   def appointment
