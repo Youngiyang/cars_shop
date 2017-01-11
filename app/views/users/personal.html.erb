@@ -1,17 +1,23 @@
-
-
-
 <div class="container">
   <div class="header">
     <ul class="header-nav">
-      <li class="active">首页</li>
-      <li>在线选车</li>
+      <li class="active"><%= link_to "首页", root_path %></li>
+      <li><%= link_to "在线选车", advanced_select_path %></li>
       <li>关于我们</li>
-      <li class="active">登陆</li>
+      <% if current_user %>
+        <li class="active login-order">
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% end  %>
     </ul>
   </div>
   <div class="clearfix"></div>
-
   <nav>
     <div class="nav-title">
       个人中心
@@ -24,7 +30,6 @@
        <i class="iconfont">&#xe614;</i>
        我的订单
      </div>
-
      <div class="order-list">
         <div class="order-title clearfix">
           <span class="order-code">订单编号: 123254389123213</span>
@@ -93,112 +98,113 @@
             </div>
 
         </div>
+        <div class="zy-window">
+          <div class="zy-window-wrap">
+            <div class="zy-window-nav clearfix">
+              <div class="zy-window-title">
+                <i class="iconfont" >&#xe606;</i><span>联系客服</span>
+              </div>
+              <div class="zy-window-close">×</div>
+            </div>
+
+            <table cellpadding="0" cellspacing="0" border="1" >
+              <tr>
+                <td>商品名称</td>
+                <td>2016款宝马x5</td>
+              </tr>
+              <tr>
+                <td>下单时间</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td>联系人</td>
+                <td>2016年3月18日11:30</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <p>订单号:13800138000</p>
+                  <span>总价: <h1>￥48.7万</h1></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="zy-windows">
+          <div class="zy-window-wrap">
+            <div class="zy-window-nav clearfix line">
+              <div class="zy-window-title" style="margin-top: 0;">
+                <i class="iconfont" >&#xe606;</i><span>联系客服</span>
+              </div>
+              <div class="zy-window-close">×</div>
+            </div>
+
+            <div class="zy-window-content">
+
+                <ul>
+                 <li>问:什么时候联系我?</li>
+                 <li>在提交联系方式后看心情<span class="window-show" style="display:none;">更多<i class="iconfont" >&#xe616;</i></span></li>
+               </ul>
+              <div class="window-question">
+               <ul>
+                 <li>问:什么时候联系我?</li>
+                 <li>在提交联系方式后看心情</li>
+               </ul>
+               <ul>
+                 <li>问:什么时候联系我?</li>
+                 <li>在提交联系方式后看心情</li>
+               </ul>
+               <ul>
+                 <li>问:什么时候联系我?</li>
+                 <li>在提交联系方式后看心情 <span class="window-hide">收起 <i class="iconfont" >&#xe617;</i></span></li>
+               </ul>
+              </div>
+              <textarea name="" id="" cols="160" rows="10"  placeholder="请介绍自己..."></textarea>
+              <div>
+                <button class="window-submit">提交</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
       </div>
   </div>
 <div class="zy-backdrop"></div>
 
-<div class="zy-window">
-  <div class="zy-window-wrap">
-    <div class="zy-window-nav clearfix">
-      <div class="zy-window-title">
-        <i class="iconfont" >&#xe606;</i><span>联系客服</span>
-      </div>
-      <div class="zy-window-close">×</div>
-    </div>
 
-    <table cellpadding="0" cellspacing="0" border="1" >
-      <tr>
-        <td>商品名称</td>
-        <td>2016款宝马x5</td>
-      </tr>
-      <tr>
-        <td>下单时间</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td>联系人</td>
-        <td>2016年3月18日11:30</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <p>订单号:13800138000</p>
-          <span>总价: <h1>￥48.7万</h1></span>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-<div class="zy-windows">
-  <div class="zy-window-wrap">
-    <div class="zy-window-nav clearfix line">
-      <div class="zy-window-title" style="margin-top: 0;">
-        <i class="iconfont" >&#xe606;</i><span>联系客服</span>
-      </div>
-      <div class="zy-window-close">×</div>
-    </div>
-
-    <div class="zy-window-content">
-
-        <ul>
-         <li>问:什么时候联系我?</li>
-         <li>在提交联系方式后看心情<span class="window-show" style="display:none;">更多<i class="iconfont" >&#xe616;</i></span></li>
-       </ul>
-      <div class="window-question">
-       <ul>
-         <li>问:什么时候联系我?</li>
-         <li>在提交联系方式后看心情</li>
-       </ul>
-       <ul>
-         <li>问:什么时候联系我?</li>
-         <li>在提交联系方式后看心情</li>
-       </ul>
-       <ul>
-         <li>问:什么时候联系我?</li>
-         <li>在提交联系方式后看心情 <span class="window-hide">收起 <i class="iconfont" >&#xe617;</i></span></li>
-       </ul>
-      </div>
-      <textarea name="" id="" cols="160" rows="10"  placeholder="请介绍自己..."></textarea>
-      <div>
-        <button class="window-submit">提交</button>
-      </div>
-    </div>
-
-
-  </div>
-</div>
 </div>
 
 

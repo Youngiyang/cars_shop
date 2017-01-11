@@ -1,10 +1,20 @@
 <div class="container clearfix">
   <div class="header">
     <ul class="header-nav">
-      <li class="active">首页</li>
-      <li>在线选车</li>
+      <li class="active"><%= link_to "首页", root_path %></li>
+      <li><%= link_to "在线选车", advanced_select_path %></li>
       <li>关于我们</li>
-      <li class="active">登陆</li>
+      <% if current_user %>
+        <li class="active login-order">
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% end  %>
     </ul>
   </div>
   <div class="clearfix"></div>
@@ -79,7 +89,7 @@
     <div class="form-group">
      <div class="zy-list-title"> <i class="iconfont">&#xe606;</i><span>选择售后质保</span></div>
      <table cellpadding="0" cellspacing="0" border="1" >
-     
+
       <tr>
         <td>商品名称</td>
         <td>2016款宝马x5</td>
@@ -138,7 +148,7 @@
     </div>
     <% end %>
 
-    
+
 </div>
 
 

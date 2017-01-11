@@ -2,21 +2,20 @@
 
 <div class="zy-window-login">
   <div class="zy-window-wraps">
-    <%# form_for :session, url: login_path, remote: true do |f| %>
-    <%= form_tag "/login", method: "post", remote: true  do %>
+    <%= form_for :session, url: login_path do |f| %>
       <h1>手机快捷登录</h1>
       <div class="s-icon">
         <i class="iconfont">&#xe602;</i>
-        <%= text_field_tag :mobile, params[:name],  placeholder: "请输入手机号" %>
+        <%= f.text_field :mobile, placeholder: "请输入手机号" %>
       </div>
       <div class="s-icon clearfix">
         <i class="iconfont">&#xe608;</i>
-        <%= text_field_tag :auth_code, params[:auth_code],  class: "icon-code", placeholder: "请输入验证码" %>
+        <%= f.text_field :auth_code, class: "icon-code", placeholder: "请输入验证码" %>
         <button class="btn-code active-botton" type="button">获取验证码</button>
       </div>
       <div class="s-submit">
-        <%= submit_tag "登录" %>
-        <%= check_box_tag "checkbox",1,params[:agree], class: "s-check" %>
+        <%= f.submit "登录" %>
+        <%= f.check_box :checkbox, class: "s-check", "checked": "checked" %>
         <p>我已阅读并同意<span>《xx用户注册协议》</span></p>
       </div>
     <% end %>
@@ -37,7 +36,11 @@
       <li>关于我们</li>
       <% if current_user %>
         <li class="active login-order">
-          <i class='iconfont'></i><%= current_user.mobile %><a href='<%= personal_path(current_user) %>'>个人订单<a>
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
         </li>
       <% else %>
         <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
@@ -309,7 +312,7 @@
     }
   }
   $('.btn-code').click(function(event) {
-    mobile = $("#mobile").val();
+    mobile = $("#session_mobile").val();
     url = "/send_msg?mobile=" + mobile;
     if (mobile==0) {
       alert("手机号不能为空");
