@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'users/personal'
 
   get 'users/appointment'
+  get 'users/spec' => 'details#spec'
+  get 'users/fuel/:id/good_id/:good_id' => 'details#fuel'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

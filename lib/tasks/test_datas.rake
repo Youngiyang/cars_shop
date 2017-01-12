@@ -32,6 +32,7 @@ namespace :test_datas do
                         brand_id: brand.id,
                         category_id: categories[rand(3)].id,
                         img_url: Faker::Avatar.image,
+                        content_photo_ids: rand(1..50).to_s + ',' + rand(1..50).to_s + ',' + rand(1..50).to_s,
                         is_hot: Faker::Boolean.boolean(0.2),
                         is_recommended: Faker::Boolean.boolean(0.2),
                         slogan: Faker::Lorem.sentence,

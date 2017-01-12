@@ -246,35 +246,32 @@
         </div>
     </div>
     <div class="car-config-right">
-      <h1 class="car-config-title"><%= @good.name %></h1>
+      <h1 class="car-config-title"><%= @product_id %><%= @good.name %><%= @id %></h1>
       <div class="car-config-price">
         平行车价: <strong><%= @good.current_price %>万</strong>
       </div>
-      <dl class="car-config-way clearfix">
-        <dt>支付方式</dt>
-        <dd class="cho">全款订车<i></i></dd>
-        <dd>订金尾款或贷款购车76.5万</dd>
-      </dl>
-      <dl class="car-config-way clearfix">
-        <dt>支付方式</dt>
-        <dd>全款订车</dd>
-        <dd>订金尾款或贷款购车76.5万</dd>
-      </dl>
-      <dl class="car-config-way clearfix">
-        <dt>支付方式</dt>
-        <dd>全款订车</dd>
-        <dd>订金尾款或贷款购车76.5万</dd>
-      </dl>
-      <dl class="car-config-way clearfix">
-        <dt>支付方式</dt>
-        <dd>全款订车</dd>
-        <dd>订金尾款或贷款购车76.5万</dd>
-      </dl>
-      <dl class="car-config-way clearfix">
-        <dt>支付方式</dt>
-        <dd>全款订车</dd>
-        <dd>订金尾款或贷款购车76.5万</dd>
-      </dl>
+      <div class="zy-fule">
+        <dl class="car-config-way clearfix">
+          <dt>选择燃油</dt>
+          <dd class="cho">全款订车<i></i></dd>
+          <dd>订金尾款或贷款购车76.5万</dd>
+        </dl>
+        <dl class="car-config-way clearfix">
+          <dt>选择排量</dt>
+          <dd>全款订车</dd>
+          <dd>订金尾款或贷款购车76.5万</dd>
+        </dl>
+        <dl class="car-config-way clearfix">
+          <dt>选择颜色</dt>
+          <dd>全款订车</dd>
+          <dd>订金尾款或贷款购车76.5万</dd>
+        </dl>
+        <dl class="car-config-way clearfix">
+          <dt>可选车型</dt>
+          <dd>全款订车</dd>
+          <dd>订金尾款或贷款购车76.5万</dd>
+        </dl>
+      </div>
       <div class="car-config-button">
         <button class="car-config-pre">0元预定</button>
         <button class="car-config-consult">电话咨询</button>
@@ -286,18 +283,9 @@
     <div class="zy-body">
       <h1 class="zy-title-list">亮点配置</h1>
       <ul class="zy-show-img-wrap clearfix">
-        <li>
-          <%= image_tag "abcd.jpeg" %>
-        </li>
-        <li>
-          <%= image_tag "abcd.jpeg" %>
-        </li>
-        <li>
-          <%= image_tag "abcd.jpeg" %>
-        </li>
-        <li>
-          <%= image_tag "abcd.jpeg" %>
-        </li>
+       <%  @return_hash["product"][:content_photos].each do |p| %>
+        <li>  <%= image_tag p %></li>
+       <% end %>
       </ul>
     </div>
   </div>
@@ -417,6 +405,98 @@
 
 <script>
   $(".goods_"+<%= @id %>).show();
+
+  Array.prototype.contains = function (obj) {  
+      var i = this.length;  
+      while (i--) {  
+          if (this[i] === obj) {  
+              return false;  
+          }  
+      }  
+      return true;  
+  }  
+
+  $.get("/users/fuel/<%= @product_id %>/good_id/<%= @id %>",function(data){
+    var fule = [];
+    var displace = []; //排量
+    var color = []; 
+    var model = []; //车型
+    var str = '';
+    str += '        <dl class="car-config-way clearfix">' +
+           '        <dt>选择燃油</dt>';
+           for(var i=0; i < data.length; i ++){
+            if(<%= @id %> == data[i]['good_id']){
+                if(data[i]["name"]=="燃油" && fule.contains(data[i]['value'])){
+                  fule.push(data[i]['value'])
+                  console.log(fule);
+                  if(<%= @id %> == data[i]['good_id']){
+                   str+=   '<dd class="cho" >'+data[i]['value']+'</dd>' 
+                 }
+                 else{
+                   str+=   '<dd >'+data[i]['value']+'</dd>' 
+                 }
+               }
+            }   
+         }
+     str+='         </dl>';
+
+
+      str += '        <dl class="car-config-way clearfix">' +
+           '        <dt>选择排量</dt>';
+       for(var i=0; i < data.length; i ++){
+         if(<%= @id %> == data[i]['good_id']){
+              if(data[i]["name"]=="排量" && displace.contains(data[i]['value'])){
+                displace.push(data[i]['value'])
+                if(<%= @id %> == data[i]['good_id']){
+                  str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
+                }
+                else
+                {
+                  str+=   '<dd >'+data[i]['value']+'</dd>' 
+                }
+              }
+          }
+       }
+      str+='         </dl>';
+
+      str += '        <dl class="car-config-way clearfix">' +
+      '        <dt>选择颜色</dt>';
+      for(var i=0; i < data.length; i ++){
+          if(data[i]["name"]=="外颜色"  && color.contains(data[i]['value']) ){
+            color.push(data[i]['value']);
+            if(<%= @id %> == data[i]['good_id']){
+              str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
+            }else{
+               str+=   '<dd >'+data[i]['value']+'</dd>' 
+            }
+          }
+       }
+
+      str+='         </dl>';
+
+
+       str += '        <dl class="car-config-way clearfix">' +
+           '        <dt>车型</dt>';
+           for(var i=0; i < data.length; i ++){
+            if(data[i]["name"]=="可选车型" && model.contains(data[i]['value']) ){
+              model.push(data[i]['value']);
+              if(<%= @id %> == data[i]['good_id']){
+                 str+=   '<dd class="cho">'+data[i]['value']+'</dd>' 
+              }else{
+                str+=   '<dd >'+data[i]['value']+'</dd>' 
+              }
+            }
+          }
+       str+='         </dl>';
+
+
+
+      $('.zy-fule').html(str);
+
+     
+  })
+
+
 
   
 
