@@ -1,9 +1,19 @@
   <div class="header">
     <ul class="header-nav">
-    <li class="active"><%= link_to "首页", root_path %></li>
-    <li><%= link_to "在线选车", advanced_select_path %></li>
-    <li>关于我们</li>
-    <li class="active">登陆</li>
+      <li class="active"><%= link_to "首页", root_path %></li>
+      <li><%= link_to "在线选车", advanced_select_path %></li>
+      <li>关于我们</li>
+      <% if current_user %>
+        <li class="active login-order">
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% end  %>
     </ul>
   </div>
   <div class="clearfix"></div>
@@ -56,7 +66,7 @@
     var rank = $(".rank dd.active").text();
     var supply = $(".supply dd.active").text();
     var get_url = window.location.href + "?rank=" + rank + "&supply=" + supply;
-    
+
     var content = "<a hidden class='select-click' data-remote='true' href='"+get_url+"'><div>select-click</div></a>";
 
     $(".rank").before(content);

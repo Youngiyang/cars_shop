@@ -6,12 +6,12 @@ class Admin::ProductsController < ApplicationController
   def new
     @brand = Brand.find(params[:brand_id])
     @product = @brand.products.new
+    @photos = Photo.order(created_at: :desc).where(album_id: 1)
   end
 
   def create
     @brand = Brand.find(params[:brand_id])
     @product = @brand.products.build(product_params)
-    binding.pry
     if @product.save
       redirect_to admin_brand_products_path
     else
@@ -22,6 +22,8 @@ class Admin::ProductsController < ApplicationController
   def edit
     @brand = Brand.find(params[:brand_id])
     @product = Product.find(params[:id])
+    @content_photos = Good.photos(@product.content_photo_ids)
+    @photos = Photo.order(created_at: :desc).where(album_id: 1)
   end
 
   def update
@@ -36,7 +38,7 @@ class Admin::ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :img_url, :brand_id, :category_id,:is_hot, :is_recommended, :recommended_sub_title, :recommended_words, :slogan, :min_price)
+    params.require(:product).permit(:name, :img_url, :brand_id, :category_id,:is_hot, :is_recommended, :recommended_sub_title, :recommended_words, :slogan, :min_price,:content_photo_ids)
   end
 end
 

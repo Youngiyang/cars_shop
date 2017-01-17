@@ -1,22 +1,19 @@
 class SessionsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => :create
+  skip_before_filter :verify_authenticity_token, :only => [:create, :logout]
   def create
-    if params[:session][:checkbox] == 1
+    if params[:session][:checkbox] == "1"
       mobile = params[:session][:mobile]
       code = params[:session][:auth_code]
-      binding.pry
       @user = User.find_by(mobile: mobile)
       @user = User.create!(mobile: mobile) if !@user
-      if AuthCode.valid_auth_code?(mobile, code) 
+      if AuthCode.valid_auth_code?(mobile, code)
         log_in @user
-        respond_to do |format|
-          format.html
-          format.js
-        end
-      else
-
+        redirect_to root_path
       end
+    else
+      redirect_to root_path
     end
+
   end
 
   def auth_code
@@ -32,4 +29,10 @@ class SessionsController < ApplicationController
     auth_code.sent_at = Time.now
     auth_code.save!
   end
+
+  def logout
+    log_out if logged_in?
+    redirect_to :root
+  end
+
 end

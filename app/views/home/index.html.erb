@@ -2,7 +2,7 @@
 
 <div class="zy-window-login">
   <div class="zy-window-wraps">
-    <%= form_for :session, url: login_path, remote: true do |f| %>
+    <%= form_for :session, url: login_path do |f| %>
       <h1>手机快捷登录</h1>
       <div class="s-icon">
         <i class="iconfont">&#xe602;</i>
@@ -11,11 +11,11 @@
       <div class="s-icon clearfix">
         <i class="iconfont">&#xe608;</i>
         <%= f.text_field :auth_code, class: "icon-code", placeholder: "请输入验证码" %>
-        <button class="btn-code" type="button">获取验证码</button>
+        <button class="btn-code active-botton" type="button">获取验证码</button>
       </div>
       <div class="s-submit">
         <%= f.submit "登录" %>
-        <%= f.check_box :checkbox, class: "s-check" %>
+        <%= f.check_box :checkbox, class: "s-check", "checked": "checked" %>
         <p>我已阅读并同意<span>《xx用户注册协议》</span></p>
       </div>
     <% end %>
@@ -34,7 +34,17 @@
       <li class="active"><%= link_to "首页", root_path %></li>
       <li><%= link_to "在线选车", advanced_select_path %></li>
       <li>关于我们</li>
-      <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% if current_user %>
+        <li class="active login-order">
+          <i class='iconfont'></i><%= current_user.mobile %>
+          &nbsp;
+          <a href='<%= personal_path(current_user) %>'>个人订单<a>
+          &nbsp;
+          <%= link_to "退出", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
+      <% end  %>
     </ul>
   </div>
   <div class="sidebar">
@@ -111,7 +121,7 @@
               </ul>
             </div>
             <div class="zy-brand-cars-right">
-              <ul>   
+              <ul>
                 <% @advertisements_1.each do |ad| %>
                   <li>
                     <%= link_to ad.link do %>
@@ -282,35 +292,40 @@
 
 
 <script>
-  var countdown=60; 
-  
-  function settime() { 
-    e = $('.btn-code');
-    if (countdown == 0) { 
-      e.removeAttr("disabled"); 
-      e.html("获取验证码"); 
-      countdown = 60; 
-    } else { 
-      e.attr("disabled", true); 
-      e.html("重新发送(" + countdown + ")"); 
-      countdown--;
-      setTimeout(function() { 
-      settime(); 
-      },1000);
-    } 
-  }
+  var countdown=60;
 
-  $('.btn-code').bind('click',function(){
+  function settime() {
+    e = $('.btn-code');
+    if (countdown == 0) {
+      e.removeAttr("disabled");
+      e.addClass('active-botton');
+      e.html("获取验证码");
+      countdown = 60;
+    } else {
+      e.attr("disabled", true);
+      e.removeClass('active-botton');
+      e.html("重新发送(" + countdown + ")");
+      countdown--;
+      setTimeout(function() {
+      settime();
+      },1000);
+    }
+  }
+  $('.btn-code').click(function(event) {
     mobile = $("#session_mobile").val();
     url = "/send_msg?mobile=" + mobile;
-    $.get(url, function(data, status) {
-      if (data.message == "success" ) {
-        settime();
-      } else {
-        alert("请重试");
-      }
-    });
-  })
+    if (mobile==0) {
+      alert("手机号不能为空");
+    } else{
+      $.get(url, function(data, status) {
+        if (data.message == "success" ) {
+          settime();
+        } else {
+          alert("请重试");
+        }
+      });
+    };
+  });
 
   $('.login-btn').bind('click',function(){
     $('.zy-window-login').show();

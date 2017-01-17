@@ -37,49 +37,6 @@
           </div>
         <% end %>
 
-        <div class="form-group  main-images col-md-12">
-          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(手动上传)</label>
-          <input id="input-fa" name="inputfa[]" type="file" multiple class="file-loading">
-          <input type="hidden" class="images-id" value= "">
-        </div>
-        <div class="form-group  col-md-12">
-          <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆主图(从相册选择)</label>
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal99">从相册选择图片</button>
-          <div class="modal fade myModal" id="myModal99" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
-                  <h4 class="modal-title" id="myModalLabel">选择相册</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group" data-required="true">
-                    <%= f.label "选择相册", class: 'control-label' %>
-                    <select  class="form-control validate get-photos">
-                       <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
-                       <input type="hidden" class="albums-images-id" value= "">
-                    </select>
-                  </div>
-                  <div class="photos row">
-
-                    <%= render :partial => 'photo', :object => @photos %>
-                  </div>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                  <button type="button" class="btn btn-primary albums-photos" data-dismiss="modal">保存修改</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group   details-images col-md-12">
-          <label for="E5rcADdEFxT4EKSY" class="control-label">车辆详情图(手动上传)</label>
-          <input id="input-fb" name="inputfb[]" type="file" multiple class="file-loading">
-          <input type="hidden" class="details-images-id" value= "">
-        </div>
         <div class="form-group  col-md-12">
           <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆详情图(从相册选择)</label>
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal199">从相册选择图片</button>
@@ -111,6 +68,14 @@
             </div>
           </div>
         </div>
+        <div class="form-group col-md-12">
+      <label for="">图片预览</label>
+      <div class="image_preview">
+        
+      </div>
+      <input type="hidden" class="photo_ids" value="">
+    </div>
+
     </div>
     <div class="basic-pramater">
       <div class="col-md-12">
@@ -360,82 +325,82 @@
 <script>
 
 
-$(function(){
-  //初始化图片上传插件
-    var images = [];
-    var details_images = [];
-    $("#input-fa").fileinput({
-        language: 'zh', //设置语言
-        theme: "fa",
-        allowedFileTypes: ['image'],
-        uploadUrl: "/admin/multi_upload"
-    }).on("fileuploaded", function(event, data) {
-        if(data.response)
-        {
-          images.push(data.response.img.id);
-          console.log(images);
-          $('.images-id').val(images);
-        }
-    });
-    $('.main-images .fileinput-remove').click(function() {
+// $(function(){
+//   //初始化图片上传插件
+//     var images = [];
+//     var details_images = [];
+//     $("#input-fa").fileinput({
+//         language: 'zh', //设置语言
+//         theme: "fa",
+//         allowedFileTypes: ['image'],
+//         uploadUrl: "/admin/multi_upload"
+//     }).on("fileuploaded", function(event, data) {
+//         if(data.response)
+//         {
+//           images.push(data.response.img.id);
+//           console.log(images);
+//           $('.images-id').val(images);
+//         }
+//     });
+//     $('.main-images .fileinput-remove').click(function() {
 
-      $('.images-id').val("");
-      images = [];
-      console.log("清空数组成功1");
-    });
+//       $('.images-id').val("");
+//       images = [];
+//       console.log("清空数组成功1");
+//     });
 
-    $("#input-fb").fileinput({
-        language: 'zh', //设置语言
-        theme: "fa",
-        allowedFileTypes: ['image'],
-        uploadUrl: "/admin/multi_upload"
-    }).on("fileuploaded", function(event, data) {
-        if(data.response)
-        {
-          details_images.push(data.response.img.id);
-          console.log(details_images);
-          $('.details-images-id').val(details_images);
-        }
-    });
-    $('.details-images .fileinput-remove').click(function(event) {
-      $('.details-images-id').val("");
-      details_images = [];
-      console.log("清空数组成功2");
-    });
+//     $("#input-fb").fileinput({
+//         language: 'zh', //设置语言
+//         theme: "fa",
+//         allowedFileTypes: ['image'],
+//         uploadUrl: "/admin/multi_upload"
+//     }).on("fileuploaded", function(event, data) {
+//         if(data.response)
+//         {
+//           details_images.push(data.response.img.id);
+//           console.log(details_images);
+//           $('.details-images-id').val(details_images);
+//         }
+//     });
+//     $('.details-images .fileinput-remove').click(function(event) {
+//       $('.details-images-id').val("");
+//       details_images = [];
+//       console.log("清空数组成功2");
+//     });
 
-   $('#img_url').change(function(e){
-     var fd = new FormData();
-      fd.append("upload_file", $("#img_url").get(0).files[0]);
-      console.log(fd);
-      setProgress(progress, 0, "开始上传");
-      setProgress(progress, 50, "50%");
-      $.ajax({
-        url: "/admin/upload",
-        type: "POST",
-        processData: false,
-        contentType: false,
-        data: fd,
-        success: function(data) {
-          console.log(data.file_path);
-          setProgress(progress, 100, "上传成功");
-              $('#product_img_logo').val(data.file_path);
-              $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
-        }
-      });
-  })
-})
+//    $('#img_url').change(function(e){
+//      var fd = new FormData();
+//       fd.append("upload_file", $("#img_url").get(0).files[0]);
+//       console.log(fd);
+//       setProgress(progress, 0, "开始上传");
+//       setProgress(progress, 50, "50%");
+//       $.ajax({
+//         url: "/admin/upload",
+//         type: "POST",
+//         processData: false,
+//         contentType: false,
+//         data: fd,
+//         success: function(data) {
+//           console.log(data.file_path);
+//           setProgress(progress, 100, "上传成功");
+//               $('#product_img_logo').val(data.file_path);
+//               $('#product_logo').attr('src', data.file_path + "<%= image_size %>");
+//         }
+//       });
+//   })
+// })
 
- //设置进度条
-var progress = document.getElementById("progress");
+//  //设置进度条
+// var progress = document.getElementById("progress");
 
-function setProgress(ele, percent, content) {
-  ele.style.display = "block";
-  if (!!percent) {
-    ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
-    ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
-  }
-  ele.getElementsByClassName("progress-bar")[0].innerText = content;
-}
+// function setProgress(ele, percent, content) {
+//   ele.style.display = "block";
+//   if (!!percent) {
+//     ele.getElementsByClassName("progress-bar")[0].style.width = percent + "%";
+//     ele.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", percent);
+//   }
+//   ele.getElementsByClassName("progress-bar")[0].innerText = content;
+// }
 
 if ($('.is_recommended').is(':checked')) {
     $('.recommended').removeClass('after-recommended')
@@ -555,45 +520,29 @@ $('.get-details-photos').change(function(event) {
   })
 });
 
-$('.albums-photos').click(function(event) {
-  var arr = []
-    $('.photos input[type=checkbox]').each(function(){
-      if ($(this).prop('checked')== true){
-        arr.push($(this).val());
-      }
+    $('.albums-details-photos').click(function(event) {
+    var arr2 = []
+    var arr3 = []
+      $('.details-photos input[type=checkbox]').each(function(){
+        if ($(this).prop('checked')== true){
+          arr2.push($(this).val());
+          arr3.push($(this).prev().attr("src"));
+        }
+      })
+    $('.photo_ids').val(arr2.join());
+    var content = "";
+    $.each(arr3, function (arr,value) {
+      content += "<image src=" + value  + " " + "class='img-thumbnail'" + ">"
     })
-  $('.albums-images-id').val(arr);
-  console.log(arr);
-});
-
-$('.albums-details-photos').click(function(event) {
-  var arr2 = []
-    $('.details-photos input[type=checkbox]').each(function(){
-      if ($(this).prop('checked')== true){
-        arr2.push($(this).val());
-      }
-    })
-  $('.albums-details-images-id').val(arr2);
-  console.log(arr2);
-});
+    $(".image_preview").html(content);
+  });
 
 
 function get_images_id () {
-  var upload_by_self = $(".images-id").val().split(",");
-  var select_from_ablums = $(".albums-images-id").val().split(",");
-  console.log(upload_by_self);
-  console.log(select_from_ablums);
-  var result = $.unique($.merge(upload_by_self, select_from_ablums))
-  return result;
+  var select_from_ablums = $(".photo_ids").val();
+  return select_from_ablums;
 }
-function get_details_images_id () {
-  var upload_by_self = $('.details-images-id').val().split(",");
-  var select_from_ablums = $(".albums-details-images-id").val().split(",");
-  console.log(upload_by_self);
-  console.log(select_from_ablums);
-  var result = $.unique($.merge(upload_by_self, select_from_ablums))
-  return result;
-}
+
 $('.commit-all-params').click(function() {
   var name = $(".name").val();
   var source_from = $(".source-from").val();
@@ -612,7 +561,6 @@ $('.commit-all-params').click(function() {
           "market_price": market_price,
           "registered_info": registered_info,
           "photo_ids": get_images_id (),
-          "content_photo_ids": get_details_images_id (),
           "in_stock": is_stock,
           "more_config": more_config,
           "all_specs":get_spec_options (),

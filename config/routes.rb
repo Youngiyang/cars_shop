@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'uploaders/index'
 
 
-  get 'users/personal'
 
   get 'users/appointment'
   get 'users/spec' => 'details#spec'
@@ -21,10 +20,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
   post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#logout'
   get 'detail/:id' => 'details#index'
   get 'send_msg' => 'auth_code#send_msg'
   get 'appointment' => 'users#appointment'
-  get 'personal' => 'users#personal'
+  get 'users/:user_id/personal' => 'users#personal', as: :personal
   get 'select_car_online' => 'select_car_online#index'
   get 'advanced_select' => 'select_car_online#advanced_select'
   get 'products/:id/goods' => 'goods#index', as: :goods

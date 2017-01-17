@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     order = Order.new(
       user_id: 1,
       good_id: params[:good_id],

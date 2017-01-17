@@ -1,4 +1,4 @@
-<%= form_for @product, url: admin_brand_products_path ,  html:{ class:"col s12 admin_form" } do |f| %>
+<%= form_for @product, url: admin_brand_products_path ,  html:{ class:"col s12 products_form" } do |f| %>
    <%= render "admin/share/error_messages", target: @product %>
    <div class="form-group" data-required="true">
         <%= f.label :name, '车型', class: 'control-label' %>
@@ -43,6 +43,48 @@
     </div>
 
 
+    <%= f.hidden_field :content_photo_ids, class: "content_photo_ids" %>
+
+    <div class="form-group">
+      <label for="E5rcADdEFdxT4EKSY" class="control-label">车辆详情图(从相册选择)</label>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal199">从相册选择图片</button>
+      <div class="modal fade myModal" id="myModal199" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+              <h4 class="modal-title" id="myModalLabel">选择相册</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group" data-required="true">
+                <%= f.label "选择相册", class: 'control-label' %>
+                <select  class="form-control validate get-details-photos">
+                   <%= options_from_collection_for_select(Album.all, 'id', 'name') %>
+                  <!--  <input type="hidden" class="albums-details-images-id" value= ""> -->
+                </select>
+              </div>
+              <div class="details-photos row">
+                 <%= render :partial => 'photo', :object => @photos %>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary albums-details-photos" data-dismiss="modal">保存修改</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="">图片预览</label>
+      <div class="image_preview">
+        
+      </div>
+    </div>
+
+
     <div class="form-group">
       <label for="E5rcADdEFdxT4EKSY" class="control-label">头像</label>
       <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
@@ -62,6 +104,8 @@
         请上传图片
       </div>
     </div>
+
+    <%= f.hidden_field :content_photo_ids, class: "content_photo_ids" %>
 
     <div class="buttons text-right">
       <button type="submit" title="提交" class="btn btn-primary cyan create-btn" data-disable-with="请稍等...">提交</button>
@@ -120,6 +164,69 @@ function setProgress(ele, percent, content) {
       $('.recommended').addClass('after-recommended')
      };
  });
+  // var details_images = [];
+  // $("#input-fb").fileinput({
+  //       language: 'zh', //设置语言
+  //       theme: "fa",
+  //       allowedFileTypes: ['image'],
+  //       uploadUrl: "/admin/multi_upload"
+  //   }).on("fileuploaded", function(event, data) {
+  //       if(data.response)
+  //       {
+  //         details_images.push(data.response.img.id);
+  //         console.log(details_images);
+  //         $('.details-images-id').val(details_images);
+  //       }
+  //   });
+  //   $('.details-images .fileinput-remove').click(function(event) {
+  //     $('.details-images-id').val("");
+  //     details_images = [];
+  //     console.log("清空数组成功2");
+  //   });
+
+    $('.albums-details-photos').click(function(event) {
+    var arr2 = []
+    var arr3 = []
+      $('.details-photos input[type=checkbox]').each(function(){
+        if ($(this).prop('checked')== true){
+          arr2.push($(this).val());
+          arr3.push($(this).prev().attr("src"));
+          console.log(arr3)
+        }
+      })
+    $('.content_photo_ids').val(arr2.join());
+    var content = "";
+    $.each(arr3, function (arr,value) {
+      content += "<image src=" + value  + " " + "class='img-thumbnail'" + ">"
+    })
+    console.log(content);
+    $(".image_preview").html(content);
+  });
+
+  // function get_details_images_id () {
+  //   var upload_by_self = $('.details-images-id').val().split(",");
+  //   var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  //   console.log(upload_by_self);
+  //   console.log(select_from_ablums);
+  //   var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  //   return result;
+  // }
 
 
+  // $('.albums-details-photos').click(function() {
+  //   var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  //   console.log(select_from_ablums);
+  //   var select_from_ablums = result.join(",");
+  //   console.log(result_str);
+
+  // $('.create-btn').click(function() {
+  //   var upload_by_self = $('.details-images-id').val().split(",");
+  //   var select_from_ablums = $(".albums-details-images-id").val().split(",");
+  //   console.log(upload_by_self);
+  //   console.log(select_from_ablums);
+  //   var result = $.unique($.merge(upload_by_self, select_from_ablums))
+  //   var result_str = result.join(",");
+  //   console.log(result_str);
+  //   $('.content_photo_ids').val(result_str);
+  // });
 </script>
