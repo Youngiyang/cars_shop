@@ -1,5 +1,6 @@
 <div class="zy-backdrop"></div>
 
+<%= form_for [@consultations], remote: true do |f| %>
 <div class="zy-window" style="width: 400px;">
   <div class="zy-window-wrap" style="width: 330px;margin: 20px auto; ">
     <div class="zy-window-content" >
@@ -10,7 +11,7 @@
      </div>
       <div class="zy-window-row">
         <label for="">意向车型</label>
-        <input type="text">
+        <input type="text" id="car_type">
       </div>
       <div class="zy-window-row">
         <label for="">上牌城市</label>
@@ -23,11 +24,11 @@
       </div>
       <div class="zy-window-row">
         <label for="">姓名</label>
-        <input type="text">
+        <input type="text" id="car_name">
       </div>
       <div class="zy-window-row">
         <label for="">联系方式</label>
-        <input type="text" name="" id="">
+        <input type="text" name="" id="car_contact">
       </div>
      <div class="zy-window-row">
         <button id="zy-window-phone-button">提交</button>
@@ -42,6 +43,7 @@
     
   </div>
 </div>
+<% end %>
 
 <div class="container">
  <div class="header">
@@ -444,17 +446,15 @@
       str += '        <dl class="car-config-way clearfix">' +
            '        <dt>选择排量</dt>';
        for(var i=0; i < data.length; i ++){
-         if(<%= @id %> == data[i]['good_id']){
-              if(data[i]["name"]=="排量" && displace.contains(data[i]['value'])){
-                displace.push(data[i]['value'])
-                if(<%= @id %> == data[i]['good_id']){
-                  str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
-                }
-                else
-                {
-                  str+=   '<dd >'+data[i]['value']+'</dd>' 
-                }
-              }
+          if(data[i]["name"]=="排量" && displace.contains(data[i]['value'])){
+            displace.push(data[i]['value'])
+            if(<%= @id %> == data[i]['good_id']){
+              str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
+            }
+            else
+            {
+              str+=   '<dd >'+data[i]['value']+'</dd>' 
+            }
           }
        }
       str+='         </dl>';
@@ -510,8 +510,11 @@
   })
 
  //关闭弹窗
-
- basecar.openWindow('.car-config-consult','.zy-backdrop','.zy-window');
+$('.car-config-consult').click(function(){
+     $('.zy-window').show();
+   $('.zy-backdrop').show();
+  })
+ // basecar.openWindow('.car-config-consult','.zy-backdrop','.zy-window');
  basecar.closeMask('.zy-backdrop','.zy-window');
 
  //图片移动

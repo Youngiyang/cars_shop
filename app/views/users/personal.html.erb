@@ -267,12 +267,41 @@
 
         </div>
       </div>
+
+
   </div>
 </div>
 
 <script>
+ $('.order-detail-btn').click(function(){
+   $('.zy-window').show();
+   $('.zy-backdrop').show();
+  })
+
+  $('.car-config-consult').click(function(){
+     $('.zy-windows').show();
+   $('.zy-backdrop').show();
+  })
+//关闭弹窗
+ $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window').hide();
+      $('.zy-windows').hide();
+      $('.zy-backdrop').hide();
+    }
+  })
+
+ $('.window-hide').click(function(){
+  $('.window-question').hide(500);
+  $('.window-show').show();
+ })
+
+ $('.window-show').click(function(){
+  $('.window-question').show(500);
+  $('.window-show').hide();
+ }
 basecar.openWindow('.order-detail-btn','.zy-window','.zy-backdrop')
-basecar.openWindow('.order-contact-btn','.zy-windows','.zy-backdrop')
+// basecar.openWindow('.car-config-consult','.zy-windows','.zy-backdrop')
 basecar.closeMask('.zy-backdrop','.zy-window','.zy-windows');
 basecar.Shink('.window-hide','.window-show','.window-question');
 basecar.Shink('.window-show','.window-question','.window-show');
