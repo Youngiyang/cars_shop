@@ -257,7 +257,13 @@ form_authenticity_token) %>
         平行车价: <strong><%= @good.current_price %>万</strong>
       </div>
       <div class="zy-fule">
+        <% @good_params.each do |g| %>
         <dl class="car-config-way clearfix">
+          <dt><%= g.name %></dt>
+          <dd class="cho"><%= g.value %></dd>
+        </dl>
+        <% end %>
+       <!--  <dl class="car-config-way clearfix">
           <dt>选择燃油</dt>
           <dd class="cho">全款订车<i></i></dd>
           <dd>订金尾款或贷款购车76.5万</dd>
@@ -276,7 +282,7 @@ form_authenticity_token) %>
           <dt>可选车型</dt>
           <dd>全款订车</dd>
           <dd>订金尾款或贷款购车76.5万</dd>
-        </dl>
+        </dl> -->
       </div>
       <div class="car-config-button">
         <button class="car-config-pre">0元预定</button>
@@ -422,83 +428,83 @@ form_authenticity_token) %>
       return true;  
   }  
 
-  $.get("/users/fuel/<%= @product_id %>/good_id/<%= @id %>",function(data){
-    var fule = [];
-    var displace = []; //排量
-    var color = []; 
-    var model = []; //车型
-    var str = '';
-    str += '        <dl class="car-config-way clearfix">' +
-           '        <dt>选择燃油</dt>';
-           for(var i=0; i < data.length; i ++){
-            if(<%= @id %> == data[i]['good_id']){
-                if(data[i]["name"]=="燃油" && fule.contains(data[i]['value'])){
-                  fule.push(data[i]['value'])
-                  console.log(fule);
-                  if(<%= @id %> == data[i]['good_id']){
-                   str+=   '<dd class="cho" >'+data[i]['value']+'</dd>' 
-                 }
-                 else{
-                   str+=   '<dd >'+data[i]['value']+'</dd>' 
-                 }
-               }
-            }   
-         }
-     str+='         </dl>';
+  // $.get("/users/fuel/<%= @product_id %>/good_id/<%= @id %>",function(data){
+  //   var fule = [];
+  //   var displace = []; //排量
+  //   var color = []; 
+  //   var model = []; //车型
+  //   var str = '';
+  //   str += '        <dl class="car-config-way clearfix">' +
+  //          '        <dt>选择燃油</dt>';
+  //          for(var i=0; i < data.length; i ++){
+  //           if(<%= @id %> == data[i]['good_id']){
+  //               if(data[i]["name"]=="燃油" && fule.contains(data[i]['value'])){
+  //                 fule.push(data[i]['value'])
+  //                 console.log(fule);
+  //                 if(<%= @id %> == data[i]['good_id']){
+  //                  str+=   '<dd class="cho" >'+data[i]['value']+'</dd>' 
+  //                }
+  //                else{
+  //                  str+=   '<dd >'+data[i]['value']+'</dd>' 
+  //                }
+  //              }
+  //           }   
+  //        }
+  //    str+='         </dl>';
 
 
-      str += '        <dl class="car-config-way clearfix">' +
-           '        <dt>选择排量</dt>';
-       for(var i=0; i < data.length; i ++){
-          if(data[i]["name"]=="排量" && displace.contains(data[i]['value'])){
-            displace.push(data[i]['value'])
-            if(<%= @id %> == data[i]['good_id']){
-              str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
-            }
-            else
-            {
-              str+=   '<dd >'+data[i]['value']+'</dd>' 
-            }
-          }
-       }
-      str+='         </dl>';
+  //     str += '        <dl class="car-config-way clearfix">' +
+  //          '        <dt>选择排量</dt>';
+  //      for(var i=0; i < data.length; i ++){
+  //         if(data[i]["name"]=="排量" && displace.contains(data[i]['value'])){
+  //           displace.push(data[i]['value'])
+  //           if(<%= @id %> == data[i]['good_id']){
+  //             str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
+  //           }
+  //           else
+  //           {
+  //             str+=   '<dd >'+data[i]['value']+'</dd>' 
+  //           }
+  //         }
+  //      }
+  //     str+='         </dl>';
 
-      str += '        <dl class="car-config-way clearfix">' +
-      '        <dt>选择颜色</dt>';
-      for(var i=0; i < data.length; i ++){
-          if(data[i]["name"]=="外颜色"  && color.contains(data[i]['value']) ){
-            color.push(data[i]['value']);
-            if(<%= @id %> == data[i]['good_id']){
-              str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
-            }else{
-               str+=   '<dd >'+data[i]['value']+'</dd>' 
-            }
-          }
-       }
+  //     str += '        <dl class="car-config-way clearfix">' +
+  //     '        <dt>选择颜色</dt>';
+  //     for(var i=0; i < data.length; i ++){
+  //         if(data[i]["name"]=="外颜色"  && color.contains(data[i]['value']) ){
+  //           color.push(data[i]['value']);
+  //           if(<%= @id %> == data[i]['good_id']){
+  //             str+=   '<dd class="cho">'+data[i]['value']+'</dd>'
+  //           }else{
+  //              str+=   '<dd >'+data[i]['value']+'</dd>' 
+  //           }
+  //         }
+  //      }
 
-      str+='         </dl>';
-
-
-       str += '        <dl class="car-config-way clearfix">' +
-           '        <dt>车型</dt>';
-           for(var i=0; i < data.length; i ++){
-            if(data[i]["name"]=="可选车型" && model.contains(data[i]['value']) ){
-              model.push(data[i]['value']);
-              if(<%= @id %> == data[i]['good_id']){
-                 str+=   '<dd class="cho">'+data[i]['value']+'</dd>' 
-              }else{
-                str+=   '<dd >'+data[i]['value']+'</dd>' 
-              }
-            }
-          }
-       str+='         </dl>';
+  //     str+='         </dl>';
 
 
+  //      str += '        <dl class="car-config-way clearfix">' +
+  //          '        <dt>车型</dt>';
+  //          for(var i=0; i < data.length; i ++){
+  //           if(data[i]["name"]=="可选车型" && model.contains(data[i]['value']) ){
+  //             model.push(data[i]['value']);
+  //             if(<%= @id %> == data[i]['good_id']){
+  //                str+=   '<dd class="cho">'+data[i]['value']+'</dd>' 
+  //             }else{
+  //               str+=   '<dd >'+data[i]['value']+'</dd>' 
+  //             }
+  //           }
+  //         }
+  //      str+='         </dl>';
 
-      $('.zy-fule').html(str);
+
+
+  //     $('.zy-fule').html(str);
 
      
-  })
+  // })
 
 
 

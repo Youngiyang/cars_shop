@@ -13,6 +13,7 @@ class DetailsController < ApplicationController
     @photo_url = Photo.find( Good.find(params[:id]).photo_ids.split(',').first).img_url
     @good = Good.find(params[:id])
     @product_id = @good.product.id
+    @good_params = GoodSpecOption.find_by_sql ["select * from good_spec_options as g inner join spec_options as s on g.spec_option_id = s.id inner join specs as sp on s.spec_id = sp.id where g.good_id = ? ",@id]
 
     good = Good.includes(product: { goods: [{ good_spec_options: { spec_option: :spec } }, { good_attr_options: { attr_option: :attr } }] }).find(params[:id])
         product = good.product
@@ -73,10 +74,11 @@ class DetailsController < ApplicationController
     #     spec << t.spec_option
     # end
     # render json: spec
-     test = GoodSpecOption.find_by_sql("select * from good_spec_options as g inner join spec_options as s on g.spec_option_id = s.id inner join specs as sp on s.spec_id = sp.id where g.good_id in (1,6,7)")
+     test = GoodSpecOption.find_by_sql("select * from good_spec_options as g inner join spec_options as s on g.spec_option_id = s.id inner join specs as sp on s.spec_id = sp.id where g.good_id in (1)")
     goods =  Product.find_by_sql("select * from products as p inner join goods as g on p.id = g.product_id ")
     product = Product.find_by_sql("select * from products as p inner join goods as g on p.id = g.product_id inner join good_spec_options as gs on g.id = gs.good_id inner join spec_options as s on gs.spec_option_id = s.id where value = '柴油' and p.id = 1 ")
     goodspec = GoodSpecOption.find_by_sql("select * from good_spec_options as g inner join spec_options as s on g.spec_option_id = s.id where g.good_id in (1,6,7)")
+    goodspecs = Good.find_by_sql("select * from good_spec_options as g inner join spec_options as s on g.spec_option_id = s.id where g.good_id = 1")
     goodspec.first
     render json: test
   end
