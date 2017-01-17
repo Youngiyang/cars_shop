@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   root 'home#index'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#logout'
-  get 'detail/:id' => 'details#index'
+  get 'detail/:id' => 'details#index', as: :detail
   get 'send_msg' => 'auth_code#send_msg'
   get 'appointment' => 'users#appointment'
   get 'users/:user_id/personal' => 'users#personal', as: :personal
