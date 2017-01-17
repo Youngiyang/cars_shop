@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'products/:id/goods' => 'goods#index', as: :goods
   get 'goods/:good_id/orders/new' => 'orders#new', as: :new_orders
   post 'goods/:good_id/orders' => 'orders#create', as: :orders
+  post 'consultation' => 'details#consultation_create'
 
   namespace :admin do
     root 'users#guide',as: :guide

@@ -1,5 +1,6 @@
 class DetailsController < ApplicationController
   layout "frontend"
+  skip_before_filter :verify_authenticity_token, only: [:consultation_create]
   
   def index
     # @id = params[:id]
@@ -7,6 +8,7 @@ class DetailsController < ApplicationController
     # @product = Good.find(params[:id]).product
     # # goods
     # @goods = product.goods
+    @consultation = Consultation.new
     @id = params[:id]
     @photo_url = Photo.find( Good.find(params[:id]).photo_ids.split(',').first).img_url
     @good = Good.find(params[:id])
@@ -54,6 +56,15 @@ class DetailsController < ApplicationController
     render json: fuel
   end
 
+  def consultation_create
+    consultation = Consultation.new(consultation_params)
+    if consultation.save
+        render json: {status: "ok"}
+    else
+        render json: {status: "no"}
+    end
+  end
+
 
   def spec
     # goods = GoodSpecOption.where(good_id: 1)
@@ -69,4 +80,9 @@ class DetailsController < ApplicationController
     goodspec.first
     render json: test
   end
+
+   private
+    def consultation_params
+       params.require(:consultation).permit(:intention, :province_id, :city_id, :name, :phone_num)
+    end
 end

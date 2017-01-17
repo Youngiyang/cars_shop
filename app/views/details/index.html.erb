@@ -1,6 +1,9 @@
 <div class="zy-backdrop"></div>
 
-<%= form_for [@consultations], remote: true do |f| %>
+<%# form_for @consultation,url: consultation_path, remote: true do |f| %>
+<%# tag(:input, :type => "hidden", :name =>   
+request_forgery_protection_token.to_s, :value =>   
+form_authenticity_token) %>   
 <div class="zy-window" style="width: 400px;">
   <div class="zy-window-wrap" style="width: 330px;margin: 20px auto; ">
     <div class="zy-window-content" >
@@ -11,23 +14,24 @@
      </div>
       <div class="zy-window-row">
         <label for="">意向车型</label>
+        <%# f.text_field :intention %>
         <input type="text" id="car_type">
       </div>
       <div class="zy-window-row">
         <label for="">上牌城市</label>
-        <select name="" id="">
-          <option value=""></option>
-        </select> 
-        <select name="" id="" class="zy-window-select">
-          <option value=""></option>
-        </select>
+        <div class="city-group">
+          <%= select_tag "province_id", options_for_select(ChinaCity.list), class: 'city-select', prompt: "--省份--", name:'consultation[province_id]' %>
+          <%= select_tag "city_id", options_for_select(ChinaCity.list), class: 'city-select', prompt: "--城市--", name:'consultation[city_id]' %>
+        </div>
       </div>
       <div class="zy-window-row">
         <label for="">姓名</label>
+        <%# f.text_field :name %>
         <input type="text" id="car_name">
       </div>
       <div class="zy-window-row">
         <label for="">联系方式</label>
+        <%# f.text_field :phone_num %>
         <input type="text" name="" id="car_contact">
       </div>
      <div class="zy-window-row">
@@ -43,7 +47,7 @@
     
   </div>
 </div>
-<% end %>
+<%# end %>
 
 <div class="container">
  <div class="header">
@@ -548,6 +552,36 @@ $('.d-img-list img').mouseover(function(){
 $('.car-config-right dd').click(function(){
   $(this).siblings('dd').children().remove();
   $(this).append('<i></i>').addClass('cho').siblings('dd').removeClass('cho');
+})
+
+$('#zy-window-phone-button').click(function(){
+  var car_type = $('#car_type').val();
+  var province_id= $('#province_id').val();
+  var city_id = $('#city_id').val();
+  var car_name = $('#car_name').val();
+  var car_contact = $('#car_contact').val();
+    $.ajax({
+      url: '<%= consultation_path %>',
+      type: 'POST',
+      data: { consultation:
+          {"intention": car_type,
+          "province_id": province_id,
+          "city_id": city_id,
+          "name": car_name,
+          "phone_num": car_contact,
+        }
+      },
+      success: function (data) {
+        console.log(data.status)
+        if(data.status == 'ok'){
+          $('.zy-window').hide();
+          $('.zy-backdrop').hide();
+          alert('您的信息已经提交')
+        }else{
+          alert('信心填写有误');
+        }
+      }
+  })
 })
  
 </script>
