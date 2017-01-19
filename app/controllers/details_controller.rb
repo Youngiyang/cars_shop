@@ -3,12 +3,6 @@ class DetailsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:consultation_create]
   
   def index
-    # @id = params[:id]
-    # # product
-    # @product = Good.find(params[:id]).product
-    # # goods
-    # @goods = product.goods
-    @consultation = Consultation.new
     @id = params[:id]
     @photo_url = Photo.find( Good.find(params[:id]).photo_ids.split(',').first).img_url
     @good = Good.find(params[:id])
