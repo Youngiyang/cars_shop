@@ -8,9 +8,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     order = Order.new(
-      user_id: 1,
+      user_id: current_user.id,
       good_id: params[:good_id],
       name: params[:order][:name],
       phone_num: params[:order][:phone_num],
@@ -20,9 +19,9 @@ class OrdersController < ApplicationController
       status: 1
       )
     if order.save
-      redirect_to personal_path
+      redirect_to personal_path(user_id: current_user.id)
     else
-      render 'new'
+      redirect_to new_orders_path(good_id: params[:good_id])
     end
   end
 end

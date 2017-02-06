@@ -30,11 +30,12 @@
        <i class="iconfont">&#xe614;</i>
        我的订单
      </div>
+     <% @orders.each do |p| %>
      <div class="order-list">
         <div class="order-title clearfix">
-          <span class="order-code">订单编号: 123254389123213</span>
+          <span class="order-code">订单编号: <%= p.order_cn %></span>
           <span class="order-time">
-            下单时间: 20160817
+            下单时间: <%= p.created_at %>
           </span>
           <span class="order-total">
             ￥49.6万
@@ -44,7 +45,7 @@
          <div class="order-wrap clearfix">
           <%= image_tag "carshow.png" %>
           <div class="order-list-intro">
-             <h1 class="order-params-name">2016款宝马X5 xDrive 35i中东版 3.0T 四驱 汽油版5座外黑内棕</h1>
+             <h1 class="order-params-name"><%= p.good.name %></h1>
             <span class="order-pay-way">质保/付款方式</span>
           </div>
          <div class="order-list-button">
@@ -53,7 +54,7 @@
          </div>
          </div>
           <hr>
-            <h1 class="order-status">订单进去</h1>
+            <h1 class="order-status">订单进度</h1>
             <div class="order-right clearfix ">
               <div class="order-line clearfix">
                 <span class="circle1"></span>
@@ -71,38 +72,37 @@
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li class="active">
-                  <span>网上预约</span>
+                  <span>客服1v1对接</span>
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li>
-                  <span>网上预约</span>
+                  <span>线下看车</span>
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li>
-                  <span>网上预约</span>
+                  <span>车款支付</span>
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li>
-                  <span>网上预约</span>
+                  <span>提车</span>
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li>
-                  <span>网上预约</span>
+                  <span>拍照办理</span>
                   <p>2016-9-10 11:30</p>
                 </li>
                 <li>
-                  <span>网上预约</span>
+                  <span>订单完成</span>
                   <p>2016-9-10 11:30</p>
                 </li>
               </ul>
             </div>
-
         </div>
         <div class="zy-window">
           <div class="zy-window-wrap">
             <div class="zy-window-nav clearfix">
               <div class="zy-window-title">
-                <i class="iconfont" >&#xe606;</i><span>联系客服</span>
+                <i class="iconfont" >&#xe606;</i><span>订单详情</span>
               </div>
               <div class="zy-window-close">×</div>
             </div>
@@ -110,46 +110,22 @@
             <table cellpadding="0" cellspacing="0" border="1" >
               <tr>
                 <td>商品名称</td>
-                <td>2016款宝马x5</td>
+                <td><%= p.good.name %></td>
               </tr>
               <tr>
                 <td>下单时间</td>
-                <td>2016年3月18日11:30</td>
+                <td> <%= p.created_at %></td>
               </tr>
               <tr>
                 <td>联系人</td>
-                <td>2016年3月18日11:30</td>
+                <td> <%= p.name %></td>
               </tr>
               <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
+                <td>提车地</td>
+                <td><%= get_city_name(p.province_id.to_s) + get_city_name(p.city_id.to_s) %></td>
               </tr>
               <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
-                <td>2016年3月18日11:30</td>
-              </tr>
-              <tr>
-                <td>联系人</td>
+                <td>三包服务</td>
                 <td>2016年3月18日11:30</td>
               </tr>
               <tr>
@@ -201,6 +177,7 @@
           </div>
         </div>
       </div>
+     <% end %>
      <div class="order-list">
         <div class="order-title clearfix">
           <span class="order-code">订单编号: 123254389123213</span>
@@ -270,11 +247,8 @@
 
         </div>
       </div>
-
-
   </div>
 <div class="zy-backdrop"></div>
-
 
 </div>
 
@@ -314,4 +288,55 @@ basecar.openWindow('.order-detail-btn','.zy-window','.zy-backdrop')
 basecar.closeMask('.zy-backdrop','.zy-window','.zy-windows');
 basecar.Shink('.window-hide','.window-show','.window-question');
 basecar.Shink('.window-show','.window-question','.window-show');
+
+  var countdown=60;
+
+  function settime() {
+    e = $('.btn-code');
+    if (countdown == 0) {
+      e.removeAttr("disabled");
+      e.addClass('active-botton');
+      e.html("获取验证码");
+      countdown = 60;
+    } else {
+      e.attr("disabled", true);
+      e.removeClass('active-botton');
+      e.html("重新发送(" + countdown + ")");
+      countdown--;
+      setTimeout(function() {
+      settime();
+      },1000);
+    }
+  }
+  $('.btn-code').click(function(event) {
+    mobile = $("#session_mobile").val();
+    url = "/send_msg?mobile=" + mobile;
+    if (mobile==0) {
+      alert("手机号不能为空");
+    } else{
+      $.get(url, function(data, status) {
+        if (data.message == "success" ) {
+          settime();
+        } else {
+          alert("请重试");
+        }
+      });
+    };
+  });
+
+  $('.login-btn').bind('click',function(){
+    $('.zy-window-login').show();
+      $('.zy-backdrop').show();
+  })
+
+  $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window-login').hide();
+      $('.zy-backdrop').hide();
+      clearTimeout(t_startTime);
+      $('.btn-code').attr('disabled',false);
+      $('.btn-code').html('获取验证码');
+    }
+  })
+
 </script>
