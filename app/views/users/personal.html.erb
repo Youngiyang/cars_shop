@@ -57,13 +57,41 @@
             <h1 class="order-status">订单进度</h1>
             <div class="order-right clearfix ">
               <div class="order-line clearfix">
+              <% if p.status == 1 %>
+                <span class="circle1 active"></span>
+              <% else%>
                 <span class="circle1"></span>
+              <% end %>
+              <% if p.status == 2 %>
                 <span class="circle2 active"></span>
+              <% else%>
+                <span class="circle2"></span>
+              <% end %>
+              <% if p.status == 3 %>
+                <span class="circle3 active"></span>
+              <% else%>
                 <span class="circle3"></span>
+              <% end %>
+              <% if p.status == 4 %>
+                <span class="circle4 active"></span>
+              <% else%>
                 <span class="circle4"></span>
+              <% end %>
+              <% if p.status == 5 %>
+                <span class="circle5 active"></span>
+              <% else%>
                 <span class="circle5"></span>
+              <% end %>
+              <% if p.status == 6 %>
+                <span class="circle6 active"></span>
+              <% else%>
                 <span class="circle6"></span>
+              <% end %>
+              <% if p.status == 7 %>
+                <span class="circle7 active"></span>
+              <% else%>
                 <span class="circle7"></span>
+              <% end %>
               </div>
 
               <ul class="clearfix">
