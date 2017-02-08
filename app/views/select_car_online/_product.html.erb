@@ -1,3 +1,7 @@
+<% if @products.blank? %>
+  <p class="empty-products">未搜索到相应的结果</p>
+<% end %>
+
 <% @products.each do |product| %>
   <li>
   <%= link_to goods_path(product) do %>
