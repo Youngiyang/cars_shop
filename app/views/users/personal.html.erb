@@ -177,7 +177,76 @@
           </div>
         </div>
       </div>
-    <% end %>
+     <% end %>
+     <div class="order-list">
+        <div class="order-title clearfix">
+          <span class="order-code">订单编号: 123254389123213</span>
+          <span class="order-time">
+            下单时间: 20160817
+          </span>
+          <span class="order-total">
+            ￥49.6万
+          </span>
+        </div>
+        <div class="order-body">
+         <div class="order-wrap clearfix">
+          <%= image_tag "carshow.png" %>
+          <div class="order-list-intro">
+             <h1 class="order-params-name">2016款宝马X5 xDrive 35i中东版 3.0T 四驱 汽油版5座外黑内棕</h1>
+            <span class="order-pay-way">质保/付款方式</span>
+          </div>
+         <div class="order-list-button">
+            <button class="order-detail-btn">详情订单</button>
+           <button class="order-contact-btn">联系客服</button>
+         </div>
+         </div>
+          <hr>
+            <h1 class="order-status">订单进去</h1>
+            <div class="order-right clearfix ">
+              <div class="order-line clearfix">
+                <span class="circle1"></span>
+                <span class="circle2 active"></span>
+                <span class="circle3"></span>
+                <span class="circle4"></span>
+                <span class="circle5"></span>
+                <span class="circle6"></span>
+                <span class="circle7"></span>
+              </div>
+              
+              <ul class="clearfix">
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li class="active">
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+                <li>
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+      </div>
   </div>
 <div class="zy-backdrop"></div>
 
@@ -187,8 +256,35 @@
 
 
 <script>
+ $('.order-detail-btn').click(function(){
+   $('.zy-window').show();
+   $('.zy-backdrop').show();
+  })
+
+  $('.car-config-consult').click(function(){
+     $('.zy-windows').show();
+   $('.zy-backdrop').show();
+  })
+//关闭弹窗
+ $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window').hide();
+      $('.zy-windows').hide();
+      $('.zy-backdrop').hide();
+    }
+  })
+
+ $('.window-hide').click(function(){
+  $('.window-question').hide(500);
+  $('.window-show').show();
+ })
+
+ $('.window-show').click(function(){
+  $('.window-question').show(500);
+  $('.window-show').hide();
+ }
 basecar.openWindow('.order-detail-btn','.zy-window','.zy-backdrop')
-basecar.openWindow('.order-contact-btn','.zy-windows','.zy-backdrop')
+// basecar.openWindow('.car-config-consult','.zy-windows','.zy-backdrop')
 basecar.closeMask('.zy-backdrop','.zy-window','.zy-windows');
 basecar.Shink('.window-hide','.window-show','.window-question');
 basecar.Shink('.window-show','.window-question','.window-show');

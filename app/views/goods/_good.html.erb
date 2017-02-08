@@ -1,6 +1,6 @@
 <% @goods.each do |good| %>
   <li class="car-item-feed clearfix">
-    <%= link_to '#' do %>
+    <%= link_to detail_path(good) do %>
       <div class="car-item-feed-img">
         <%= image_tag Good.photos(good.photo_ids)[0], height:"153" %>
 

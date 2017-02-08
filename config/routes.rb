@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 
   get 'users/appointment'
+  get 'users/spec' => 'details#spec'
+  get 'users/fuel/:id/good_id/:good_id' => 'details#fuel'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
   root 'home#index'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#logout'
-  get 'detail/:id' => 'details#index'
+  get 'detail/:id' => 'details#index', as: :detail
   get 'send_msg' => 'auth_code#send_msg'
   get 'appointment' => 'users#appointment'
   get 'users/:user_id/personal' => 'users#personal', as: :personal
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
   get 'products/:id/goods' => 'goods#index', as: :goods
   get 'goods/:good_id/orders/new' => 'orders#new', as: :new_orders
   post 'goods/:good_id/orders' => 'orders#create', as: :orders
+  post 'consultation' => 'details#consultation_create'
 
   namespace :admin do
     root 'users#guide',as: :guide

@@ -72,14 +72,8 @@
       <div class="zy-list-title"><i class="iconfont">&#xe612;</i><span>提车地点</span></div>
       <div class="form-input clearfix form-select">
        <span class="form-left">您所在的城市:</span>
-      <select name="" id="">
-        <option value="">1</option>
-        <option value="">2</option>
-      </select>
-      <select name="" id="">
-        <option value="">1</option>
-        <option value="">2</option>
-      </select>
+      <%= select_tag "province_id", options_for_select(ChinaCity.list), class: 'city-select', prompt: "--省份--", name:'order[province_id]' %>
+          <%= select_tag "city_id", options_for_select(ChinaCity.list), class: 'city-select', prompt: "--城市--", name:'order[city_id]' %>
      </div>
     </div>
     <div class="form-group">

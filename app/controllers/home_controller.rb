@@ -8,5 +8,6 @@ class HomeController < ApplicationController
     @ads_3 = Advertisement.where(position: 3)
     @banners = Advertisement.where(position: 1)
     @products_hot = Product.where(is_hot: true)
+    @categories = Category.all
   end
 end

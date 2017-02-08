@@ -1,22 +1,5 @@
 
-<div class="header">
-    <ul class="header-nav">
-      <li class="active"><%= link_to "首页", root_path %></li>
-      <li><%= link_to "在线选车", advanced_select_path %></li>
-      <li>关于我们</li>
-      <% if current_user %>
-        <li class="active login-order">
-          <i class='iconfont'></i><%= current_user.mobile %>
-          &nbsp;
-          <a href='<%= personal_path(current_user) %>'>个人订单<a>
-          &nbsp;
-          <%= link_to "退出", logout_path, method: "delete" %>
-        </li>
-      <% else %>
-        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
-      <% end  %>
-    </ul>
-</div>
+<%= render 'layouts/header' %>
 <div class="clearfix"></div>
 <div class="select-car-online clearfix">
   <div class="brands">
@@ -170,6 +153,7 @@
 <script>
   $(document).ready(function(){
     $(".pagination a").attr('data-remote', 'true');
+
   });
 
   $(".select-option").click(function(){
@@ -261,6 +245,5 @@
       $('.btn-code').html('获取验证码');
     }
   })
-
 </script>
 

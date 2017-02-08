@@ -7,11 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <%= stylesheet_link_tag    'frontend', media: 'all','data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application','data-turbolinks-track' => true %>
-
-
 </head>
 <body id="content">
   <div class="container clearfix">
+    <div class="zy-backdrop"></div>
+
     <%= yield %>
     <footer>
       <div class="img"><img src="" alt="LOGO"></div>
