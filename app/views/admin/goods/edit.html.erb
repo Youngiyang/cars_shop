@@ -452,7 +452,20 @@ $('.get-photos').change(function(event) {
     }
   })
 });
-    
+$('.get-details-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".details-photos").html(data);
+    }
+  })
+});
+
     $('.albums-details-photos').click(function(event) {
     var arr2 = []
     var arr3 = []
