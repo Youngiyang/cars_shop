@@ -1,9 +1,9 @@
 module Admin::BrandsHelper
   def is_display?(a)
     if a == false
-      return "显示"
+      return "隐藏"
     elsif a == true
-        return "隐藏"
+        return "显示"
     end
   end
 end
