@@ -1,22 +1,5 @@
 
-<div class="header">
-    <ul class="header-nav">
-      <li class="active"><%= link_to "首页", root_path %></li>
-      <li><%= link_to "在线选车", advanced_select_path %></li>
-      <li>关于我们</li>
-      <% if current_user %>
-        <li class="active login-order">
-          <i class='iconfont'></i><%= current_user.mobile %>
-          &nbsp;
-          <a href='<%= personal_path(current_user) %>'>个人订单<a>
-          &nbsp;
-          <%= link_to "退出", logout_path, method: "delete" %>
-        </li>
-      <% else %>
-        <li class="active login-btn"><i class="iconfont">&#xe60d;</i>登陆</li>
-      <% end  %>
-    </ul>
-</div>
+<%= render 'layouts/header' %>
 <div class="clearfix"></div>
 <div class="select-car-online clearfix">
   <div class="brands">
@@ -170,6 +153,7 @@
 <script>
   $(document).ready(function(){
     $(".pagination a").attr('data-remote', 'true');
+
   });
 
   $(".select-option").click(function(){
@@ -211,5 +195,54 @@
     $(".brands").before(content);
     $(".select-click div").trigger("click");
   });
+  var countdown=60;
+
+  function settime() {
+    e = $('.btn-code');
+    if (countdown == 0) {
+      e.removeAttr("disabled");
+      e.addClass('active-botton');
+      e.html("获取验证码");
+      countdown = 60;
+    } else {
+      e.attr("disabled", true);
+      e.removeClass('active-botton');
+      e.html("重新发送(" + countdown + ")");
+      countdown--;
+      setTimeout(function() {
+      settime();
+      },1000);
+    }
+  }
+  $('.btn-code').click(function(event) {
+    mobile = $("#session_mobile").val();
+    url = "/send_msg?mobile=" + mobile;
+    if (mobile==0) {
+      alert("手机号不能为空");
+    } else{
+      $.get(url, function(data, status) {
+        if (data.message == "success" ) {
+          settime();
+        } else {
+          alert("请重试");
+        }
+      });
+    };
+  });
+
+  $('.login-btn').bind('click',function(){
+    $('.zy-window-login').show();
+      $('.zy-backdrop').show();
+  })
+
+  $(document).click(function(e){
+    if(e.target.className === 'zy-backdrop'|| e.target.className === 'zy-window-close') {
+      $('.zy-window-login').hide();
+      $('.zy-backdrop').hide();
+      clearTimeout(t_startTime);
+      $('.btn-code').attr('disabled',false);
+      $('.btn-code').html('获取验证码');
+    }
+  })
 </script>
 
