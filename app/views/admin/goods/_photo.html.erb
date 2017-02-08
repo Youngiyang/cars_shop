@@ -2,7 +2,7 @@
     <div class="col-sm-4 col-md-4 photo_<%= p.id  %>">
       <div class="thumbnail">
         <img src="<%=  p.img_url.to_s + image_size %>" width= "300" height="300">
-        <% if @good.photo_ids %>
+        <% if @good && @good.photo_ids %>
           <% if @good.photo_ids.split(",").include?(p.id.to_s) %>
             <input type="checkbox" name="ck[]" id="" class="img-ck" value="<%= p.id %>" checked="checked">
           <% else %>

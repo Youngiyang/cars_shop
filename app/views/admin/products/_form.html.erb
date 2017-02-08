@@ -203,6 +203,20 @@ function setProgress(ele, percent, content) {
     $(".image_preview").html(content);
   });
 
+$('.get-details-photos').change(function(event) {
+  var album_id = $(this).val();
+  console.log(album_id);
+  $.ajax({
+    url: '<%= admin_get_products_photos_path %>',
+    type: 'GET',
+    data: {"album_id": album_id},
+    success: function  (data) {
+      console.log(data);
+      $(".details-photos").html(data);
+    }
+  })
+});
+
   // function get_details_images_id () {
   //   var upload_by_self = $('.details-images-id').val().split(",");
   //   var select_from_ablums = $(".albums-details-images-id").val().split(",");
@@ -227,7 +241,7 @@ function setProgress(ele, percent, content) {
   //   var result = $.unique($.merge(upload_by_self, select_from_ablums))
   //   var result_str = result.join(",");
   //   console.log(result_str);
-  //  
+  //
   //    $('.content_photo_ids').val(result_str);
   // $('.albums-details-photos').click(function() {
   //   var select_from_ablums = $(".albums-details-images-id").val().split(",");

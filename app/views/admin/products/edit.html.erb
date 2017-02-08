@@ -200,6 +200,19 @@ $('.albums-details-photos').click(function(event) {
     $(".image_preview").html(content);
 
   });
+  $('.get-details-photos').change(function(event) {
+    var album_id = $(this).val();
+    console.log(album_id);
+    $.ajax({
+      url: '<%= admin_get_products_photos_path %>',
+      type: 'GET',
+      data: {"album_id": album_id},
+      success: function  (data) {
+        console.log(data);
+        $(".details-photos").html(data);
+      }
+    })
+  });
 
 </script>
 

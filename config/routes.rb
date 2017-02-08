@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     post 'upload' => 'image_uploads#upload'
     post 'multi_upload' => 'image_uploads#multi_upload'
     get 'get_photos' => 'goods#get_photos'
+    get 'get_products_photos' => 'products#get_photos'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

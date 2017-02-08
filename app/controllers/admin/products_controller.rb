@@ -35,7 +35,10 @@ class Admin::ProductsController < ApplicationController
       render "edit"
      end
   end
-
+  def get_photos
+    @photos = Photo.order(created_at: :desc).where(album_id: params[:album_id])
+    render :partial => "photo", :object => @photos
+  end
   private
   def product_params
     params.require(:product).permit(:name, :img_url, :brand_id, :category_id,:is_hot, :is_recommended, :recommended_sub_title, :recommended_words, :slogan, :min_price,:content_photo_ids)
