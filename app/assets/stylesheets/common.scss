@@ -14,18 +14,20 @@ li,ol{
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 998;
+    z-index: 11;
     background-color: rgba(0,0,0,.3);
     display: none;
 }
 
+
+
 .zy-window-login {
-  z-index: 9999;
-  background: #fff;
+  z-index: 999;
   position: fixed;
+  left: 42%;
+  top: 8%;
   width: 352px;
-  top: 10%;
-  left: 40%;
+  background: #fff;
   // -webkit-transform: translate(-50%, -50%);
   // -moz-transform: translate(-50%, -50%);
   // -ms-transform: translate(-50%, -50%);
