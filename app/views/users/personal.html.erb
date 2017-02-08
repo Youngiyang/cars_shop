@@ -67,34 +67,83 @@
               </div>
 
               <ul class="clearfix">
+              <% if p.status == 1 %>
+                <li  class="active">
+                  <span>网上预约</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>网上预约</span>
                   <p>2016-9-10 11:30</p>
                 </li>
-                <li class="active">
+              <% end %>
+              <% if p.status ==2 %>
+                <li  class="active">
                   <span>客服1v1对接</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% else%>
+                <li>
+                  <span>客服1v1对接</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% end %>
+              <% if p.status == 3 %>
+                <li  class="active">
+                  <span>线下看车</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>线下看车</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% end %>
+              <% if p.status == 4 %>
+                <li  class="active">
+                  <span>车款支付</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>车款支付</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% end %>
+              <% if p.status == 5 %>
+                <li  class="active">
+                  <span>提车</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>提车</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% end %>
+              <% if p.status == 6 %>
+                <li  class="active">
+                  <span>拍照办理</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>拍照办理</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% end %>
+              <% if p.status == 7 %>
+                <li  class="active">
+                  <span>订单完成</span>
+                  <p>2016-9-10 11:30</p>
+                </li>
+              <% else%>
                 <li>
                   <span>订单完成</span>
                   <p>2016-9-10 11:30</p>
                 </li>
+              <% end %>
               </ul>
             </div>
         </div>
@@ -212,7 +261,7 @@
                 <span class="circle6"></span>
                 <span class="circle7"></span>
               </div>
-              
+
               <ul class="clearfix">
                 <li>
                   <span>网上预约</span>

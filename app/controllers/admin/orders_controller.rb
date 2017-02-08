@@ -6,7 +6,7 @@ class Admin::OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
-    @stauts = [['线上预约','1',], ['客服1对1对接','2' ],['线下看车','3'],['意向洽谈','4'],['车款支付','5'],['提车','6'],['拍照办理','7'],['订单完成','8']]
+    @stauts = [['线上预约','1',], ['客服1对1对接','2' ],['线下看车','3'],['车款支付','4'],['提车','5'],['拍照办理','6'],['订单完成','7']]
   end
 
   def update
