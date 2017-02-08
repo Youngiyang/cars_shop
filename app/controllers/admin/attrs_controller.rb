@@ -1,4 +1,5 @@
 class Admin::AttrsController < ApplicationController
+  before_action :authenticate_admin!
   def create
     attr = Attr.find_by(key: params[:attr][:key])
     if attr

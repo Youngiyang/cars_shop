@@ -9,3 +9,5 @@ Rails.application.config.assets.precompile += %w( frontend.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( slideBox/html5zoo.js )
+Rails.application.config.assets.precompile += %w( slideBox/lovelygallery.js )

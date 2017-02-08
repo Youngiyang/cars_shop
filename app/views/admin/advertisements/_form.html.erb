@@ -1,11 +1,11 @@
 <%= form_for [:admin, @advertisement],  html:{ class:"col s12 admin_form" } do |f| %>
    <%= render "admin/share/error_messages", target: @advertisement %>
 
-     
+
     <div class="form-group">
         <label for="E5rcADdEFdxT4EKSY" class="control-label">banner图片</label>
         <div class="fileUpload" name="image" id="E5rcADdEFdxT4EKSY" data-schema-key="image">
-          <span class="btn btn-file btn-xs">
+          <span class="btn  btn-xs">
             <%= file_field_tag :img_url,
             class: 'form-control',
             placeholder: '点击上传图片',multiple: true %>
@@ -36,7 +36,7 @@
            <option value="1" selected>广告1</option>
            <option value="2">广告2</option>
            <option value="3">广告3</option>
-          <% when 2 %>  
+          <% when 2 %>
            <option value="1">广告1</option>
            <option value="2" selected>广告2</option>
            <option value="3">广告3</option>
@@ -53,7 +53,7 @@
        <%= f.text_area :description , length: "120", required:''%>
     </div>
 
-     
+
 
 
     <div class="buttons text-right">
@@ -64,7 +64,7 @@
 
 <script>
 
- 
+
 $(function(){
   $('form').validate({
     rules: {
@@ -113,10 +113,10 @@ $(function(){
         }
       });
   })
-   
+
 })
 
- 
+
 
 
  //设置进度条

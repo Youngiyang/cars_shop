@@ -1,4 +1,5 @@
 class Admin::GoodsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @brand = Brand.find(params[:brand_id])
     @product = Product.find(params[:product_id])

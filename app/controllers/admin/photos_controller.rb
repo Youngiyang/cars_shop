@@ -1,4 +1,5 @@
 class Admin::PhotosController < ApplicationController
+  before_action :authenticate_admin!
 def index
     @photos = Photo.order(created_at: :desc).where(album_id: params[:album_id]).paginate(page: params[:page], per_page: 10)
     @albums = Album.find(params[:album_id])

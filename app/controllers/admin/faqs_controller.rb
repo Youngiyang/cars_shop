@@ -1,4 +1,5 @@
 class Admin::FaqsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @faqs = Faq.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
@@ -42,7 +43,7 @@ class Admin::FaqsController < ApplicationController
   end
 
 
-    private 
+    private
       def faq_params
         params.require(:faq).permit(:question, :answer)
       end

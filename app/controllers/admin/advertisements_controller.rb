@@ -1,4 +1,5 @@
 class Admin::AdvertisementsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @advertisements = Advertisement.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
@@ -42,7 +43,7 @@ class Admin::AdvertisementsController < ApplicationController
   end
 
 
-    private 
+    private
       def advertisement_params
         params.require(:advertisement).permit(:img_url, :link, :description, :position)
       end

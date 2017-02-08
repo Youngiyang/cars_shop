@@ -1,4 +1,5 @@
 class Admin::BrandsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @brands = Brand.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
