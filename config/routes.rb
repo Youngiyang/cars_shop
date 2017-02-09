@@ -37,6 +37,10 @@ Rails.application.routes.draw do
     resources :brands do
       resources :products do
         resources :goods
+        member do
+          get 'sold_out' => 'goods#sold_out', as: 'sold_out'
+          get 'reshelf' => 'goods#reshelf', as: 'reshelf'
+        end
       end
     end
     resources :orders do

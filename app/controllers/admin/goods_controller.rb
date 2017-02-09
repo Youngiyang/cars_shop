@@ -131,4 +131,24 @@ class Admin::GoodsController < ApplicationController
       render js: "alert('error!')"
     end
   end
+
+  def sold_out
+    @brand = Brand.find(params[:brand_id])
+    @product = Product.find(params[:product_id])
+    @good = Good.find(params[:id])
+    @good.status == 1
+     if @good.save
+      render :index
+     end
+  end
+
+  def reshelf
+    @brand = Brand.find(params[:brand_id])
+    @product = Product.find(params[:product_id])
+    @good = Good.find(params[:id])
+    @good.status == 0
+    if @good.save
+      render :index
+    end
+  end
 end

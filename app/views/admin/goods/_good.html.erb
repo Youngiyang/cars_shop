@@ -7,7 +7,11 @@
   <td><%= good.status %></td>
   <td>
   <%= link_to  '编辑', edit_admin_brand_product_good_path(@brand,@product,good), title: '品牌编辑', class: 'btn btn-success' %>
-  <%= link_to '上架/下架', admin_brand_product_goods_path(@brand,good), title: '查看该品牌下所有车型', class: 'btn btn-info' %>
+  <% if good.status == 0 %>
+    <%= link_to '下架', sold_out_admin_brand_product_path(@brand,@product,good), title: '下架', class: 'btn btn-info' %>
+  <% else %>
+    <%= link_to '重新上架', reshelf_admin_brand_product_path(@brand,@product,good), title: '重新上架', class: 'btn btn-info' %>
+  <% end %>
   <%# link_to  '删除',  admin_product_path(product),
         method: "delete",
         remote: true,
