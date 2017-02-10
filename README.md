@@ -22,14 +22,23 @@
 
 ## 开发环境执行流程
 1.安装项目依赖
+
  `bundle install`
-2. 执行迁移文件
+
+2.执行迁移文件
+
  `rake db:migrate`
+
 3.执行测试数据
+
 注释掉photo.rb中以下两行
+
 `before_validation { self.name = img_url.send(:original_filename) }`
 `mount_uploader :img_url, ImageUploader`
+
 执行测试数据
+
 `rake test_datas:init`
+
 4.运行rails s
 `rails s -b 0.0.0.0`
